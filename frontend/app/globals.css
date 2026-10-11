@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bakelicious-cream: #FCF1E3;
+  --bakelicious-primary: #7E4049;
+  --bakelicious-primary-hover: #68343D;
+  --bakelicious-background-light: #FCF1E3;
+  --bakelicious-background-secondary: #FFF9F2;
+  --bakelicious-card-light: #FFF9F2;
+  --bakelicious-border-light: #EEDCC8;
+  --bakelicious-text-main: #2D2020;
+  --bakelicious-text-muted: #6E5D5F;
+  --bakelicious-heading-light: #7E4049;
+
+  --background: #FCF1E3;
+  --foreground: #2D2020;
+  --heading-color: #7E4049;
+}
+
+.dark {
+  --bakelicious-cream: #FCF1E3;
+  --bakelicious-primary: #7E4049;
+  --bakelicious-background-dark: #4A252B;
+  --bakelicious-surface-dark: #5A2D34;
+  --bakelicious-card-dark: #68343D;
+  --bakelicious-border-dark: #7A3F49;
+  --bakelicious-text-main: #F7E6D5;
+  --bakelicious-text-muted: #EEDCC8;
+  --bakelicious-heading-dark: #FCF1E3;
+
+  --background: #4A252B;
+  --foreground: #F7E6D5;
+  --heading-color: #FCF1E3;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Overrides */
+.dark body {
+  background-color: #4A252B;
+  color: #F7E6D5;
+}
+
+.dark .bg-cream-100 {
+  background-color: #5A2D34 !important;
+  color: #FCF1E3 !important;
+}
+
+.dark .bg-cream-200 {
+  background-color: #4A252B !important;
+  color: #F7E6D5 !important;
+}
+
+.dark .bg-cream-300 {
+  background-color: #68343D !important;
+}
+
+.dark .border-cream-300,
+.dark .border-cream-400 {
+  border-color: #7A3F49 !important;
+}
+
+.dark .text-maroon-950,
+.dark .text-maroon-900,
+.dark .text-maroon-800 {
+  color: #FCF1E3 !important;
+}
+
+.dark .text-maroon-700 {
+  color: #7E4049 !important;
+}
+
+.dark .text-charcoal-muted {
+  color: #F7E6D5 !important;
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FCF1E3;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #4A252B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7E4049;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #B56C77;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #68343D;
+}
+
+/* FullCalendar Custom Theme & Full Page Layout Overrides */
+.fc {
+  --fc-border-color: #EEDCC8;
+  --fc-page-bg-color: transparent;
+  --fc-neutral-bg-color: rgba(126, 64, 73, 0.04);
+  --fc-today-bg-color: rgba(245, 158, 11, 0.12) !important;
+  font-family: inherit;
+  width: 100% !important;
+}
+
+.dark .fc {
+  --fc-border-color: #7A3F49;
+  --fc-today-bg-color: rgba(245, 158, 11, 0.25) !important;
+  --fc-neutral-bg-color: rgba(252, 241, 227, 0.04);
+}
+
+.fc .fc-toolbar {
+  margin-bottom: 1.25rem !important;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  font-family: 'Playfair Display', serif, Georgia;
+  color: #4A252B;
+  letter-spacing: -0.02em;
+}
+
+.dark .fc .fc-toolbar-title {
+  color: #FCF1E3 !important;
+}
+
+.fc .fc-button {
+  background-color: #7E4049 !important;
+  border-color: #7E4049 !important;
+  color: #FCF1E3 !important;
+  border-radius: 0.85rem !important;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  padding: 0.45rem 0.95rem !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.fc .fc-button:hover {
+  background-color: #68343D !important;
+  border-color: #68343D !important;
+  transform: translateY(-1px);
+}
+
+.fc .fc-button-active {
+  background-color: #4A252B !important;
+  border-color: #4A252B !important;
+}
+
+.dark .fc .fc-button {
+  background-color: #68343D !important;
+  border-color: #7A3F49 !important;
+  color: #FCF1E3 !important;
+}
+
+.dark .fc .fc-button:hover {
+  background-color: #7E4049 !important;
+}
+
+.fc .fc-col-header-cell {
+  background-color: rgba(126, 64, 73, 0.06);
+  padding: 10px 0 !important;
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #7E4049;
+  border-bottom: 2px solid #EEDCC8 !important;
+}
+
+.dark .fc .fc-col-header-cell {
+  background-color: rgba(252, 241, 227, 0.06);
+  color: #FCF1E3;
+  border-bottom-color: #7A3F49 !important;
+}
+
+.fc .fc-daygrid-day-number {
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 6px 10px !important;
+  color: #4A252B;
+}
+
+.dark .fc .fc-daygrid-day-number {
+  color: #FCF1E3;
+}
+
+.fc .fc-daygrid-day-frame {
+  min-height: 125px !important;
+  padding: 2px;
+}
+
+.fc .fc-daygrid-day:hover {
+  background-color: rgba(126, 64, 73, 0.03);
+}
+
+.dark .fc .fc-daygrid-day:hover {
+  background-color: rgba(252, 241, 227, 0.03);
+}
+
+.fc .fc-daygrid-more-link {
+  font-weight: 800 !important;
+  font-size: 0.75rem !important;
+  color: #7E4049 !important;
+  background-color: rgba(126, 64, 73, 0.12) !important;
+  padding: 3px 8px !important;
+  border-radius: 8px !important;
+  display: inline-block;
+  margin-top: 3px;
+  transition: all 0.15s ease;
+}
+
+.fc .fc-daygrid-more-link:hover {
+  background-color: #7E4049 !important;
+  color: #FCF1E3 !important;
+}
+
+.dark .fc .fc-daygrid-more-link {
+  color: #FCF1E3 !important;
+  background-color: rgba(252, 241, 227, 0.15) !important;
+}
+
+.dark .fc .fc-daygrid-more-link:hover {
+  background-color: #FCF1E3 !important;
+  color: #4A252B !important;
+}
