@@ -17,6 +17,7 @@ export default function AdminInventoryPage() {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [transactions, setTransactions] = useState<InventoryTransaction[]>([]);
   const [search, setSearch] = useState('');
+  const [onlyLowStock, setOnlyLowStock] = useState(false);
   const [activeTab, setActiveTab] = useState<'stock' | 'history'>('stock');
   const [loading, setLoading] = useState(true);
 
@@ -74,7 +75,12 @@ export default function AdminInventoryPage() {
     }
   };
 
+  const lowStockCount = ingredients.filter((i) => Number(i.quantity) <= Number(i.min_stock)).length;
+
   const filteredIngredients = ingredients.filter((ing) => {
+    if (onlyLowStock && Number(ing.quantity) > Number(ing.min_stock)) {
+      return false;
+    }
     if (!search.trim()) return true;
     const q = search.toLowerCase();
     return (
@@ -83,8 +89,6 @@ export default function AdminInventoryPage() {
       (ing.supplier && ing.supplier.toLowerCase().includes(q))
     );
   });
-
-  const lowStockCount = ingredients.filter((i) => i.quantity <= i.min_stock).length;
 
   return (
     <ProtectedRoute requiredPermission="INVENTORY_VIEW">
@@ -117,16 +121,37 @@ export default function AdminInventoryPage() {
               </div>
             </div>
 
-            {/* Low Stock Banner */}
+            {/* Low Stock Reminder Banner */}
             {lowStockCount > 0 && (
-              <div className="p-4 bg-rose-50 dark:bg-rose-950/80 border border-rose-200 dark:border-rose-800 rounded-2xl flex items-center gap-3 text-xs">
-                <AlertTriangle className="w-5 h-5 text-rose-700 dark:text-rose-400 shrink-0" />
-                <div>
-                  <span className="font-bold text-rose-900 dark:text-rose-200 block">
-                    {lowStockCount} Ingredients at or below reorder level!
-                  </span>
-                  <span className="text-rose-800 dark:text-rose-300 font-medium">Reorder required from suppliers to prevent baking delays.</span>
+              <div className="p-4 bg-rose-50 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-sm">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-rose-200 dark:bg-rose-900 text-rose-800 dark:text-rose-200 flex items-center justify-center shrink-0">
+                    <AlertTriangle className="w-5 h-5 text-rose-700 dark:text-rose-300 animate-pulse" />
+                  </div>
+                  <div>
+                    <span className="font-extrabold text-rose-900 dark:text-rose-200 text-sm block">
+                      ⚠️ Stock Alert: {lowStockCount} items at or below minimum threshold!
+                    </span>
+                    <span className="text-rose-800 dark:text-rose-300 font-medium">
+                      Reorder required immediately to prevent baking and production interruptions.
+                    </span>
+                  </div>
                 </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOnlyLowStock(!onlyLowStock);
+                    setActiveTab('stock');
+                  }}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition shrink-0 shadow-xs ${
+                    onlyLowStock
+                      ? 'bg-rose-800 text-white'
+                      : 'bg-rose-600 hover:bg-rose-700 text-white'
+                  }`}
+                >
+                  {onlyLowStock ? 'Show All Items' : `Filter to ${lowStockCount} Low Stock Items`}
+                </button>
               </div>
             )}
 
@@ -145,16 +170,37 @@ export default function AdminInventoryPage() {
 
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => setActiveTab('stock')}
+                  onClick={() => {
+                    setOnlyLowStock(false);
+                    setActiveTab('stock');
+                  }}
                   className={`px-4 py-2 rounded-2xl text-xs font-bold transition flex items-center gap-1.5 ${
-                    activeTab === 'stock'
+                    activeTab === 'stock' && !onlyLowStock
                       ? 'bg-maroon-700 text-cream-100'
                       : 'bg-cream-200 dark:bg-maroon-800 text-charcoal dark:text-cream-200'
                   }`}
                 >
                   <Boxes className="w-3.5 h-3.5" />
-                  <span>Current Stock</span>
+                  <span>All Stock ({ingredients.length})</span>
                 </button>
+
+                {lowStockCount > 0 && (
+                  <button
+                    onClick={() => {
+                      setOnlyLowStock(!onlyLowStock);
+                      setActiveTab('stock');
+                    }}
+                    className={`px-4 py-2 rounded-2xl text-xs font-bold transition flex items-center gap-1.5 ${
+                      onlyLowStock
+                        ? 'bg-rose-700 text-white shadow-sm'
+                        : 'bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300'
+                    }`}
+                  >
+                    <AlertTriangle className="w-3.5 h-3.5" />
+                    <span>Low Stock Only ({lowStockCount})</span>
+                  </button>
+                )}
+
                 <button
                   onClick={() => setActiveTab('history')}
                   className={`px-4 py-2 rounded-2xl text-xs font-bold transition flex items-center gap-1.5 ${

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { PublicHeader } from '@/components/layout/PublicHeader';
 import { PublicFooter } from '@/components/layout/PublicFooter';
-import { Modal } from '@/components/ui/Modal';
+import { CustomerOrderModal } from '@/components/orders/CustomerOrderModal';
 import { api, getImageUrl } from '@/lib/api';
 import { Product, Category } from '@/types';
 import { showToast } from '@/lib/toast';
@@ -18,13 +18,9 @@ export default function PublicMenuPage() {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  // Enquiry Modal
-  const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
+  // Customer Direct Order Modal
+  const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [customerName, setCustomerName] = useState('');
-  const [customerPhone, setCustomerPhone] = useState('');
-  const [deliveryDate, setDeliveryDate] = useState('');
-  const [customNotes, setCustomNotes] = useState('');
 
   useEffect(() => {
     fetchPublicMenu();
@@ -48,33 +44,7 @@ export default function PublicMenuPage() {
 
   const handleOpenEnquiry = (prod: Product) => {
     setSelectedProduct(prod);
-    setEnquiryModalOpen(true);
-  };
-
-  const handleSendEnquiry = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!customerName || !customerPhone) {
-      showToast('Please enter your name and phone number', 'error');
-      return;
-    }
-
-    try {
-      await api.post('/orders/public', {
-        customer_name: customerName,
-        phone: customerPhone,
-        product_id: selectedProduct?.id || null,
-        delivery_date: deliveryDate || null,
-        special_instructions: customNotes || undefined
-      });
-      showToast('Order enquiry submitted successfully!', 'success');
-    } catch (err) {
-      console.error('Failed to submit public order:', err);
-    }
-
-    const msg = `Hello Bakelicious! I would like to order/enquire about: ${selectedProduct?.name}. Name: ${customerName}, Phone: ${customerPhone}, Date: ${deliveryDate || 'Flexible'}. Notes: ${customNotes || 'None'}`;
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(msg)}`;
-    window.open(whatsappUrl, '_blank');
-    setEnquiryModalOpen(false);
+    setOrderModalOpen(true);
   };
 
   const filteredProducts = products.filter((p) => {
@@ -241,78 +211,13 @@ export default function PublicMenuPage() {
 
       <PublicFooter />
 
-      {/* Order Enquiry Modal */}
-      <Modal
-        isOpen={enquiryModalOpen}
-        onClose={() => setEnquiryModalOpen(false)}
-        title={selectedProduct ? `Order Enquiry: ${selectedProduct.name}` : 'Cake Order Enquiry'}
-        subtitle="Connect directly with our master bakers via WhatsApp."
-        maxWidth="md"
-      >
-        <form onSubmit={handleSendEnquiry} className="space-y-4 text-xs">
-          <div>
-            <label className="block font-bold text-maroon-900 mb-1">Your Full Name *</label>
-            <input
-              type="text"
-              required
-              value={customerName}
-              onChange={(e) => setCustomerName(e.target.value)}
-              placeholder="e.g. Priya Sharma"
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block font-bold text-maroon-900 mb-1">Phone Number (WhatsApp) *</label>
-            <input
-              type="text"
-              required
-              value={customerPhone}
-              onChange={(e) => setCustomerPhone(e.target.value)}
-              placeholder="+91 98765 43210"
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block font-bold text-maroon-900 mb-1">Required Delivery Date</label>
-            <input
-              type="date"
-              value={deliveryDate}
-              onChange={(e) => setDeliveryDate(e.target.value)}
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block font-bold text-maroon-900 mb-1">Custom Notes / Flavours / Message on Cake</label>
-            <textarea
-              rows={3}
-              value={customNotes}
-              onChange={(e) => setCustomNotes(e.target.value)}
-              placeholder="e.g. Eggless, 1kg chocolate truffle, write 'Happy Birthday Priya!'"
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
-            />
-          </div>
-
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-cream-300">
-            <button
-              type="button"
-              onClick={() => setEnquiryModalOpen(false)}
-              className="px-4 py-2 bg-cream-200 text-maroon-900 font-bold rounded-xl"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-5 py-2 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-bold rounded-xl shadow-md flex items-center gap-2"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              <span>Send Enquiry via WhatsApp</span>
-            </button>
-          </div>
-        </form>
-      </Modal>
+      {/* Direct Online Customer Order Modal */}
+      <CustomerOrderModal
+        isOpen={orderModalOpen}
+        onClose={() => setOrderModalOpen(false)}
+        selectedProduct={selectedProduct}
+        productsList={products}
+      />
     </div>
   );
 }

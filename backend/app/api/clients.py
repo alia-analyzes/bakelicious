@@ -45,7 +45,7 @@ def get_clients(
         query = query.filter(
             (Client.name.ilike(search_term)) | (Client.phone.ilike(search_term)) | (Client.email.ilike(search_term))
         )
-    clients = query.order_by(Client.name.asc()).all()
+    clients = query.order_by(Client.created_at.desc(), Client.id.desc()).all()
     return [format_client(c, db) for c in clients]
 
 @router.get("/{client_id}", response_model=ClientResponse)

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { PublicHeader } from '@/components/layout/PublicHeader';
 import { PublicFooter } from '@/components/layout/PublicFooter';
-import { Modal } from '@/components/ui/Modal';
+import { CustomerOrderModal } from '@/components/orders/CustomerOrderModal';
 import { api, getImageUrl } from '@/lib/api';
 import { Product, Feedback as FeedbackType } from '@/types';
 import { showToast } from '@/lib/toast';
@@ -15,13 +15,9 @@ export default function PublicHomepage() {
   const [testimonials, setTestimonials] = useState<FeedbackType[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Order/Enquire Modal
-  const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
+  // Direct Online Customer Order Modal
+  const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [customerName, setCustomerName] = useState('');
-  const [customerPhone, setCustomerPhone] = useState('');
-  const [deliveryDate, setDeliveryDate] = useState('');
-  const [customNotes, setCustomNotes] = useState('');
 
   useEffect(() => {
     fetchHomeData();
@@ -45,34 +41,7 @@ export default function PublicHomepage() {
 
   const handleOpenEnquiry = (prod?: Product) => {
     setSelectedProduct(prod || null);
-    setEnquiryModalOpen(true);
-  };
-
-  const handleSendEnquiry = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!customerName || !customerPhone) {
-      showToast('Please enter your name and phone number', 'error');
-      return;
-    }
-
-    try {
-      // Record order in backend ERP database
-      await api.post('/orders/public', {
-        customer_name: customerName,
-        phone: customerPhone,
-        product_id: selectedProduct?.id || null,
-        delivery_date: deliveryDate || null,
-        special_instructions: customNotes || undefined
-      });
-      showToast('Order enquiry saved in ERP system!', 'success');
-    } catch (err) {
-      console.error('Failed to submit public order:', err);
-    }
-
-    const msg = `Hello Bakelicious! I would like to enquire about ordering: ${selectedProduct?.name || 'Custom Cake'}. Name: ${customerName}, Phone: ${customerPhone}, Date: ${deliveryDate || 'Flexible'}. Notes: ${customNotes || 'None'}`;
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(msg)}`;
-    window.open(whatsappUrl, '_blank');
-    setEnquiryModalOpen(false);
+    setOrderModalOpen(true);
   };
 
   return (
@@ -341,78 +310,13 @@ export default function PublicHomepage() {
 
       <PublicFooter />
 
-      {/* Order Enquiry Modal */}
-      <Modal
-        isOpen={enquiryModalOpen}
-        onClose={() => setEnquiryModalOpen(false)}
-        title={selectedProduct ? `Enquire: ${selectedProduct.name}` : 'Custom Cake Order Enquiry'}
-        subtitle="Connect directly with our Kolkata master baker team via WhatsApp."
-        maxWidth="md"
-      >
-        <form onSubmit={handleSendEnquiry} className="space-y-4 text-xs">
-          <div>
-            <label className="block font-bold text-maroon-900 mb-1">Your Full Name *</label>
-            <input
-              type="text"
-              required
-              value={customerName}
-              onChange={(e) => setCustomerName(e.target.value)}
-              placeholder="e.g. Priya Sharma"
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block font-bold text-maroon-900 mb-1">Phone Number (WhatsApp) *</label>
-            <input
-              type="text"
-              required
-              value={customerPhone}
-              onChange={(e) => setCustomerPhone(e.target.value)}
-              placeholder="+91 98765 43210"
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block font-bold text-maroon-900 mb-1">Required Delivery Date</label>
-            <input
-              type="date"
-              value={deliveryDate}
-              onChange={(e) => setDeliveryDate(e.target.value)}
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block font-bold text-maroon-900 mb-1">Custom Notes / Flavours / Message on Cake</label>
-            <textarea
-              rows={3}
-              value={customNotes}
-              onChange={(e) => setCustomNotes(e.target.value)}
-              placeholder="e.g. Eggless, 1kg chocolate truffle, write 'Happy Birthday Priya!'"
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
-            />
-          </div>
-
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-cream-300">
-            <button
-              type="button"
-              onClick={() => setEnquiryModalOpen(false)}
-              className="px-4 py-2 bg-cream-200 text-maroon-900 font-bold rounded-xl"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-5 py-2 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-bold rounded-xl shadow-md flex items-center gap-2"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              <span>Send Enquiry via WhatsApp</span>
-            </button>
-          </div>
-        </form>
-      </Modal>
+      {/* Direct Online Customer Order Modal */}
+      <CustomerOrderModal
+        isOpen={orderModalOpen}
+        onClose={() => setOrderModalOpen(false)}
+        selectedProduct={selectedProduct}
+        productsList={featuredProducts}
+      />
     </div>
   );
 }

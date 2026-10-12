@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Header } from '@/components/layout/Header';
 import { api } from '@/lib/api';
@@ -8,7 +9,7 @@ import { Client, Order } from '@/types';
 import { Modal } from '@/components/ui/Modal';
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 import { showToast } from '@/lib/toast';
-import { Plus, Search, Mail, MapPin, Phone, Trash2, Edit, User } from 'lucide-react';
+import { Plus, Search, Mail, MapPin, Phone, Trash2, Edit, User, ShoppingBag } from 'lucide-react';
 
 export default function AdminClientsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -102,7 +103,7 @@ export default function AdminClientsPage() {
       c.phone.includes(q) ||
       (c.email && c.email.toLowerCase().includes(q))
     );
-  });
+  }).sort((a, b) => b.id - a.id);
 
   return (
     <ProtectedRoute requiredPermission="CLIENTS_VIEW">
@@ -110,26 +111,36 @@ export default function AdminClientsPage() {
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
-          <Header onOpenSidebar={() => setSidebarOpen(true)} title="Client CRM & Directory" />
+          <Header onOpenSidebar={() => setSidebarOpen(true)} title="All Client Details & Directory" />
 
           <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div>
                 <h1 className="text-2xl font-extrabold font-serif text-maroon-950 dark:text-cream-100">
-                  Client CRM &amp; Contacts
+                  All Client Details &amp; Directory
                 </h1>
                 <p className="text-xs text-charcoal-muted dark:text-cream-300/80 font-medium mt-0.5">
-                  Manage bakery customer profiles, phone numbers, delivery addresses, and notes.
+                  Customer profiles, contact numbers, delivery addresses, order counts and preferences.
                 </p>
               </div>
 
-              <button
-                onClick={handleOpenCreate}
-                className="px-5 py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs font-bold transition shadow-md flex items-center gap-2 shrink-0"
-              >
-                <Plus className="w-4 h-4" />
-                <span>Register New Client</span>
-              </button>
+              <div className="flex items-center gap-2.5">
+                <Link
+                  href="/admin/orders"
+                  className="px-4 py-2.5 bg-cream-200 dark:bg-maroon-800 hover:bg-cream-300 dark:hover:bg-maroon-700 text-maroon-900 dark:text-cream-100 border border-cream-300 dark:border-maroon-700 rounded-2xl text-xs font-bold transition flex items-center gap-1.5 shadow-2xs"
+                >
+                  <ShoppingBag className="w-4 h-4 text-maroon-700 dark:text-cream-300" />
+                  <span>&larr; View All Orders</span>
+                </Link>
+
+                <button
+                  onClick={handleOpenCreate}
+                  className="px-4 py-2.5 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs font-bold transition shadow-md flex items-center gap-1.5 shrink-0"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Add Client</span>
+                </button>
+              </div>
             </div>
 
             <div className="bg-cream-100 dark:bg-maroon-900 p-4 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm flex items-center gap-4">

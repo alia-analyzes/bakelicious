@@ -323,9 +323,9 @@ export default function AdminProductionPage() {
                                     </span>
                                   ))}
                                 </div>
-                                {t.notes && (
-                                  <p className="text-[10px] text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-1 rounded-md mt-1 border border-amber-200 dark:border-amber-800">
-                                    <strong>Instruction:</strong> {t.notes}
+                                {(t.order?.special_instructions || t.notes) && (
+                                  <p className="text-[10px] text-amber-900 dark:text-amber-200 bg-amber-50 dark:bg-amber-950/80 px-2.5 py-1.5 rounded-lg mt-1 border border-amber-300 dark:border-amber-700 font-medium">
+                                    <strong>🎨 Customization:</strong> {t.order?.special_instructions || t.notes}
                                   </p>
                                 )}
                               </div>

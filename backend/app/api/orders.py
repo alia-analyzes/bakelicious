@@ -79,7 +79,7 @@ def get_orders(
             (Order.delivery_address.ilike(f"%{search}%"))
         )
         
-    orders = query.order_by(Order.delivery_date.desc(), Order.id.desc()).all()
+    orders = query.order_by(Order.order_date.desc(), Order.created_at.desc(), Order.id.desc()).all()
     return [format_order_response(o) for o in orders]
 
 @router.get("/{order_id}", response_model=OrderResponse)
@@ -323,7 +323,7 @@ def create_public_order(
         client_id=client.id,
         order_date=datetime.utcnow(),
         delivery_date=delivery_date_val,
-        delivery_time="12:00 PM",
+        delivery_time=payload.delivery_time or "12:00 PM",
         production_date=delivery_date_val,
         subtotal=subtotal,
         discount=Decimal("0.00"),
@@ -334,7 +334,7 @@ def create_public_order(
         order_status="Received",
         special_instructions=payload.special_instructions,
         delivery_address=payload.delivery_address or client.address,
-        notes=f"Public Website Enquiry. Notes: {payload.special_instructions or 'None'}"
+        notes=f"Customer Online Order. Customization & Notes: {payload.special_instructions or 'None'}"
     )
     db.add(order)
     db.flush()

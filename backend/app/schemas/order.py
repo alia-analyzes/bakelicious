@@ -44,6 +44,7 @@ class PublicOrderCreate(BaseModel):
     size_override: Optional[str] = None
     quantity: int = 1
     delivery_date: Optional[str] = None
+    delivery_time: Optional[str] = "12:00 PM"
     special_instructions: Optional[str] = None
     delivery_address: Optional[str] = None
 
