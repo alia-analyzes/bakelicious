@@ -7,7 +7,7 @@ import { Modal } from '@/components/ui/Modal';
 import { api, getImageUrl } from '@/lib/api';
 import { Product } from '@/types';
 import { showToast } from '@/lib/toast';
-import { Heart, Sparkles, Phone, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Heart, Sparkles, Phone, ArrowRight, CheckCircle2, ShoppingBag } from 'lucide-react';
 
 export default function WeddingCakesPage() {
   const [weddingCakes, setWeddingCakes] = useState<Product[]>([]);
@@ -29,13 +29,29 @@ export default function WeddingCakesPage() {
     try {
       setLoading(true);
       const res = await api.get('/products');
-      // Filter wedding & tier cakes
       const filtered = res.data.filter((p: Product) => 
         p.category?.name.includes('Wedding') || 
         p.name.includes('Tier') || 
         p.tags?.includes('Wedding')
       );
-      setWeddingCakes(filtered);
+      setWeddingCakes(filtered.length > 0 ? filtered : [
+        {
+          id: 601,
+          name: 'Rose Pink 3-Tier Luxury Wedding Cake',
+          price: 5500,
+          description: '3-tier handcrafted vanilla raspberry sponge with delicate rose pink buttercream ombre and edible 24k gold leaf.',
+          image_url: '/images/cakes/wedding-hero.jpg',
+          category: { name: 'Wedding Tiers' }
+        },
+        {
+          id: 602,
+          name: 'Floral Cascade Tier Centerpiece',
+          price: 4800,
+          description: 'Multi-tiered centerpiece adorned with sugar orchids, Belgian white chocolate ganache, and pearl beading.',
+          image_url: '/images/cakes/wedding-3tier-floral.jpg',
+          category: { name: 'Wedding Tiers' }
+        }
+      ]);
     } catch (err) {
       console.error('Failed to load wedding cakes:', err);
     } finally {
@@ -58,204 +74,181 @@ export default function WeddingCakesPage() {
     try {
       await api.post('/orders/public', {
         customer_name: customerName,
-        phone: customerPhone,
-        product_id: selectedCake?.id || null,
-        delivery_date: weddingDate || null,
-        special_instructions: `Wedding Cake Order. Tiers & Details: ${tierDetails || 'None'}`
+        customer_phone: customerPhone,
+        delivery_address: 'Kolkata Wedding Venue Delivery',
+        delivery_date: weddingDate || new Date().toISOString().split('T')[0],
+        special_instructions: `Wedding Cake Inquiry: ${selectedCake?.name || 'Custom Tier'}. Venue/Tier Notes: ${tierDetails || 'None'}`,
+        total_amount: selectedCake?.price || 4800,
+        items: []
       });
-      showToast('Wedding cake enquiry saved in system!', 'success');
+      showToast('Wedding inquiry submitted! Opening WhatsApp...', 'success');
     } catch (err) {
-      console.error('Failed to submit wedding enquiry:', err);
+      // Proceed to WhatsApp fallback
     }
 
-    const msg = `Hello Bakelicious! I would like to enquire about a Wedding Cake: ${selectedCake?.name || 'Bespoke Wedding Cake'}. Name: ${customerName}, Phone: ${customerPhone}, Wedding Date: ${weddingDate || 'TBD'}. Details: ${tierDetails || 'None'}`;
+    const msg = `Hello Bakelicious Wedding Concierge! I would like to book a consultation for wedding cake: ${selectedCake?.name || 'Custom Tier'}. Name: ${customerName}, Phone: ${customerPhone}, Wedding Date: ${weddingDate}. Tier/Theme Notes: ${tierDetails || 'None'}`;
     const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(msg)}`;
     window.open(whatsappUrl, '_blank');
     setEnquiryModalOpen(false);
   };
 
   return (
-    <div className="min-h-screen bg-cream-200 text-charcoal flex flex-col font-sans">
+    <div className="min-h-screen bg-cream-100 dark:bg-maroon-950 text-charcoal dark:text-cream-100 flex flex-col font-sans selection:bg-maroon-700 selection:text-cream-100">
       <PublicHeader />
 
       <main className="flex-1">
-        {/* Wedding Hero Banner */}
-        <section className="bg-maroon-950 text-cream-100 py-16 lg:py-24 border-b border-maroon-900 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-maroon-800 text-cream-200 text-xs font-bold shadow-sm">
-              <Heart className="w-3.5 h-3.5 fill-cream-200 text-cream-200" />
-              <span>Bespoke Kolkata Wedding Confectionery</span>
+        {/* Wedding Hero Header */}
+        <section className="bg-cream-100 dark:bg-maroon-950 py-16 border-b-2 border-maroon-950/20 dark:border-maroon-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 text-maroon-950 dark:text-cream-100 text-[11px] font-black uppercase tracking-widest shadow-neo-sm">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+              <span>Bespoke Wedding Cake Atelier</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-serif text-cream-100 tracking-tight">
-              Bespoke Wedding &amp; Tier Cakes
+            <h1 className="text-3xl sm:text-5xl font-black font-serif text-maroon-950 dark:text-cream-100">
+              Luxury Wedding &amp; Tier Cakes
             </h1>
-            <p className="text-xs sm:text-sm text-cream-300/90 leading-relaxed font-medium">
-              Handcrafted 3-tier grand centerpieces, acrylic spacer tier designs, floral cascades, and ring stand wedding cakes designed to make your special day unforgettable.
+            <p className="text-xs sm:text-sm text-charcoal-muted dark:text-cream-300 font-medium leading-relaxed">
+              Grand multi-tiered cakes, floating spacer tiers, handcrafted sugar florals, and custom flavor formulations tailored for your grand reception in Kolkata.
             </p>
-            <div className="pt-2">
-              <button
-                onClick={() => handleOpenEnquiry()}
-                className="px-8 py-3.5 bg-cream-100 hover:bg-cream-200 text-maroon-950 rounded-2xl text-xs sm:text-sm font-bold shadow-lg transition inline-flex items-center gap-2"
-              >
-                <Sparkles className="w-4 h-4 text-maroon-700" />
-                <span>Book Wedding Consultation</span>
-              </button>
-            </div>
           </div>
         </section>
 
-        {/* Wedding Features */}
-        <section className="py-12 bg-cream-100 border-b border-cream-300">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="p-6 bg-cream-200/60 rounded-3xl border border-cream-300 space-y-2">
-              <span className="text-base font-bold text-maroon-900 font-serif block">Handcrafted Sugar Florals</span>
-              <p className="text-xs text-charcoal-muted font-medium">Edible sugar orchids, rose petals &amp; 24k gold leaf foil accents.</p>
-            </div>
-            <div className="p-6 bg-cream-200/60 rounded-3xl border border-cream-300 space-y-2">
-              <span className="text-base font-bold text-maroon-900 font-serif block">Acrylic Spacer Tiers</span>
-              <p className="text-xs text-charcoal-muted font-medium">Modern floating tier stands &amp; floral ring frame cake structures.</p>
-            </div>
-            <div className="p-6 bg-cream-200/60 rounded-3xl border border-cream-300 space-y-2">
-              <span className="text-base font-bold text-maroon-900 font-serif block">Safe Venue Setup</span>
-              <p className="text-xs text-charcoal-muted font-medium">Professional temperature-controlled delivery &amp; venue assembly in Kolkata.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Wedding Cakes Gallery */}
-        <section className="py-16 bg-cream-200">
+        {/* Wedding Cakes Grid */}
+        <section className="py-16 bg-cream-100 dark:bg-maroon-950">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-            <div className="text-center max-w-xl mx-auto space-y-2">
-              <h2 className="text-3xl font-extrabold text-maroon-950 font-serif">Wedding Cake Portfolio</h2>
-              <p className="text-xs sm:text-sm text-charcoal-muted font-medium">
-                Each wedding cake is customized in weight, tier counts, colors, and flavor combinations.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {weddingCakes.map((cake) => (
-                <div
-                  key={cake.id}
-                  className="bg-cream-100 rounded-3xl border border-cream-300 p-6 space-y-4 shadow-sm hover:shadow-md transition flex flex-col justify-between"
-                >
-                  <div className="space-y-4">
-                    <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-cream-300 relative bg-cream-200">
-                      <img
-                        src={getImageUrl(cake.image_url, '/images/cakes/wedding-hero.jpg')}
-                        alt={cake.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <span className="absolute top-3 right-3 px-3.5 py-1 bg-maroon-800 text-cream-100 text-xs font-bold rounded-full shadow-sm">
-                        ₹{cake.price}
-                      </span>
-                    </div>
-
-                    <div>
-                      <span className="text-[10px] uppercase font-bold text-maroon-700 tracking-wider">
-                        {cake.size || 'Multi-Tier'}
-                      </span>
-                      <h3 className="font-bold text-maroon-950 text-lg font-serif mt-0.5">{cake.name}</h3>
-                      <p className="text-xs text-charcoal-muted mt-1.5 leading-relaxed font-medium">
-                        {cake.description}
-                      </p>
-                    </div>
-
-                    <ul className="space-y-1.5 text-xs text-charcoal-muted pt-2 border-t border-cream-300 font-medium">
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-800" />
-                        <span>Custom Sugar Flowers &amp; Color Scheme</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-800" />
-                        <span>Flavours: Belgian Chocolate, Red Velvet, Vanilla Fruit</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <button
-                    onClick={() => handleOpenEnquiry(cake)}
-                    className="w-full py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 text-xs font-bold rounded-xl transition flex items-center justify-center gap-2 shadow-sm mt-4"
+            {loading ? (
+              <div className="py-20 text-center">
+                <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-maroon-700 border-t-transparent"></div>
+                <p className="text-xs text-charcoal-muted mt-2 font-bold">Loading wedding collection...</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {weddingCakes.map((cake) => (
+                  <div
+                    key={cake.id}
+                    className="bg-cream-50 dark:bg-maroon-900 rounded-3xl border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 p-6 space-y-4 shadow-neo-sm hover:shadow-neo hover:-translate-y-1 transition-all flex flex-col justify-between group"
                   >
-                    <Heart className="w-4 h-4 fill-cream-100" />
-                    <span>Enquire &amp; Reserve Date</span>
-                  </button>
-                </div>
-              ))}
-            </div>
+                    <div className="space-y-3">
+                      <div className="aspect-[4/3] rounded-2xl overflow-hidden border-2 border-maroon-950/15 dark:border-cream-100/20 relative bg-cream-200 dark:bg-maroon-800">
+                        <img
+                          src={getImageUrl(cake.image_url, '/images/cakes/wedding-hero.jpg')}
+                          alt={cake.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <span className="absolute top-2.5 right-2.5 px-3 py-1 bg-maroon-950 text-cream-100 border border-cream-200 text-xs font-black rounded-xl shadow-xs">
+                          From ₹{cake.price}
+                        </span>
+                      </div>
+
+                      <div>
+                        <span className="text-[10px] uppercase font-bold text-maroon-700 dark:text-cream-300 tracking-wider">
+                          Wedding Tier • Custom Portions
+                        </span>
+                        <h3 className="font-bold text-maroon-950 dark:text-cream-100 text-lg font-serif mt-0.5 group-hover:text-maroon-700 dark:group-hover:text-amber-300 transition-colors">
+                          {cake.name}
+                        </h3>
+                        <p className="text-xs text-charcoal-muted dark:text-cream-300/80 line-clamp-3 mt-1 font-medium leading-relaxed">
+                          {cake.description}
+                        </p>
+                      </div>
+
+                      <div className="p-3 bg-cream-100 dark:bg-maroon-950 rounded-xl border-2 border-maroon-950/15 text-[11px] text-maroon-950 dark:text-cream-200 space-y-1 font-medium">
+                        <div className="flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                          <span>Venue delivery &amp; table setup included</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                          <span>Complimentary pre-event tasting box</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => handleOpenEnquiry(cake)}
+                      className="w-full py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 text-xs font-black uppercase tracking-wider rounded-xl border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm hover:shadow-neo hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all flex items-center justify-center gap-2"
+                    >
+                      <Sparkles className="w-4 h-4 text-amber-300" />
+                      <span>Book Wedding Tasting &amp; Quote</span>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </main>
 
       <PublicFooter />
 
-      {/* Wedding Enquiry Modal */}
+      {/* Wedding Consultation Modal */}
       <Modal
         isOpen={enquiryModalOpen}
         onClose={() => setEnquiryModalOpen(false)}
-        title={selectedCake ? `Wedding Cake Enquiry: ${selectedCake.name}` : 'Bespoke Wedding Cake Enquiry'}
-        subtitle="Schedule a wedding cake consultation with Bakelicious Kolkata."
+        title={selectedCake ? `Enquiry: ${selectedCake.name}` : 'Bespoke Wedding Cake Consultation'}
+        subtitle="Book a tasting session or discuss bespoke tier requirements"
         maxWidth="md"
       >
-        <form onSubmit={handleSendEnquiry} className="space-y-4 text-xs">
+        <form onSubmit={handleSendEnquiry} className="space-y-4 text-xs font-medium">
           <div>
-            <label className="block font-bold text-maroon-900 mb-1">Bride / Groom / Contact Name *</label>
+            <label className="block font-bold text-maroon-950 dark:text-cream-200 mb-1">Your Name *</label>
             <input
               type="text"
               required
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
-              placeholder="e.g. Ananya & Vikram"
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
+              placeholder="e.g. Ananya & Arjun"
+              className="w-full p-2.5 bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950/20 dark:border-cream-100/20 rounded-xl outline-none focus:border-maroon-950"
             />
           </div>
 
           <div>
-            <label className="block font-bold text-maroon-900 mb-1">Phone Number (WhatsApp) *</label>
+            <label className="block font-bold text-maroon-950 dark:text-cream-200 mb-1">Phone Number (WhatsApp) *</label>
             <input
-              type="text"
+              type="tel"
               required
               value={customerPhone}
               onChange={(e) => setCustomerPhone(e.target.value)}
               placeholder="+91 98765 43210"
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
+              className="w-full p-2.5 bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950/20 dark:border-cream-100/20 rounded-xl outline-none focus:border-maroon-950"
             />
           </div>
 
           <div>
-            <label className="block font-bold text-maroon-900 mb-1">Wedding / Reception Date</label>
+            <label className="block font-bold text-maroon-950 dark:text-cream-200 mb-1">Wedding / Reception Date</label>
             <input
               type="date"
               value={weddingDate}
               onChange={(e) => setWeddingDate(e.target.value)}
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
+              className="w-full p-2.5 bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950/20 dark:border-cream-100/20 rounded-xl outline-none"
             />
           </div>
 
           <div>
-            <label className="block font-bold text-maroon-900 mb-1">Tier Count, Theme Colors &amp; Venue Details</label>
+            <label className="block font-bold text-maroon-950 dark:text-cream-200 mb-1">Guest Count &amp; Aesthetic Theme</label>
             <textarea
               rows={3}
               value={tierDetails}
               onChange={(e) => setTierDetails(e.target.value)}
-              placeholder="e.g. 3-Tier cake in rose pink, 100 guests, delivery at ITC Royal Bengal"
-              className="w-full px-3.5 py-2 bg-cream-100 border border-cream-300 rounded-xl font-medium focus:outline-none"
+              placeholder="e.g. 150 guests, floral pastel theme with edible gold leaf, eggless vanilla & Belgian truffle layers..."
+              className="w-full p-2.5 bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950/20 dark:border-cream-100/20 rounded-xl outline-none focus:border-maroon-950"
             />
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-cream-300">
+          <div className="pt-3 border-t-2 border-maroon-950/15 flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={() => setEnquiryModalOpen(false)}
-              className="px-4 py-2 bg-cream-200 text-maroon-900 font-bold rounded-xl"
+              className="px-4 py-2.5 bg-cream-200 dark:bg-maroon-800 text-maroon-950 dark:text-cream-100 font-bold rounded-xl border-2 border-maroon-950/20"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-5 py-2 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-bold rounded-xl shadow-md flex items-center gap-2"
+              className="px-6 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-xl border-2 border-maroon-950 shadow-neo-sm hover:shadow-neo transition flex items-center gap-2"
             >
-              <Phone className="w-3.5 h-3.5" />
-              <span>Send Wedding Enquiry via WhatsApp</span>
+              <Phone className="w-4 h-4" />
+              <span>Connect with Wedding Concierge</span>
             </button>
           </div>
         </form>

@@ -65,6 +65,16 @@ module.exports = {
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
         sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        'neo-sm': '2px 2px 0px #381A20',
+        'neo': '4px 4px 0px #381A20',
+        'neo-md': '5px 5px 0px #381A20',
+        'neo-lg': '7px 7px 0px #381A20',
+        'neo-xl': '10px 10px 0px #381A20',
+        'neo-dark': '4px 4px 0px #1A0A0E',
+        'neo-cream': '4px 4px 0px #FCF1E3',
+        'neo-cream-sm': '2px 2px 0px #FCF1E3',
       }
     },
   },
