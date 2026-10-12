@@ -142,8 +142,8 @@ export default function PublicHomepage() {
               {/* LEFT SIDE: Editorial Typography & Bold Actions */}
               <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
                 
-                {/* Eyebrow Pill */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 text-maroon-950 dark:text-cream-100 text-[11px] font-black uppercase tracking-widest shadow-neo-sm">
+                {/* Eyebrow Pill with gentle pulse glow */}
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 text-maroon-950 dark:text-cream-100 text-[11px] font-black uppercase tracking-widest shadow-neo-sm animate-pulse-glow">
                   <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-pulse" />
                   <span>Welcome to Bakelicious • Estd 2023</span>
                 </div>
@@ -161,35 +161,35 @@ export default function PublicHomepage() {
                   From birthdays to milestones, we bake your sweetest memories with pure Belgian cocoa, farm-fresh ingredients, and bespoke artisan craftsmanship.
                 </p>
 
-                {/* Action Buttons */}
+                {/* Action Buttons with Tactile Interaction */}
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
                   <Link
                     href="/custom-cakes"
-                    className="w-full sm:w-auto px-8 py-4 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo hover:shadow-neo-lg hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-neo-sm transition-all flex items-center justify-center gap-2.5"
+                    className="w-full sm:w-auto px-8 py-4 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo btn-tactile flex items-center justify-center gap-2.5"
                   >
                     <span>Order Now</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
 
                   <Link
                     href="/menu"
-                    className="w-full sm:w-auto px-8 py-4 bg-cream-50 dark:bg-maroon-900 hover:bg-cream-200 dark:hover:bg-maroon-800 text-maroon-950 dark:text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo hover:shadow-neo-lg hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-neo-sm transition-all flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto px-8 py-4 bg-cream-50 dark:bg-maroon-900 hover:bg-cream-200 dark:hover:bg-maroon-800 text-maroon-950 dark:text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo btn-tactile flex items-center justify-center gap-2"
                   >
                     <span>Explore Our Menu</span>
                   </Link>
                 </div>
 
-                {/* Three Trust Markers */}
+                {/* Three Trust Markers with Micro Hover Feedback */}
                 <div className="pt-6 grid grid-cols-3 gap-3 border-t-2 border-maroon-950/15 dark:border-maroon-800/60 text-center lg:text-left max-w-lg mx-auto lg:mx-0">
-                  <div className="p-2">
+                  <div className="p-2 transition-transform duration-300 hover:-translate-y-0.5">
                     <span className="block text-base sm:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">100% Fresh</span>
                     <span className="text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider">Baked Daily</span>
                   </div>
-                  <div className="p-2 border-x-2 border-maroon-950/15 dark:border-maroon-800/60">
+                  <div className="p-2 border-x-2 border-maroon-950/15 dark:border-maroon-800/60 transition-transform duration-300 hover:-translate-y-0.5">
                     <span className="block text-base sm:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">Belgian Cocoa</span>
                     <span className="text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider">Callebaut 54%</span>
                   </div>
-                  <div className="p-2">
+                  <div className="p-2 transition-transform duration-300 hover:-translate-y-0.5">
                     <span className="block text-base sm:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">Custom Atelier</span>
                     <span className="text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider">Bespoke Tiers</span>
                   </div>
@@ -197,23 +197,23 @@ export default function PublicHomepage() {
 
               </div>
 
-              {/* RIGHT SIDE: Framed Cake Art (Strictly contained; Neo-Brutalist offset frame) */}
+              {/* RIGHT SIDE: Alive Floating Cake Composition */}
               <div className="lg:col-span-5 relative flex justify-center items-center">
                 
-                {/* Background Shadow Block Accent */}
-                <div className="w-full max-w-md relative">
+                {/* Floating Cake Container */}
+                <div className="w-full max-w-md relative animate-float-slow">
                   
-                  {/* Decorative Hand-lettered Stamp */}
-                  <div className="absolute -top-4 -right-3 sm:-right-4 z-20 px-3.5 py-2 rounded-2xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm rotate-6 flex items-center gap-1.5 text-xs font-serif font-black text-maroon-950 dark:text-cream-100">
+                  {/* Floating Hand-lettered Stamp Badge */}
+                  <div className="absolute -top-4 -right-3 sm:-right-4 z-20 px-3.5 py-2 rounded-2xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm rotate-6 flex items-center gap-1.5 text-xs font-serif font-black text-maroon-950 dark:text-cream-100 animate-float-gentle">
                     <span>Life is Sweeter with Cake ♡</span>
                   </div>
 
-                  {/* Main Cake Photography Container */}
-                  <div className="w-full aspect-square rounded-3xl overflow-hidden border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 shadow-neo-lg relative group">
+                  {/* Main Cake Photography Container with Smooth Zoom on Hover */}
+                  <div className="w-full aspect-square rounded-3xl overflow-hidden border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 shadow-neo-lg relative group transition-all duration-500">
                     <img
                       src="/images/cakes/wedding-hero.jpg"
                       alt="Bakelicious Signature Artisan Cake"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     />
                     
                     {/* Bottom Editorial Caption */}
@@ -227,9 +227,9 @@ export default function PublicHomepage() {
                     </div>
                   </div>
 
-                  {/* Offset Badge */}
-                  <div className="absolute -bottom-4 -left-3 sm:-left-4 z-20 px-4 py-2.5 rounded-2xl bg-maroon-700 text-cream-100 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm -rotate-3 flex items-center gap-2">
-                    <Heart className="w-4 h-4 fill-cream-100 text-cream-100 shrink-0" />
+                  {/* Offset Badge with Tactile Hover */}
+                  <div className="absolute -bottom-4 -left-3 sm:-left-4 z-20 px-4 py-2.5 rounded-2xl bg-maroon-700 text-cream-100 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm -rotate-3 flex items-center gap-2 hover:scale-105 hover:rotate-0 transition-transform duration-300">
+                    <Heart className="w-4 h-4 fill-cream-100 text-cream-100 shrink-0 animate-pulse" />
                     <div>
                       <span className="text-[9px] uppercase font-bold tracking-widest block text-cream-300 font-sans">Handcrafted</span>
                       <span className="text-xs font-serif font-bold block">Made with Love</span>
@@ -256,15 +256,15 @@ export default function PublicHomepage() {
               </h2>
             </div>
 
-            {/* 5-Card Grid matching exact categories in screenshot */}
+            {/* 5-Card Grid matching exact categories in screenshot with Alive Hover Motion */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
               {categories.map((cat) => (
                 <Link
                   key={cat.title}
                   href={cat.href}
-                  className="group bg-cream-100 dark:bg-maroon-900 rounded-2xl p-5 border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 shadow-neo-sm hover:shadow-neo hover:-translate-y-1 transition-all text-center flex flex-col items-center justify-between space-y-3"
+                  className="card-alive group bg-cream-100 dark:bg-maroon-900 rounded-2xl p-5 border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 shadow-neo-sm text-center flex flex-col items-center justify-between space-y-3 cursor-pointer"
                 >
-                  <div className="w-14 h-14 rounded-full bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950/20 dark:border-cream-200/20 flex items-center justify-center text-2xl shadow-xs group-hover:scale-110 transition-transform">
+                  <div className="w-14 h-14 rounded-full bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950/20 dark:border-cream-200/20 flex items-center justify-center text-2xl shadow-xs group-hover:scale-120 group-hover:-translate-y-1 group-hover:rotate-6 transition-all duration-300">
                     {cat.icon}
                   </div>
                   <div>
@@ -298,19 +298,19 @@ export default function PublicHomepage() {
 
               <Link
                 href="/menu"
-                className="px-4 py-2 bg-cream-50 dark:bg-maroon-900 text-maroon-950 dark:text-cream-100 text-xs font-black uppercase tracking-wider rounded-xl border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm hover:shadow-neo hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center gap-1.5"
+                className="px-4 py-2 bg-cream-50 dark:bg-maroon-900 text-maroon-950 dark:text-cream-100 text-xs font-black uppercase tracking-wider rounded-xl border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm btn-tactile flex items-center gap-1.5"
               >
                 <span>View Full Menu</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
 
-            {/* Product Cards Grid */}
+            {/* Product Cards Grid with Alive Hover and Zoom */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {displayedProducts.map((prod) => (
                 <div
                   key={prod.id}
-                  className="bg-cream-50 dark:bg-maroon-900 rounded-3xl border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 p-4 sm:p-5 flex flex-col justify-between shadow-neo-sm hover:shadow-neo hover:-translate-y-1 transition-all space-y-4 group"
+                  className="card-alive bg-cream-50 dark:bg-maroon-900 rounded-3xl border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 p-4 sm:p-5 flex flex-col justify-between shadow-neo-sm space-y-4 group"
                 >
                   <div className="space-y-3">
                     {/* Cake Image Container */}
@@ -318,9 +318,9 @@ export default function PublicHomepage() {
                       <img
                         src={getImageUrl(prod.image_url)}
                         alt={prod.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                       />
-                      <span className="absolute top-2.5 right-2.5 px-3 py-1 bg-maroon-950 text-cream-100 border border-cream-200 text-xs font-black rounded-xl shadow-xs">
+                      <span className="absolute top-2.5 right-2.5 px-3 py-1 bg-maroon-950 text-cream-100 border border-cream-200 text-xs font-black rounded-xl shadow-xs group-hover:scale-105 group-hover:border-amber-300 transition-all duration-300">
                         ₹{prod.price}
                       </span>
                     </div>
@@ -339,13 +339,13 @@ export default function PublicHomepage() {
                     </div>
                   </div>
 
-                  {/* Order Button */}
+                  {/* Order Button with Tactile Bounce */}
                   <button
                     onClick={() => handleOpenEnquiry(prod)}
-                    className="w-full py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 text-xs font-black uppercase tracking-wider rounded-xl border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm hover:shadow-neo hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-xs transition-all flex items-center justify-center gap-2"
+                    className="w-full py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 text-xs font-black uppercase tracking-wider rounded-xl border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm btn-tactile flex items-center justify-center gap-2 group/btn"
                   >
                     <span>Order Now</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1.5 transition-transform duration-200" />
                   </button>
                 </div>
               ))}
@@ -370,11 +370,11 @@ export default function PublicHomepage() {
               </p>
             </div>
 
-            {/* 4 Feature Pillars matching screenshot */}
+            {/* 4 Feature Pillars matching screenshot with Alive Hover Elevation */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               
-              <div className="p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark hover:-translate-y-1 transition-all space-y-3 text-center flex flex-col items-center">
-                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs">
+              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark space-y-3 text-center flex flex-col items-center group">
+                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
                   <Award className="w-6 h-6 text-maroon-800" />
                 </div>
                 <h3 className="font-serif font-black text-cream-100 text-base">Premium Ingredients</h3>
@@ -383,8 +383,8 @@ export default function PublicHomepage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark hover:-translate-y-1 transition-all space-y-3 text-center flex flex-col items-center">
-                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs">
+              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark space-y-3 text-center flex flex-col items-center group">
+                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
                   <Cake className="w-6 h-6 text-maroon-800" />
                 </div>
                 <h3 className="font-serif font-black text-cream-100 text-base">Custom Designs</h3>
@@ -393,8 +393,8 @@ export default function PublicHomepage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark hover:-translate-y-1 transition-all space-y-3 text-center flex flex-col items-center">
-                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs">
+              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark space-y-3 text-center flex flex-col items-center group">
+                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
                   <Heart className="w-6 h-6 text-maroon-800" />
                 </div>
                 <h3 className="font-serif font-black text-cream-100 text-base">Freshly Baked</h3>
@@ -403,8 +403,8 @@ export default function PublicHomepage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark hover:-translate-y-1 transition-all space-y-3 text-center flex flex-col items-center">
-                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs">
+              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark space-y-3 text-center flex flex-col items-center group">
+                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
                   <Truck className="w-6 h-6 text-maroon-800" />
                 </div>
                 <h3 className="font-serif font-black text-cream-100 text-base">On-Time Delivery</h3>
@@ -433,11 +433,11 @@ export default function PublicHomepage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
-              <div className="p-6 rounded-3xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm space-y-4 flex flex-col justify-between">
+              <div className="card-alive p-6 rounded-3xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm space-y-4 flex flex-col justify-between group">
                 <div className="space-y-3">
                   <div className="flex items-center gap-1 text-amber-500">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-500" />
+                      <Star key={i} className="w-4 h-4 fill-amber-500 group-hover:scale-110 transition-transform duration-200" />
                     ))}
                   </div>
                   <p className="text-xs sm:text-sm text-charcoal dark:text-cream-200 font-medium leading-relaxed italic">
@@ -450,11 +450,11 @@ export default function PublicHomepage() {
                 </div>
               </div>
 
-              <div className="p-6 rounded-3xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm space-y-4 flex flex-col justify-between">
+              <div className="card-alive p-6 rounded-3xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm space-y-4 flex flex-col justify-between group">
                 <div className="space-y-3">
                   <div className="flex items-center gap-1 text-amber-500">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-500" />
+                      <Star key={i} className="w-4 h-4 fill-amber-500 group-hover:scale-110 transition-transform duration-200" />
                     ))}
                   </div>
                   <p className="text-xs sm:text-sm text-charcoal dark:text-cream-200 font-medium leading-relaxed italic">
@@ -467,11 +467,11 @@ export default function PublicHomepage() {
                 </div>
               </div>
 
-              <div className="p-6 rounded-3xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm space-y-4 flex flex-col justify-between">
+              <div className="card-alive p-6 rounded-3xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm space-y-4 flex flex-col justify-between group">
                 <div className="space-y-3">
                   <div className="flex items-center gap-1 text-amber-500">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-500" />
+                      <Star key={i} className="w-4 h-4 fill-amber-500 group-hover:scale-110 transition-transform duration-200" />
                     ))}
                   </div>
                   <p className="text-xs sm:text-sm text-charcoal dark:text-cream-200 font-medium leading-relaxed italic">
@@ -495,7 +495,7 @@ export default function PublicHomepage() {
             <div className="bg-maroon-950 text-cream-100 rounded-3xl p-8 sm:p-12 border-2 border-maroon-900 shadow-neo-lg relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
               
               <div className="space-y-3 text-center md:text-left max-w-xl">
-                <span className="px-3 py-1 bg-maroon-800 text-cream-200 text-xs font-bold rounded-full inline-block border border-maroon-700">
+                <span className="px-3 py-1 bg-maroon-800 text-cream-200 text-xs font-bold rounded-full inline-block border border-maroon-700 animate-pulse">
                   Custom Orders Studio
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-black font-serif text-cream-100">
@@ -508,9 +508,9 @@ export default function PublicHomepage() {
 
               <Link
                 href="/custom-cakes"
-                className="px-8 py-4 bg-cream-50 hover:bg-cream-100 text-maroon-950 font-black rounded-2xl text-xs sm:text-sm uppercase tracking-wider border-2 border-maroon-950 shadow-neo hover:shadow-neo-lg hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all shrink-0 flex items-center gap-2"
+                className="px-8 py-4 bg-cream-50 hover:bg-cream-100 text-maroon-950 font-black rounded-2xl text-xs sm:text-sm uppercase tracking-wider border-2 border-maroon-950 shadow-neo btn-tactile shrink-0 flex items-center gap-2 group"
               >
-                <Sparkles className="w-4 h-4 text-maroon-700" />
+                <Sparkles className="w-4 h-4 text-maroon-700 group-hover:rotate-12 transition-transform duration-300" />
                 <span>Design Custom Cake</span>
               </Link>
 

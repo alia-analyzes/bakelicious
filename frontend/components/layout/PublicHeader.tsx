@@ -31,42 +31,46 @@ export function PublicHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full bg-cream-100/95 dark:bg-maroon-950/95 backdrop-blur-md border-b-2 border-maroon-950/20 dark:border-maroon-800 transition-all duration-300 ease-in-out ${
-        isScrolled ? 'py-2 sm:py-2.5 shadow-md' : 'py-3.5 sm:py-4.5 shadow-sm'
+      className={`sticky top-0 z-50 w-full bg-cream-100/95 dark:bg-maroon-950/95 backdrop-blur-md border-b-2 border-maroon-950/20 dark:border-maroon-800 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        isScrolled ? 'py-1.5 sm:py-2 shadow-md' : 'py-3 sm:py-4 lg:py-4.5 shadow-sm'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Brand Logo & Editorial Wordmark (Strictly inside header; shrinks smoothly on scroll) */}
+        {/* Brand Logo & Editorial Wordmark: Prominently BIG at top, smoothly shrinks down on scroll */}
         <Link
           href="/"
-          className="flex items-center gap-3 sm:gap-3.5 group select-none"
+          className="flex items-center gap-2.5 sm:gap-4 group select-none relative z-20"
           aria-label="Bakelicious Home"
         >
           <div
-            className={`rounded-full border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 shadow-neo-sm flex items-center justify-center overflow-hidden transition-all duration-300 ease-in-out group-hover:-translate-y-0.5 ${
+            className={`rounded-full border-2 sm:border-3 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 flex items-center justify-center overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:rotate-2 ${
               isScrolled
-                ? 'w-10 h-10 sm:w-11 sm:h-11 p-0.5'
-                : 'w-13 h-13 sm:w-16 sm:h-16 p-1'
+                ? 'w-10 h-10 sm:w-12 sm:h-12 p-0.5 sm:p-1 shadow-neo-sm translate-y-0'
+                : 'w-16 h-16 sm:w-22 sm:h-22 lg:w-28 lg:h-28 p-1 sm:p-1.5 shadow-neo-md sm:shadow-neo-lg translate-y-1 sm:translate-y-3 lg:translate-y-4'
             }`}
           >
             <img
               src="/logo.png"
               alt="Bakelicious Artisan Bakery Logo"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain transition-transform duration-500"
             />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
             <span
-              className={`font-serif font-black tracking-tight text-maroon-950 dark:text-cream-100 uppercase transition-all duration-300 ${
-                isScrolled ? 'text-lg sm:text-xl' : 'text-xl sm:text-2xl'
+              className={`font-serif font-black tracking-tight text-maroon-950 dark:text-cream-100 uppercase transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isScrolled ? 'text-base sm:text-lg lg:text-xl' : 'text-xl sm:text-2xl lg:text-3xl'
               }`}
             >
               Bakelicious
             </span>
-            <span className="text-[9px] sm:text-[10px] tracking-[0.22em] uppercase font-bold text-maroon-700 dark:text-cream-300 block font-sans -mt-0.5">
-              Artisan Atelier
+            <span
+              className={`tracking-[0.22em] uppercase font-bold text-maroon-700 dark:text-cream-300 block font-sans transition-all duration-500 ${
+                isScrolled ? 'text-[8px] sm:text-[9px] -mt-0.5' : 'text-[9px] sm:text-[11px] mt-0'
+              }`}
+            >
+              Artisan Atelier • Estd 2023
             </span>
           </div>
         </Link>

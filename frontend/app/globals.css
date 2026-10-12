@@ -111,6 +111,103 @@ body {
   background: #68343D;
 }
 
+/* ================= ALIVE MICRO-ANIMATIONS & TRANSITIONS ================= */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(126, 64, 73, 0.35);
+  }
+  50% {
+    transform: scale(1.025);
+    box-shadow: 0 0 20px 4px rgba(126, 64, 73, 0.2);
+  }
+}
+
+@keyframes softShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: floatGentle 3.5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Alive hover card micro-interaction with spring feel */
+.card-alive {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  will-change: transform, box-shadow;
+}
+.card-alive:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 8px 8px 0px #381A20;
+}
+.dark .card-alive:hover {
+  box-shadow: 8px 8px 0px #1A0A0E;
+}
+
+/* Tactile button press with lively bounce */
+.btn-tactile {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+  will-change: transform, box-shadow;
+}
+.btn-tactile:hover {
+  transform: translateY(-3px) scale(1.015);
+  box-shadow: 5px 5px 0px #381A20;
+}
+.dark .btn-tactile:hover {
+  box-shadow: 5px 5px 0px #1A0A0E;
+}
+.btn-tactile:active {
+  transform: translateY(2px) translateX(2px) scale(0.985);
+  box-shadow: 1px 1px 0px #381A20;
+}
+.dark .btn-tactile:active {
+  box-shadow: 1px 1px 0px #1A0A0E;
+}
+
+/* Image zoom container */
+.img-zoom-container {
+  overflow: hidden;
+}
+.img-zoom-container img {
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.group:hover .img-zoom-container img,
+.card-alive:hover .img-zoom-container img {
+  transform: scale(1.08);
+}
+
 /* FullCalendar Custom Theme & Full Page Layout Overrides */
 .fc {
   --fc-border-color: #EEDCC8;
