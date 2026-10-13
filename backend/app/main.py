@@ -3,12 +3,15 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
-from sqlalchemy import text
+from sqlalchemy import text, func
 
 from app.config import settings
 from app.database.connection import engine, SessionLocal
 from app.database import base  # Ensures metadata is loaded
-from app.models.role import Permission, Role, RolePermission
+from app.models.user import User
+from app.models.role import Permission, Role, RolePermission, UserRole
+from app.models.category import Category
+from app.auth.security import get_password_hash
 from app.auth.permissions import PERMISSIONS_DEFINITIONS, DEFAULT_SYSTEM_ROLES
 from app.api import (
     auth, categories, products, ingredients, recipes, clients,
@@ -22,7 +25,7 @@ base.Base.metadata.create_all(bind=engine)
 
 
 def sync_rbac_metadata():
-    """Ensures all standard permissions and system roles exist in the database."""
+    """Ensures all standard permissions, system roles, default super admin, and baseline categories exist."""
     db: Session = SessionLocal()
     try:
         # 1. Sync permissions
@@ -45,6 +48,7 @@ def sync_rbac_metadata():
         db.commit()
 
         # 2. Sync system roles
+        roles_map = {}
         for role_name, r_info in DEFAULT_SYSTEM_ROLES.items():
             role = db.query(Role).filter(Role.name == role_name).first()
             if not role:
@@ -58,6 +62,7 @@ def sync_rbac_metadata():
             else:
                 role.is_system_role = True
                 role.description = r_info["description"]
+            roles_map[role_name] = role
 
             # If system role has no permissions linked yet, attach default ones
             existing_p_ids = {rp.permission_id for rp in db.query(RolePermission).filter(RolePermission.role_id == role.id).all()}
@@ -67,6 +72,77 @@ def sync_rbac_metadata():
                     if p:
                         db.add(RolePermission(role_id=role.id, permission_id=p.id))
         db.commit()
+
+        # 3. Ensure Primary Super Admin exists
+        admin = db.query(User).filter(
+            (func.lower(User.email) == "admin@bakelicious.com") | (func.lower(User.username) == "admin")
+        ).first()
+        super_admin_role = roles_map.get("Super Admin") or db.query(Role).filter(Role.name == "Super Admin").first()
+
+        if not admin:
+            admin = User(
+                email="admin@bakelicious.com",
+                username="admin",
+                full_name="Bakelicious Super Admin (Owner)",
+                hashed_password=get_password_hash("admin123"),
+                is_superadmin=True,
+                is_active=True,
+                force_password_change=False
+            )
+            db.add(admin)
+            db.flush()
+            if super_admin_role:
+                db.add(UserRole(user_id=admin.id, role_id=super_admin_role.id))
+            db.commit()
+            print("[RBAC SYNC] Successfully created default Super Admin user: admin@bakelicious.com / admin123")
+        else:
+            if super_admin_role:
+                has_role = db.query(UserRole).filter(UserRole.user_id == admin.id, UserRole.role_id == super_admin_role.id).first()
+                if not has_role:
+                    db.add(UserRole(user_id=admin.id, role_id=super_admin_role.id))
+                    db.commit()
+
+        # 4. Ensure Department test accounts exist if only admin exists or DB is fresh
+        if db.query(User).count() <= 1:
+            dev_accounts = [
+                ("content@bakelicious.com", "content", "Content Manager", "content123", "Content Admin"),
+                ("orders@bakelicious.com", "orders", "Order Manager", "orders123", "Order Admin"),
+                ("inventory@bakelicious.com", "inventory", "Inventory Manager", "inventory123", "Inventory Admin"),
+                ("finance@bakelicious.com", "finance", "Finance Manager", "finance123", "Finance Admin"),
+                ("baker.rahul@bakelicious.com", "baker_rahul", "Baker Rahul", "baker123", "Baker"),
+            ]
+            for email, uname, fname, pwd, rname in dev_accounts:
+                existing = db.query(User).filter((User.email == email) | (User.username == uname)).first()
+                if not existing:
+                    u = User(
+                        email=email,
+                        username=uname,
+                        full_name=fname,
+                        hashed_password=get_password_hash(pwd),
+                        is_superadmin=False,
+                        is_active=True,
+                        force_password_change=False
+                    )
+                    db.add(u)
+                    db.flush()
+                    role_obj = roles_map.get(rname) or db.query(Role).filter(Role.name == rname).first()
+                    if role_obj:
+                        db.add(UserRole(user_id=u.id, role_id=role_obj.id))
+            db.commit()
+
+        # 5. Ensure baseline categories exist if none
+        if db.query(Category).count() == 0:
+            cat_names = [
+                "All Cakes", "Chocolate Cakes", "Designer Cakes", "Bento Cakes",
+                "Wedding Cakes", "Cake Platters", "Birthday Cakes", "Anniversary Cakes",
+                "Custom Cakes", "Seasonal Specials", "Classic Cakes", "Fresh Cream Cakes",
+                "Premium Cakes"
+            ]
+            for name in cat_names:
+                db.add(Category(name=name, description=f"Premium Bakelicious {name.lower()}"))
+            db.commit()
+            print("[RBAC SYNC] Seeded baseline categories")
+
     except Exception as e:
         print(f"[RBAC SYNC] Warning during RBAC initialization: {e}")
         db.rollback()
@@ -131,3 +207,28 @@ def root():
         "docs": "/docs",
         "version": "1.0.0"
     }
+
+@app.api_route("/api/setup-admin", methods=["GET", "POST"])
+def setup_admin():
+    """Idempotently ensures the default super admin admin@bakelicious.com / admin123 is created and active."""
+    sync_rbac_metadata()
+    db = SessionLocal()
+    try:
+        admin = db.query(User).filter(
+            (func.lower(User.email) == "admin@bakelicious.com") | (func.lower(User.username) == "admin")
+        ).first()
+        if admin:
+            admin.hashed_password = get_password_hash("admin123")
+            admin.is_active = True
+            admin.is_superadmin = True
+            db.commit()
+            return {
+                "status": "success",
+                "message": "Super Admin verified and credentials set to admin@bakelicious.com / admin123",
+                "email": admin.email,
+                "username": admin.username
+            }
+        return {"status": "error", "message": "Failed to initialize Super Admin."}
+    finally:
+        db.close()
+
