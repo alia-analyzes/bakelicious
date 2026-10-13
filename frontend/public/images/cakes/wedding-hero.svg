@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <!-- Background Radial Gradients -->
+    <radialGradient id="warmGlow" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#FFFDF9" />
+      <stop offset="60%" stop-color="#FBF2E5" />
+      <stop offset="100%" stop-color="#EFE0CE" />
+    </radialGradient>
+
+    <!-- Deep Burgundy Cake Velvet -->
+    <linearGradient id="burgundyVelvet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8E2D40" />
+      <stop offset="50%" stop-color="#6B1D2C" />
+      <stop offset="100%" stop-color="#4A101D" />
+    </linearGradient>
+
+    <!-- Cream Frosting -->
+    <linearGradient id="creamFrosting" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDFC" />
+      <stop offset="30%" stop-color="#FAF4EA" />
+      <stop offset="100%" stop-color="#EDE2D0" />
+    </linearGradient>
+
+    <!-- Wood Stand Gradient -->
+    <linearGradient id="woodStand" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8D5B3A" />
+      <stop offset="40%" stop-color="#AA734C" />
+      <stop offset="70%" stop-color="#8D5B3A" />
+      <stop offset="100%" stop-color="#633C21" />
+    </linearGradient>
+
+    <!-- Gold Accent -->
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCE68D" />
+      <stop offset="50%" stop-color="#D9A74A" />
+      <stop offset="100%" stop-color="#9E6F1F" />
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="pedestalShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="25" stdDeviation="22" flood-color="#3B151E" flood-opacity="0.25" />
+    </filter>
+    <filter id="cakeShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="15" flood-color="#451A22" flood-opacity="0.28" />
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Bakery Canvas Background -->
+  <rect width="800" height="800" fill="url(#warmGlow)" />
+
+  <!-- Ambient Bakery Glow Circles -->
+  <circle cx="400" cy="380" r="340" fill="#FFFBF5" opacity="0.6" filter="url(#softGlow)" />
+  <circle cx="400" cy="380" r="280" fill="#FFF6EA" opacity="0.8" />
+
+  <!-- Back Floral Accents (Gypsophila baby's breath & eucalyptus) -->
+  <g opacity="0.4" transform="translate(620, 220)">
+    <circle cx="0" cy="0" r="7" fill="#FFFFFF" />
+    <circle cx="20" cy="-15" r="5" fill="#FFFFFF" />
+    <circle cx="35" cy="10" r="6" fill="#FFFFFF" />
+    <circle cx="15" cy="35" r="8" fill="#FFFFFF" />
+    <path d="M-10,40 Q15,0 40,-30" stroke="#7E9671" stroke-width="2.5" fill="none" />
+  </g>
+  <g opacity="0.4" transform="translate(180, 260)">
+    <circle cx="0" cy="0" r="7" fill="#FFFFFF" />
+    <circle cx="-20" cy="-15" r="5" fill="#FFFFFF" />
+    <circle cx="-35" cy="10" r="6" fill="#FFFFFF" />
+    <circle cx="-15" cy="35" r="8" fill="#FFFFFF" />
+    <path d="M10,40 Q-15,0 -40,-30" stroke="#7E9671" stroke-width="2.5" fill="none" />
+  </g>
+
+  <!-- Wooden Pedestal Stand -->
+  <g filter="url(#pedestalShadow)">
+    <!-- Base Plate -->
+    <ellipse cx="400" cy="670" rx="150" ry="24" fill="url(#woodStand)" />
+    <!-- Pedestal Pillar -->
+    <path d="M375,540 L370,665 Q400,672 430,665 L425,540 Z" fill="url(#woodStand)" />
+    <!-- Pedestal Rim Highlight -->
+    <ellipse cx="400" cy="540" rx="230" ry="32" fill="url(#woodStand)" />
+    <ellipse cx="400" cy="535" rx="226" ry="28" fill="#B88057" opacity="0.6" />
+    <ellipse cx="400" cy="532" rx="220" ry="24" fill="#693F23" opacity="0.25" />
+  </g>
+
+  <!-- Signature Bakery Cake Body -->
+  <g filter="url(#cakeShadow)">
+    <!-- Base Cake Cylinder -->
+    <path d="M220,310 L220,510 Q400,560 580,510 L580,310 Z" fill="url(#creamFrosting)" />
+    <!-- Cake Cylinder Bottom Shadow Curve -->
+    <path d="M220,500 Q400,555 580,500 L580,510 Q400,560 220,510 Z" fill="#D3C3AD" opacity="0.6" />
+    
+    <!-- Rustic Frosting Spatula Ridges / Texture -->
+    <path d="M220,440 Q400,480 580,440" stroke="#E6D7C3" stroke-width="4" fill="none" opacity="0.8" />
+    <path d="M220,380 Q400,420 580,380" stroke="#E6D7C3" stroke-width="4" fill="none" opacity="0.8" />
+
+    <!-- Cake Top Surface -->
+    <ellipse cx="400" cy="310" rx="180" ry="46" fill="url(#creamFrosting)" />
+    <ellipse cx="400" cy="310" rx="174" ry="43" fill="#FFFDFC" />
+  </g>
+
+  <!-- Rich Red Velvet & Raspberry Textured Crown -->
+  <g filter="url(#softGlow)">
+    <!-- Rosettes / Velvet Swirls on Top -->
+    <ellipse cx="400" cy="305" rx="155" ry="36" fill="url(#burgundyVelvet)" />
+    <!-- Swirled Rosettes -->
+    <circle cx="320" cy="300" r="22" fill="#7D1E2F" />
+    <circle cx="360" cy="290" r="24" fill="#992B40" />
+    <circle cx="410" cy="285" r="26" fill="#B1364D" />
+    <circle cx="455" cy="292" r="24" fill="#992B40" />
+    <circle cx="485" cy="305" r="20" fill="#7D1E2F" />
+    
+    <circle cx="350" cy="315" r="20" fill="#882436" />
+    <circle cx="400" cy="315" r="22" fill="#A83046" />
+    <circle cx="440" cy="315" r="20" fill="#882436" />
+  </g>
+
+  <!-- Fresh Raspberries & Currants -->
+  <g>
+    <!-- Berries -->
+    <circle cx="370" cy="280" r="10" fill="#A11831" />
+    <circle cx="367" cy="278" r="3" fill="#FF8CA0" />
+    <circle cx="420" cy="275" r="12" fill="#BA1E3B" />
+    <circle cx="417" cy="272" r="4" fill="#FF8CA0" />
+    <circle cx="460" cy="285" r="11" fill="#A11831" />
+    <circle cx="458" cy="283" r="3" fill="#FF8CA0" />
+    <circle cx="330" cy="295" r="9" fill="#91142A" />
+    <circle cx="328" cy="293" r="2.5" fill="#FF8CA0" />
+    
+    <!-- Edible Gold Leaf Accents -->
+    <polygon points="390,295 394,290 398,296 392,299" fill="url(#goldAccent)" />
+    <polygon points="440,300 445,296 448,302 443,304" fill="url(#goldAccent)" />
+    <polygon points="350,305 354,302 357,307 352,309" fill="url(#goldAccent)" />
+    
+    <!-- Whipped White Cream Kisses -->
+    <ellipse cx="385" cy="270" rx="9" ry="8" fill="#FFFFFF" />
+    <ellipse cx="440" cy="275" rx="8" ry="7" fill="#FFFFFF" />
+    <ellipse cx="305" cy="305" rx="8" ry="7" fill="#FFFFFF" />
+    <ellipse cx="495" cy="310" rx="8" ry="7" fill="#FFFFFF" />
+  </g>
+
+  <!-- Base Crumbs & Berry Drizzle on Pedestal -->
+  <g opacity="0.8">
+    <ellipse cx="280" cy="535" rx="6" ry="3" fill="#7A1D2D" />
+    <ellipse cx="295" cy="537" rx="4" ry="2" fill="#7A1D2D" />
+    <ellipse cx="510" cy="536" rx="5" ry="3" fill="#7A1D2D" />
+    <ellipse cx="525" cy="538" rx="8" ry="4" fill="#581420" />
+    <circle cx="490" cy="537" r="2" fill="#D9A74A" />
+    <circle cx="310" cy="536" r="1.5" fill="#D9A74A" />
+  </g>
+
+  <!-- Editorial Ribbon Badge at bottom -->
+  <g transform="translate(400, 725)">
+    <rect x="-170" y="-22" width="340" height="44" rx="22" fill="#4A101D" filter="url(#cakeShadow)" />
+    <rect x="-167" y="-19" width="334" height="38" rx="19" fill="#6B1D2C" />
+    <text x="0" y="5" font-family="'Playfair Display', Georgia, serif" font-size="15" font-weight="bold" fill="#FCF1E3" text-anchor="middle" letter-spacing="1.5">
+      BAKELICIOUS ARTISAN ATELIER
+    </text>
+  </g>
+</svg>

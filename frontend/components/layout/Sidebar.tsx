@@ -167,29 +167,29 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
       )}
 
       <aside
-        className={`fixed top-0 left-0 z-40 h-screen w-64 bg-maroon-700 border-r border-maroon-800/60 shadow-xl flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 left-0 z-40 h-screen w-64 bg-cream-100 dark:bg-maroon-950 border-r-2 border-maroon-950 dark:border-cream-100/30 shadow-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex flex-col h-full overflow-y-auto scrollbar-none">
-          {/* Header & Logo */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-maroon-600/40 bg-maroon-800/80">
-            <Link href="/admin/dashboard" className="flex items-center gap-3" onClick={onClose}>
-              <div className="relative w-10 h-10 rounded-full bg-cream-100 p-0.5 shadow-md flex items-center justify-center">
+          {/* Header & Logo with Neo-Brutalism */}
+          <div className="flex items-center justify-between px-5 py-4 border-b-2 border-maroon-950 dark:border-cream-100/20 bg-cream-50 dark:bg-maroon-900">
+            <Link href="/admin/dashboard" className="flex items-center gap-3 select-none" onClick={onClose}>
+              <div className="w-11 h-11 rounded-2xl bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950 dark:border-cream-100 p-1 shadow-neo-sm flex items-center justify-center shrink-0">
                 <img
                   src="/logo.png"
                   alt="Bakelicious Logo"
-                  className="w-full h-full object-contain rounded-full"
+                  className="w-full h-full object-contain"
                   onError={(e) => {
                     (e.target as HTMLElement).style.display = 'none';
                   }}
                 />
               </div>
               <div>
-                <h1 className="text-xl font-extrabold text-cream-100 tracking-tight leading-none font-serif flex items-center gap-1">
+                <h1 className="text-xl font-black text-maroon-950 dark:text-cream-100 tracking-tight leading-none font-serif">
                   Bakelicious
                 </h1>
-                <span className="text-[10px] text-cream-300/80 font-bold tracking-widest uppercase">
+                <span className="text-[10px] text-maroon-700 dark:text-cream-300 font-black tracking-widest uppercase">
                   Bakery Admin
                 </span>
               </div>
@@ -197,18 +197,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
             {onClose && (
               <button
                 onClick={onClose}
-                className="p-1 rounded-lg text-cream-300 hover:text-white lg:hidden"
+                className="p-1.5 rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-200 dark:bg-maroon-800 text-maroon-950 dark:text-cream-100 lg:hidden shadow-neo-xs btn-tactile"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             )}
           </div>
 
           {/* Navigation Links */}
-          <div className="px-4 py-5 space-y-6 flex-1">
+          <div className="px-3.5 py-4 space-y-5 flex-1">
             {/* ================= SECTION 1: PUBLIC WEBSITE ================= */}
             <div>
-              <div className="px-3 mb-2 text-[10px] font-bold text-cream-300/70 uppercase tracking-widest">
+              <div className="px-2 mb-1.5 text-[10px] font-black text-maroon-950/70 dark:text-cream-300/70 uppercase tracking-widest">
                 Public Website
               </div>
               <Link
@@ -216,23 +216,23 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={onClose}
-                className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-cream-100 hover:text-white bg-maroon-800/60 hover:bg-maroon-600/70 border border-maroon-600/40 shadow-sm transition group"
+                className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-black text-cream-100 bg-maroon-700 hover:bg-maroon-800 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm btn-tactile transition group"
               >
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                   <span>Public Website</span>
                 </div>
-                <ExternalLink className="w-3.5 h-3.5 text-cream-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ExternalLink className="w-3.5 h-3.5 text-cream-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Link>
             </div>
 
             {/* ================= SECTION 2: WORKSPACE ================= */}
             {workspaceNav.length > 0 && (
               <div>
-                <div className="px-3 mb-2 text-[10px] font-bold text-cream-300/70 uppercase tracking-widest">
+                <div className="px-2 mb-1.5 text-[10px] font-black text-maroon-950/70 dark:text-cream-300/70 uppercase tracking-widest">
                   Workspace
                 </div>
-                <nav className="space-y-1">
+                <nav className="space-y-1.5">
                   {workspaceNav.map((item, index) => {
                     const Icon = item.icon;
                     const active = isActive(item.href);
@@ -240,32 +240,27 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                       <div key={item.name} className="space-y-1">
                         {item.subItems ? (
                           <div
-                            className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition duration-200 ${
+                            className={`flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-bold transition duration-200 border-2 ${
                               active
-                                ? 'bg-cream-100 text-maroon-800 shadow-md shadow-maroon-900/40 font-extrabold'
-                                : 'text-cream-200 hover:bg-maroon-600/50 hover:text-white'
+                                ? 'bg-maroon-700 text-cream-100 border-maroon-950 dark:border-cream-100 shadow-neo-sm font-black'
+                                : 'bg-cream-50 dark:bg-maroon-900/60 text-maroon-950 dark:text-cream-100 border-maroon-950/20 dark:border-maroon-800 hover:border-maroon-950 hover:shadow-neo-xs'
                             }`}
                           >
                             <Link
                               href={item.href}
                               onClick={(e) => {
                                 if (active) {
-                                  // Clicking active item toggles collapse
                                   setOrdersMenuOpen(!ordersMenuOpen);
                                 } else {
                                   setOrdersMenuOpen(true);
                                 }
                                 onClose?.();
                               }}
-                              className="flex-1 flex items-center gap-3 cursor-pointer select-none"
+                              className="flex-1 flex items-center gap-2.5 cursor-pointer select-none"
                             >
-                              <span className="text-[10px] opacity-60 w-3 font-mono">{index + 1}.</span>
-                              <Icon
-                                className={`w-4 h-4 transition ${
-                                  active ? 'text-maroon-700' : 'text-cream-300/80'
-                                }`}
-                              />
-                              <span>{item.name}</span>
+                              <span className="text-[10px] opacity-60 w-3 font-mono font-black">{index + 1}.</span>
+                              <Icon className="w-4 h-4 shrink-0" />
+                              <span className="truncate">{item.name}</span>
                             </Link>
 
                             <button
@@ -275,18 +270,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                                 e.stopPropagation();
                                 setOrdersMenuOpen(!ordersMenuOpen);
                               }}
-                              className={`p-1 rounded-md transition ${
+                              className={`p-1 rounded-lg transition ${
                                 active
-                                  ? 'text-maroon-800 hover:bg-maroon-200/60'
-                                  : 'text-cream-300 hover:text-white hover:bg-maroon-600/60'
+                                  ? 'text-cream-100 hover:bg-maroon-800'
+                                  : 'text-maroon-950 dark:text-cream-300 hover:bg-cream-200 dark:hover:bg-maroon-800'
                               }`}
                               title={ordersMenuOpen ? 'Collapse sub-menu' : 'Expand sub-menu'}
                               aria-label="Toggle Orders & Client info sub-menu"
                             >
                               {ordersMenuOpen ? (
-                                <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                                <ChevronDown className="w-3.5 h-3.5" />
                               ) : (
-                                <ChevronRight className="w-4 h-4 transition-transform duration-200" />
+                                <ChevronRight className="w-3.5 h-3.5" />
                               )}
                             </button>
                           </div>
@@ -294,23 +289,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                           <Link
                             href={item.href}
                             onClick={onClose}
-                            className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition duration-200 ${
+                            className={`flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-bold transition duration-200 border-2 ${
                               active
-                                ? 'bg-cream-100 text-maroon-800 shadow-md shadow-maroon-900/40 font-extrabold'
-                                : 'text-cream-200 hover:bg-maroon-600/50 hover:text-white'
+                                ? 'bg-maroon-700 text-cream-100 border-maroon-950 dark:border-cream-100 shadow-neo-sm font-black'
+                                : 'bg-cream-50 dark:bg-maroon-900/60 text-maroon-950 dark:text-cream-100 border-maroon-950/20 dark:border-maroon-800 hover:border-maroon-950 hover:shadow-neo-xs'
                             }`}
                           >
-                            <div className="flex items-center gap-3">
-                              <span className="text-[10px] opacity-60 w-3 font-mono">{index + 1}.</span>
-                              <Icon
-                                className={`w-4 h-4 transition ${
-                                  active ? 'text-maroon-700' : 'text-cream-300/80'
-                                }`}
-                              />
-                              <span>{item.name}</span>
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <span className="text-[10px] opacity-60 w-3 font-mono font-black">{index + 1}.</span>
+                              <Icon className="w-4 h-4 shrink-0" />
+                              <span className="truncate">{item.name}</span>
                             </div>
                             {item.badge && (
-                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-rose-500 text-white shadow-xs animate-pulse">
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-black bg-rose-600 text-cream-100 border border-maroon-950 shadow-xs animate-pulse">
                                 <AlertTriangle className="w-2.5 h-2.5" />
                                 {item.badge}
                               </span>
@@ -319,7 +310,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                         )}
 
                         {item.subItems && ordersMenuOpen && (
-                          <div className="pl-6 pr-1 py-0.5 space-y-1 transition-all duration-200">
+                          <div className="pl-5 pr-1 py-1 space-y-1 bg-cream-200 dark:bg-maroon-900/80 rounded-xl border-2 border-maroon-950/15 dark:border-cream-100/15 mt-1">
                             {item.subItems.map((sub) => {
                               const isSubActive = pathname === sub.href;
                               return (
@@ -327,13 +318,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                                   key={sub.name}
                                   href={sub.href}
                                   onClick={onClose}
-                                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs transition ${
+                                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition border ${
                                     isSubActive
-                                      ? 'bg-maroon-900/80 text-cream-100 font-extrabold border border-maroon-500/60 shadow-xs'
-                                      : 'text-cream-300/80 hover:bg-maroon-600/40 hover:text-white font-medium'
+                                      ? 'bg-maroon-700 text-cream-100 border-maroon-950 font-black shadow-neo-xs'
+                                      : 'text-maroon-950 dark:text-cream-200 border-transparent hover:border-maroon-950/40 hover:bg-cream-100 dark:hover:bg-maroon-800'
                                   }`}
                                 >
-                                  <span className={`w-1.5 h-1.5 rounded-full ${isSubActive ? 'bg-amber-400' : 'bg-cream-300/40'}`}></span>
+                                  <span className={`w-1.5 h-1.5 rounded-full ${isSubActive ? 'bg-amber-300' : 'bg-maroon-950/30 dark:bg-cream-300/40'}`}></span>
                                   <span>{sub.name}</span>
                                 </Link>
                               );
@@ -353,18 +344,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                 <button
                   type="button"
                   onClick={() => setBusinessReportsOpen(!businessReportsOpen)}
-                  className="w-full flex items-center justify-between px-3 py-1.5 text-[10px] font-bold text-cream-300/80 hover:text-white uppercase tracking-widest transition"
+                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-[10px] font-black text-maroon-950 dark:text-cream-100 bg-cream-50 dark:bg-maroon-900/60 border-2 border-maroon-950/20 dark:border-maroon-800 hover:border-maroon-950 uppercase tracking-widest transition shadow-xs"
                 >
                   <span>Business &amp; Reports</span>
                   {businessReportsOpen ? (
-                    <ChevronDown className="w-3.5 h-3.5 text-cream-300" />
+                    <ChevronDown className="w-3.5 h-3.5 text-maroon-700 dark:text-cream-300" />
                   ) : (
-                    <ChevronRight className="w-3.5 h-3.5 text-cream-300" />
+                    <ChevronRight className="w-3.5 h-3.5 text-maroon-700 dark:text-cream-300" />
                   )}
                 </button>
 
                 {businessReportsOpen && (
-                  <nav className="mt-1 space-y-1 pl-1">
+                  <nav className="mt-1.5 space-y-1 pl-1">
                     {businessReportsNav.map((item) => {
                       const Icon = item.icon;
                       const active = isActive(item.href);
@@ -373,17 +364,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                           key={item.name}
                           href={item.href}
                           onClick={onClose}
-                          className={`flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-semibold transition duration-200 ${
+                          className={`flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition border-2 ${
                             active
-                              ? 'bg-cream-100 text-maroon-800 shadow-sm font-extrabold'
-                              : 'text-cream-200/90 hover:bg-maroon-600/40 hover:text-white'
+                              ? 'bg-maroon-700 text-cream-100 border-maroon-950 dark:border-cream-100 shadow-neo-sm font-black'
+                              : 'bg-cream-50 dark:bg-maroon-900/60 text-maroon-950 dark:text-cream-100 border-maroon-950/20 dark:border-maroon-800 hover:border-maroon-950 hover:shadow-neo-xs'
                           }`}
                         >
-                          <Icon
-                            className={`w-4 h-4 transition ${
-                              active ? 'text-maroon-700' : 'text-cream-300/70'
-                            }`}
-                          />
+                          <Icon className="w-4 h-4 shrink-0" />
                           <span>{item.name}</span>
                         </Link>
                       );
@@ -394,22 +381,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
             )}
           </div>
 
-          {/* Footer Profile & Role Info */}
-          <div className="p-4 border-t border-maroon-600/40 bg-maroon-800/90 space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-cream-300">Theme</span>
+          {/* Footer Profile & Role Info (Neo-Brutalist) */}
+          <div className="p-3.5 border-t-2 border-maroon-950 dark:border-cream-100/20 bg-cream-50 dark:bg-maroon-900 space-y-2.5">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-[10px] font-black uppercase tracking-wider text-maroon-950 dark:text-cream-200">Theme</span>
               <ThemeToggle />
             </div>
-            <div className="flex items-center justify-between pt-1 border-t border-maroon-700/50">
-              <Link href="/admin/profile" className="flex items-center gap-2.5 group overflow-hidden">
-                <div className="w-8 h-8 rounded-full bg-cream-100 text-maroon-800 flex items-center justify-center font-black text-xs shadow-sm shrink-0">
+            <div className="flex items-center justify-between pt-2 border-t-2 border-maroon-950/15 dark:border-maroon-800">
+              <Link href="/admin/profile" className="flex items-center gap-2.5 group overflow-hidden flex-1 min-w-0">
+                <div className="w-8 h-8 rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-200 dark:bg-maroon-800 text-maroon-950 dark:text-cream-100 flex items-center justify-center font-black text-xs shadow-neo-xs shrink-0">
                   {currentUser?.full_name?.charAt(0) || currentUser?.username?.charAt(0) || 'B'}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-xs font-bold text-cream-100 group-hover:underline truncate">
+                  <p className="text-xs font-black text-maroon-950 dark:text-cream-100 group-hover:underline truncate">
                     {currentUser?.full_name || currentUser?.username || 'Bakery Staff'}
                   </p>
-                  <span className="inline-block px-1.5 py-0.2 text-[9px] font-bold rounded-md bg-maroon-900/80 text-cream-300 border border-maroon-600/60 truncate max-w-[120px]">
+                  <span className="inline-block px-1.5 py-0.5 text-[8px] font-black rounded-md bg-cream-200 dark:bg-maroon-950 text-maroon-950 dark:text-cream-200 border border-maroon-950/40 truncate max-w-[110px]">
                     {userRoleDisplay}
                   </span>
                 </div>
@@ -417,9 +404,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
               <button
                 onClick={logout}
                 title="Sign Out"
-                className="p-2 rounded-xl text-cream-300 hover:text-white hover:bg-maroon-600/60 transition shrink-0"
+                className="p-2 rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-200 dark:bg-maroon-800 text-maroon-950 dark:text-cream-100 shadow-neo-xs btn-tactile shrink-0"
               >
-                <LogOut className="w-4 h-4" />
+                <LogOut className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>

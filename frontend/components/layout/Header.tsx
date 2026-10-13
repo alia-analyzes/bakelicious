@@ -25,17 +25,17 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onOpenSidebar, 
     : currentUser?.primary_role || currentUser?.role || 'Staff';
 
   return (
-    <header className="sticky top-0 z-30 bg-cream-100/90 dark:bg-maroon-900/90 backdrop-blur-md border-b border-cream-300 dark:border-maroon-800 px-4 lg:px-8 py-3.5 flex items-center justify-between shadow-xs transition-colors">
+    <header className="sticky top-0 z-30 bg-cream-100/95 dark:bg-maroon-950/95 backdrop-blur-md border-b-2 border-maroon-950 dark:border-cream-100/20 px-4 lg:px-8 py-3.5 flex items-center justify-between shadow-neo-sm transition-colors">
       <div className="flex items-center gap-3 sm:gap-4 min-w-0">
         <button
           onClick={handleSidebar}
-          className="p-2 rounded-xl text-maroon-800 dark:text-cream-100 hover:bg-cream-200 dark:hover:bg-maroon-800 lg:hidden transition shrink-0"
+          className="p-2 rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 text-maroon-950 dark:text-cream-100 shadow-neo-xs btn-tactile lg:hidden transition shrink-0"
           aria-label="Open sidebar"
         >
-          <Menu className="w-6 h-6" />
+          <Menu className="w-5 h-5" />
         </button>
         <div className="min-w-0">
-          <h2 className="text-base sm:text-lg font-bold text-maroon-900 dark:text-cream-100 tracking-tight font-serif truncate">
+          <h2 className="text-base sm:text-xl font-black text-maroon-950 dark:text-cream-100 tracking-tight font-serif truncate">
             {title}
           </h2>
         </div>
@@ -45,16 +45,16 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onOpenSidebar, 
         {currentUser && (
           <Link
             href="/admin/profile"
-            className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-cream-200/80 dark:bg-maroon-800/60 border border-cream-300 dark:border-maroon-700/60 hover:bg-cream-300/80 dark:hover:bg-maroon-700/60 transition"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100/40 shadow-neo-xs hover:shadow-neo-sm btn-tactile transition"
           >
-            <div className="w-6 h-6 rounded-full bg-maroon-700 dark:bg-cream-100 text-cream-100 dark:text-maroon-900 flex items-center justify-center text-[10px] font-black">
+            <div className="w-6 h-6 rounded-lg border border-maroon-950 dark:border-cream-100 bg-maroon-700 text-cream-100 flex items-center justify-center text-[10px] font-black">
               {currentUser.full_name?.charAt(0) || currentUser.username?.charAt(0) || 'U'}
             </div>
             <div className="hidden sm:block text-left">
-              <span className="block text-[11px] font-bold text-maroon-900 dark:text-cream-100 leading-tight">
+              <span className="block text-[11px] font-black text-maroon-950 dark:text-cream-100 leading-tight">
                 {currentUser.full_name || currentUser.username}
               </span>
-              <span className="block text-[9px] font-semibold text-charcoal-muted dark:text-cream-300/70 leading-none">
+              <span className="block text-[9px] font-bold text-maroon-700 dark:text-cream-300 leading-none">
                 {roleName}
               </span>
             </div>
@@ -64,7 +64,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onOpenSidebar, 
         {hasPermission('ORDERS_CREATE') && (
           <Link
             href="/admin/orders"
-            className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-xl text-xs font-bold shadow-sm transition duration-200"
+            className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-xl text-xs font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm btn-tactile transition duration-200"
           >
             <Plus className="w-4 h-4" />
             <span>New Order</span>

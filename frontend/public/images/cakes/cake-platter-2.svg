@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8EFE2" />
+      <stop offset="100%" stop-color="#F3E6D5" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#421225" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="800" fill="url(#bg)" />
+  <circle cx="400" cy="400" r="320" fill="#FFF8ED" opacity="0.6" />
+  <circle cx="400" cy="400" r="260" fill="#F8EFE2" opacity="0.8" />
+
+  <!-- Cake Stand -->
+  <ellipse cx="400" cy="580" rx="220" ry="35" fill="#F3E6D5" filter="url(#shadow)" />
+  <rect x="370" y="580" width="60" height="70" fill="#E5D4BC" rx="6" />
+  <ellipse cx="400" cy="650" rx="110" ry="20" fill="#D6C2A7" />
+
+  <!-- Main Cake Tiers -->
+  <g filter="url(#shadow)">
+    <!-- Bottom Tier -->
+    <path d="M220,440 L220,550 Q400,600 580,550 L580,440 Z" fill="#7A1F3D" />
+    <ellipse cx="400" cy="440" rx="180" ry="40" fill="#FFF8ED" />
+
+    <!-- Middle Tier / Details -->
+    <path d="M260,320 L260,440 Q400,480 540,440 L540,320 Z" fill="#7A1F3D" opacity="0.9" />
+    <ellipse cx="400" cy="320" rx="140" ry="30" fill="#F8EFE2" />
+
+    <!-- Top Tier -->
+    <path d="M300,220 L300,320 Q400,350 500,320 L500,220 Z" fill="#7A1F3D" opacity="0.95" />
+    <ellipse cx="400" cy="220" rx="100" ry="22" fill="#FFF8ED" />
+  </g>
+
+  <!-- Cake Topper / Flowers -->
+  <circle cx="400" cy="190" r="24" fill="#7A1F3D" />
+  <circle cx="375" cy="205" r="16" fill="#C87D93" />
+  <circle cx="425" cy="205" r="16" fill="#E0A8B7" />
+  <circle cx="400" cy="215" r="12" fill="#FFF8ED" />
+
+  <!-- Typography overlay label -->
+  <rect x="200" y="690" width="400" height="55" rx="28" fill="#7A1F3D" filter="url(#shadow)" />
+  <text x="400" y="725" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#FFF8ED" text-anchor="middle">Dessert Sampler Platter</text>
+</svg>

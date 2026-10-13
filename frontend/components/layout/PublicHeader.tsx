@@ -30,24 +30,25 @@ export function PublicHeader() {
   ];
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full bg-cream-100/95 dark:bg-maroon-950/95 backdrop-blur-md border-b-2 border-maroon-950/20 dark:border-maroon-800 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        isScrolled ? 'py-1.5 sm:py-2 shadow-md' : 'py-3 sm:py-4 lg:py-4.5 shadow-sm'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        
-        {/* Brand Logo & Editorial Wordmark: Prominently BIG at top, smoothly shrinks down on scroll */}
-        <Link
-          href="/"
-          className="flex items-center gap-2.5 sm:gap-4 group select-none relative z-20"
-          aria-label="Bakelicious Home"
-        >
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 w-full bg-cream-100/95 dark:bg-maroon-950/95 backdrop-blur-md border-b-2 border-maroon-950/20 dark:border-maroon-800 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isScrolled ? 'py-2 sm:py-2.5 shadow-md' : 'py-3.5 sm:py-4.5 lg:py-5 shadow-sm'
+        }`}
+      >
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
+          
+          {/* Brand Logo & Editorial Wordmark: BIG at top, remains clearly visible and prominent when scrolling down */}
+          <Link
+            href="/"
+            className="flex items-center gap-3 sm:gap-4 group select-none relative z-20 shrink-0"
+            aria-label="Bakelicious Home"
+          >
           <div
-            className={`rounded-full border-2 sm:border-3 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 flex items-center justify-center overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:rotate-2 ${
+            className={`rounded-full border-2 sm:border-3 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 flex items-center justify-center overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:rotate-2 shrink-0 ${
               isScrolled
-                ? 'w-10 h-10 sm:w-12 sm:h-12 p-0.5 sm:p-1 shadow-neo-sm translate-y-0'
-                : 'w-16 h-16 sm:w-22 sm:h-22 lg:w-28 lg:h-28 p-1 sm:p-1.5 shadow-neo-md sm:shadow-neo-lg translate-y-1 sm:translate-y-3 lg:translate-y-4'
+                ? 'w-13 h-13 sm:w-15 sm:h-15 lg:w-16 lg:h-16 p-1 shadow-neo-sm translate-y-0'
+                : 'w-22 h-22 sm:w-26 sm:h-26 lg:w-30 lg:h-30 xl:w-32 xl:h-32 p-1.5 sm:p-2 shadow-neo-md sm:shadow-neo-lg translate-y-1 sm:translate-y-3 lg:translate-y-4'
             }`}
           >
             <img
@@ -60,7 +61,7 @@ export function PublicHeader() {
           <div className="flex flex-col transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
             <span
               className={`font-serif font-black tracking-tight text-maroon-950 dark:text-cream-100 uppercase transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                isScrolled ? 'text-base sm:text-lg lg:text-xl' : 'text-xl sm:text-2xl lg:text-3xl'
+                isScrolled ? 'text-lg sm:text-xl lg:text-2xl' : 'text-xl sm:text-2xl lg:text-3xl'
               }`}
             >
               Bakelicious
@@ -178,6 +179,15 @@ export function PublicHeader() {
           </div>
         </div>
       )}
-    </header>
+      </header>
+
+      {/* Dynamic spacer matching fixed header height so content is never covered */}
+      <div
+        className={`w-full transition-all duration-300 pointer-events-none select-none ${
+          isScrolled ? 'h-18 sm:h-20 lg:h-22' : 'h-24 sm:h-28 lg:h-32'
+        }`}
+        aria-hidden="true"
+      />
+    </>
   );
 }

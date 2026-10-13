@@ -135,12 +135,12 @@ export default function PublicHomepage() {
 
       <main className="flex-1">
         {/* ================= HERO SECTION (NEO-BRUTALIST EDITORIAL) ================= */}
-        <section className="relative overflow-hidden bg-cream-100 dark:bg-maroon-950 pt-10 pb-16 lg:pt-16 lg:pb-24 border-b-2 border-maroon-950/20 dark:border-maroon-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <section className="relative overflow-hidden bg-cream-100 dark:bg-maroon-950 pt-4 pb-10 sm:pt-6 sm:pb-12 lg:pt-8 lg:pb-16 border-b-2 border-maroon-950/20 dark:border-maroon-800">
+          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-18">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
 
               {/* LEFT SIDE: Editorial Typography & Bold Actions */}
-              <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+              <div className="lg:col-span-7 space-y-5 lg:space-y-6 text-center lg:text-left">
                 
                 {/* Eyebrow Pill with gentle pulse glow */}
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 text-maroon-950 dark:text-cream-100 text-[11px] font-black uppercase tracking-widest shadow-neo-sm animate-pulse-glow">
@@ -150,19 +150,19 @@ export default function PublicHomepage() {
 
                 {/* Main Headline */}
                 <div className="space-y-2">
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-maroon-950 dark:text-cream-100 font-serif leading-[1.12] tracking-tight">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-maroon-950 dark:text-cream-100 font-serif leading-[1.08] tracking-tight">
                     Custom Cakes for Every <br />
                     <span className="italic font-normal text-maroon-700 dark:text-amber-300">Special Moment</span> ♡
                   </h1>
                 </div>
 
                 {/* Description */}
-                <p className="text-sm sm:text-base text-charcoal-muted dark:text-cream-200/90 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                <p className="text-base sm:text-lg text-charcoal-muted dark:text-cream-200/90 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
                   From birthdays to milestones, we bake your sweetest memories with pure Belgian cocoa, farm-fresh ingredients, and bespoke artisan craftsmanship.
                 </p>
 
                 {/* Action Buttons with Tactile Interaction */}
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
                   <Link
                     href="/custom-cakes"
                     className="w-full sm:w-auto px-8 py-4 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo btn-tactile flex items-center justify-center gap-2.5"
@@ -180,7 +180,7 @@ export default function PublicHomepage() {
                 </div>
 
                 {/* Three Trust Markers with Micro Hover Feedback */}
-                <div className="pt-6 grid grid-cols-3 gap-3 border-t-2 border-maroon-950/15 dark:border-maroon-800/60 text-center lg:text-left max-w-lg mx-auto lg:mx-0">
+                <div className="pt-5 grid grid-cols-3 gap-3 border-t-2 border-maroon-950/15 dark:border-maroon-800/60 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
                   <div className="p-2 transition-transform duration-300 hover:-translate-y-0.5">
                     <span className="block text-base sm:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">100% Fresh</span>
                     <span className="text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider">Baked Daily</span>
@@ -201,17 +201,17 @@ export default function PublicHomepage() {
               <div className="lg:col-span-5 relative flex justify-center items-center">
                 
                 {/* Floating Cake Container */}
-                <div className="w-full max-w-md relative animate-float-slow">
+                <div className="w-full max-w-md sm:max-w-lg lg:max-w-xl relative animate-float-slow">
                   
                   {/* Floating Hand-lettered Stamp Badge */}
-                  <div className="absolute -top-4 -right-3 sm:-right-4 z-20 px-3.5 py-2 rounded-2xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm rotate-6 flex items-center gap-1.5 text-xs font-serif font-black text-maroon-950 dark:text-cream-100 animate-float-gentle">
+                  <div className="absolute -top-4 -right-2 sm:-right-4 z-20 px-3.5 py-2 rounded-2xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm rotate-6 flex items-center gap-1.5 text-xs font-serif font-black text-maroon-950 dark:text-cream-100 animate-float-gentle">
                     <span>Life is Sweeter with Cake ♡</span>
                   </div>
 
                   {/* Main Cake Photography Container with Smooth Zoom on Hover */}
                   <div className="w-full aspect-square rounded-3xl overflow-hidden border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 shadow-neo-lg relative group transition-all duration-500">
                     <img
-                      src="/images/cakes/wedding-hero.jpg"
+                      src="/images/cakes/wedding-hero.svg"
                       alt="Bakelicious Signature Artisan Cake"
                       className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     />
@@ -228,7 +228,7 @@ export default function PublicHomepage() {
                   </div>
 
                   {/* Offset Badge with Tactile Hover */}
-                  <div className="absolute -bottom-4 -left-3 sm:-left-4 z-20 px-4 py-2.5 rounded-2xl bg-maroon-700 text-cream-100 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm -rotate-3 flex items-center gap-2 hover:scale-105 hover:rotate-0 transition-transform duration-300">
+                  <div className="absolute -bottom-4 -left-2 sm:-left-4 z-20 px-4 py-2.5 rounded-2xl bg-maroon-700 text-cream-100 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm -rotate-3 flex items-center gap-2 hover:scale-105 hover:rotate-0 transition-transform duration-300">
                     <Heart className="w-4 h-4 fill-cream-100 text-cream-100 shrink-0 animate-pulse" />
                     <div>
                       <span className="text-[9px] uppercase font-bold tracking-widest block text-cream-300 font-sans">Handcrafted</span>
@@ -245,7 +245,7 @@ export default function PublicHomepage() {
 
         {/* ================= CATEGORIES SECTION (MATCHING SCREENSHOT) ================= */}
         <section className="py-14 bg-cream-50 dark:bg-maroon-900/60 border-b-2 border-maroon-950/20 dark:border-maroon-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-18 space-y-8">
             
             <div className="text-center max-w-xl mx-auto space-y-1">
               <span className="text-[11px] font-black uppercase tracking-[0.2em] text-maroon-700 dark:text-cream-300 font-sans block">
@@ -284,7 +284,7 @@ export default function PublicHomepage() {
 
         {/* ================= FEATURED PRODUCT CARDS (NEO-BRUTALIST EDITORIAL) ================= */}
         <section className="py-16 lg:py-20 bg-cream-100 dark:bg-maroon-950 border-b-2 border-maroon-950/20 dark:border-maroon-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-18 space-y-12">
             
             <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b-2 border-maroon-950/15 dark:border-maroon-800 pb-5">
               <div>
@@ -356,7 +356,7 @@ export default function PublicHomepage() {
 
         {/* ================= WHY CHOOSE US: THE BAKELICIOUS DIFFERENCE ================= */}
         <section className="py-16 bg-maroon-950 text-cream-100 border-b-2 border-maroon-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-18 space-y-12">
             
             <div className="text-center max-w-2xl mx-auto space-y-2">
               <span className="text-[11px] font-black uppercase tracking-[0.25em] text-cream-300 font-sans block">
@@ -420,7 +420,7 @@ export default function PublicHomepage() {
 
         {/* ================= TESTIMONIALS SECTION ================= */}
         <section className="py-16 bg-cream-100 dark:bg-maroon-900/40 border-b-2 border-maroon-950/20 dark:border-maroon-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-18 space-y-10">
             
             <div className="text-center max-w-xl mx-auto space-y-1">
               <span className="text-[11px] font-black uppercase tracking-[0.2em] text-maroon-700 dark:text-cream-300 font-sans block">
