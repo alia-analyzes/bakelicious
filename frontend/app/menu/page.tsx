@@ -70,17 +70,17 @@ export default function PublicMenuPage() {
     <div className="min-h-screen bg-cream-100 dark:bg-maroon-950 text-charcoal dark:text-cream-100 flex flex-col font-sans selection:bg-maroon-700 selection:text-cream-100">
       <PublicHeader />
 
-      <main className="flex-1 py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <main className="flex-1 py-8 sm:py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-6 sm:space-y-10">
           
           {/* Header Banner */}
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 text-maroon-950 dark:text-cream-100 text-[11px] font-black uppercase tracking-widest shadow-neo-sm">
+          <div className="text-center max-w-2xl mx-auto space-y-2.5 sm:space-y-3 px-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 text-maroon-950 dark:text-cream-100 text-[10px] sm:text-[11px] font-black uppercase tracking-widest shadow-neo-sm">
               <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
               <span>Full Atelier Menu</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black text-maroon-950 dark:text-cream-100 font-serif tracking-tight">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-maroon-950 dark:text-cream-100 font-serif tracking-tight">
               Our Bakery Menu Catalog
             </h1>
             <p className="text-xs sm:text-sm text-charcoal-muted dark:text-cream-300 font-medium">
@@ -89,7 +89,7 @@ export default function PublicMenuPage() {
           </div>
 
           {/* Search & Category Filter Pills (Neo-Brutalist) */}
-          <div className="bg-cream-50 dark:bg-maroon-900 p-4 sm:p-5 rounded-3xl border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="bg-cream-50 dark:bg-maroon-900 p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4">
             
             {/* Search Input */}
             <div className="relative w-full md:w-80">
@@ -99,15 +99,15 @@ export default function PublicMenuPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search cakes by name or flavor..."
-                className="w-full pl-10 pr-4 py-2.5 bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950/20 dark:border-cream-100/20 rounded-2xl text-xs font-medium text-maroon-950 dark:text-cream-100 placeholder:text-charcoal-muted outline-none focus:border-maroon-950"
+                className="w-full pl-10 pr-4 py-2.5 bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950/20 dark:border-cream-100/20 rounded-xl sm:rounded-2xl text-xs font-medium text-maroon-950 dark:text-cream-100 placeholder:text-charcoal-muted outline-none focus:border-maroon-950"
               />
             </div>
 
-            {/* Category Filter Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 scrollbar-none">
+            {/* Category Filter Pills with smooth horizontal touch scrolling */}
+            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-1.5 md:pb-0 scrollbar-none touch-pan-x">
               <button
                 onClick={() => setSelectedCategory('all')}
-                className={`px-4 py-2 rounded-xl text-xs font-serif font-bold transition shrink-0 border-2 ${
+                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-serif font-bold transition shrink-0 border-2 ${
                   selectedCategory === 'all'
                     ? 'bg-maroon-700 text-cream-100 border-maroon-950 shadow-neo-sm'
                     : 'bg-cream-100 dark:bg-maroon-950 text-maroon-950 dark:text-cream-100 border-maroon-950/20 hover:border-maroon-950'
@@ -119,7 +119,7 @@ export default function PublicMenuPage() {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(String(cat.id))}
-                  className={`px-4 py-2 rounded-xl text-xs font-serif font-bold transition shrink-0 border-2 ${
+                  className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-serif font-bold transition shrink-0 border-2 ${
                     selectedCategory === String(cat.id)
                       ? 'bg-maroon-700 text-cream-100 border-maroon-950 shadow-neo-sm'
                       : 'bg-cream-100 dark:bg-maroon-950 text-maroon-950 dark:text-cream-100 border-maroon-950/20 hover:border-maroon-950'
@@ -139,7 +139,7 @@ export default function PublicMenuPage() {
               <p className="text-xs text-charcoal-muted mt-2 font-bold">Loading artisan cakes...</p>
             </div>
           ) : filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
               {filteredProducts.map((prod) => (
                 <div
                   key={prod.id}

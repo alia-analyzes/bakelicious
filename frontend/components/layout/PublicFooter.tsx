@@ -4,18 +4,18 @@ import { Heart, MapPin, Phone, Mail, Clock, Shield, Sparkles, ArrowUpRight } fro
 
 export function PublicFooter() {
   return (
-    <footer className="bg-maroon-950 text-cream-200 border-t-4 border-maroon-900 pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+    <footer className="bg-maroon-950 text-cream-200 border-t-4 border-maroon-900 pt-10 sm:pt-16 pb-8 sm:pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
           
           {/* Brand Bio & Stamp */}
-          <div className="md:col-span-4 space-y-4">
+          <div className="sm:col-span-2 lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-cream-100 p-1 border-2 border-cream-200 shadow-neo-cream-sm flex items-center justify-center shrink-0">
                 <img src="/logo.png" alt="Bakelicious Logo" className="w-full h-full object-contain" />
               </div>
               <div>
-                <span className="text-2xl font-serif font-black text-cream-100 block tracking-tight">Bakelicious</span>
+                <span className="text-xl sm:text-2xl font-serif font-black text-cream-100 block tracking-tight">Bakelicious</span>
                 <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-cream-300 block font-sans">Artisan Cake Atelier</span>
               </div>
             </div>
@@ -33,7 +33,7 @@ export function PublicFooter() {
           </div>
 
           {/* Quick Navigation */}
-          <div className="md:col-span-3 space-y-3.5">
+          <div className="sm:col-span-1 lg:col-span-3 space-y-3.5">
             <h4 className="text-xs font-bold uppercase tracking-widest text-cream-100 font-serif border-b border-maroon-800 pb-2 inline-block">
               Navigation
             </h4>
@@ -73,7 +73,7 @@ export function PublicFooter() {
           </div>
 
           {/* Bakery Hours */}
-          <div className="md:col-span-2 space-y-3.5">
+          <div className="sm:col-span-1 lg:col-span-2 space-y-3.5">
             <h4 className="text-xs font-bold uppercase tracking-widest text-cream-100 font-serif border-b border-maroon-800 pb-2 inline-block">
               Atelier Hours
             </h4>
@@ -99,7 +99,7 @@ export function PublicFooter() {
           </div>
 
           {/* Contact Details */}
-          <div className="md:col-span-3 space-y-3.5">
+          <div className="sm:col-span-2 lg:col-span-3 space-y-3.5">
             <h4 className="text-xs font-bold uppercase tracking-widest text-cream-100 font-serif border-b border-maroon-800 pb-2 inline-block">
               Boutique Location
             </h4>

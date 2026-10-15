@@ -46,7 +46,7 @@ export default function AboutUsPage() {
                 <span>Our Heritage &amp; Philosophy</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-maroon-950 dark:text-cream-100 font-serif leading-[1.15]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-maroon-950 dark:text-cream-100 font-serif leading-[1.15]">
                 Crafting Sweet Memories, <br />
                 <span className="italic font-normal text-maroon-700 dark:text-amber-300">One Cake at a Time</span>.
               </h1>
@@ -55,17 +55,17 @@ export default function AboutUsPage() {
                 Founded in 2023 in the cultural heart of Kolkata, Bakelicious was born from a desire to elevate celebration cakes from standard confections into edible works of art.
               </p>
 
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
                 <Link
                   href="/custom-cakes"
-                  className="px-8 py-4 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo hover:shadow-neo-lg hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center gap-2"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo hover:shadow-neo-lg hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
                 >
                   <span>Commission a Cake</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/gallery"
-                  className="px-8 py-4 bg-cream-50 dark:bg-maroon-900 text-maroon-950 dark:text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo hover:shadow-neo-lg hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-cream-50 dark:bg-maroon-900 text-maroon-950 dark:text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo hover:shadow-neo-lg hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all text-center"
                 >
                   <span>View Our Work</span>
                 </Link>

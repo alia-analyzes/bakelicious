@@ -272,13 +272,13 @@ export default function CustomCakesStudioPage() {
                       <label className="text-xs font-bold uppercase tracking-wider text-maroon-950 dark:text-cream-200 block mb-1.5 font-sans">
                         Dietary Preference
                       </label>
-                      <div className="grid grid-cols-3 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                         {['100% Eggless', 'Standard with Egg', 'Low Sugar'].map((opt) => (
                           <button
                             type="button"
                             key={opt}
                             onClick={() => setDietary(opt)}
-                            className={`p-2.5 rounded-xl border-2 text-xs font-bold transition ${
+                            className={`p-2.5 rounded-xl border-2 text-xs font-bold transition text-center ${
                               dietary === opt
                                 ? 'bg-maroon-700 text-cream-100 border-maroon-950 shadow-neo-sm'
                                 : 'bg-cream-100 dark:bg-maroon-950 text-maroon-950 dark:text-cream-100 border-maroon-950/20'

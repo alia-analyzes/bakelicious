@@ -135,37 +135,37 @@ export default function PublicHomepage() {
 
       <main className="flex-1">
         {/* ================= HERO SECTION (NEO-BRUTALIST EDITORIAL) ================= */}
-        <section className="relative overflow-hidden bg-cream-100 dark:bg-maroon-950 pt-4 pb-10 sm:pt-6 sm:pb-12 lg:pt-8 lg:pb-16 border-b-2 border-maroon-950/20 dark:border-maroon-800">
-          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-18">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
+        <section className="relative overflow-hidden bg-cream-100 dark:bg-maroon-950 pt-3 pb-8 sm:pt-6 sm:pb-12 lg:pt-8 lg:pb-16 border-b-2 border-maroon-950/20 dark:border-maroon-800">
+          <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center">
 
               {/* LEFT SIDE: Editorial Typography & Bold Actions */}
-              <div className="lg:col-span-7 space-y-5 lg:space-y-6 text-center lg:text-left">
+              <div className="lg:col-span-7 space-y-4 sm:space-y-5 lg:space-y-6 text-center lg:text-left">
                 
                 {/* Eyebrow Pill with gentle pulse glow */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 text-maroon-950 dark:text-cream-100 text-[11px] font-black uppercase tracking-widest shadow-neo-sm animate-pulse-glow">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-pulse" />
-                  <span>Welcome to Bakelicious • Estd 2023</span>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 text-maroon-950 dark:text-cream-100 text-[10px] sm:text-[11px] font-black uppercase tracking-widest shadow-neo-sm animate-pulse-glow max-w-full">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-pulse shrink-0" />
+                  <span className="truncate">Welcome to Bakelicious • Estd 2023</span>
                 </div>
 
                 {/* Main Headline */}
                 <div className="space-y-2">
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-maroon-950 dark:text-cream-100 font-serif leading-[1.08] tracking-tight">
-                    Custom Cakes for Every <br />
+                  <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-maroon-950 dark:text-cream-100 font-serif leading-[1.12] sm:leading-[1.08] tracking-tight">
+                    Custom Cakes for Every <br className="hidden sm:inline" />
                     <span className="italic font-normal text-maroon-700 dark:text-amber-300">Special Moment</span> ♡
                   </h1>
                 </div>
 
                 {/* Description */}
-                <p className="text-base sm:text-lg text-charcoal-muted dark:text-cream-200/90 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                <p className="text-sm sm:text-base lg:text-lg text-charcoal-muted dark:text-cream-200/90 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
                   From birthdays to milestones, we bake your sweetest memories with pure Belgian cocoa, farm-fresh ingredients, and bespoke artisan craftsmanship.
                 </p>
 
                 {/* Action Buttons with Tactile Interaction */}
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
                   <Link
                     href="/custom-cakes"
-                    className="w-full sm:w-auto px-8 py-4 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo btn-tactile flex items-center justify-center gap-2.5"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo btn-tactile flex items-center justify-center gap-2.5 min-h-[48px]"
                   >
                     <span>Order Now</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -173,43 +173,43 @@ export default function PublicHomepage() {
 
                   <Link
                     href="/menu"
-                    className="w-full sm:w-auto px-8 py-4 bg-cream-50 dark:bg-maroon-900 hover:bg-cream-200 dark:hover:bg-maroon-800 text-maroon-950 dark:text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo btn-tactile flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-cream-50 dark:bg-maroon-900 hover:bg-cream-200 dark:hover:bg-maroon-800 text-maroon-950 dark:text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo btn-tactile flex items-center justify-center gap-2 min-h-[48px]"
                   >
                     <span>Explore Our Menu</span>
                   </Link>
                 </div>
 
                 {/* Three Trust Markers with Micro Hover Feedback */}
-                <div className="pt-5 grid grid-cols-3 gap-3 border-t-2 border-maroon-950/15 dark:border-maroon-800/60 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
-                  <div className="p-2 transition-transform duration-300 hover:-translate-y-0.5">
-                    <span className="block text-base sm:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">100% Fresh</span>
-                    <span className="text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider">Baked Daily</span>
+                <div className="pt-4 sm:pt-5 grid grid-cols-3 gap-1.5 sm:gap-3 border-t-2 border-maroon-950/15 dark:border-maroon-800/60 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+                  <div className="p-1.5 sm:p-2 transition-transform duration-300 hover:-translate-y-0.5">
+                    <span className="block text-sm sm:text-base lg:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">100% Fresh</span>
+                    <span className="text-[9px] sm:text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider block">Baked Daily</span>
                   </div>
-                  <div className="p-2 border-x-2 border-maroon-950/15 dark:border-maroon-800/60 transition-transform duration-300 hover:-translate-y-0.5">
-                    <span className="block text-base sm:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">Belgian Cocoa</span>
-                    <span className="text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider">Callebaut 54%</span>
+                  <div className="p-1.5 sm:p-2 border-x-2 border-maroon-950/15 dark:border-maroon-800/60 transition-transform duration-300 hover:-translate-y-0.5">
+                    <span className="block text-sm sm:text-base lg:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">Belgian Cocoa</span>
+                    <span className="text-[9px] sm:text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider block">Callebaut 54%</span>
                   </div>
-                  <div className="p-2 transition-transform duration-300 hover:-translate-y-0.5">
-                    <span className="block text-base sm:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">Custom Atelier</span>
-                    <span className="text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider">Bespoke Tiers</span>
+                  <div className="p-1.5 sm:p-2 transition-transform duration-300 hover:-translate-y-0.5">
+                    <span className="block text-sm sm:text-base lg:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">Custom Atelier</span>
+                    <span className="text-[9px] sm:text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider block">Bespoke Tiers</span>
                   </div>
                 </div>
 
               </div>
 
               {/* RIGHT SIDE: Alive Floating Cake Composition */}
-              <div className="lg:col-span-5 relative flex justify-center items-center">
+              <div className="lg:col-span-5 relative flex justify-center items-center pt-4 lg:pt-0">
                 
                 {/* Floating Cake Container */}
-                <div className="w-full max-w-md sm:max-w-lg lg:max-w-xl relative animate-float-slow">
+                <div className="w-full max-w-sm sm:max-w-md lg:max-w-xl relative animate-float-slow">
                   
                   {/* Floating Hand-lettered Stamp Badge */}
-                  <div className="absolute -top-4 -right-2 sm:-right-4 z-20 px-3.5 py-2 rounded-2xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm rotate-6 flex items-center gap-1.5 text-xs font-serif font-black text-maroon-950 dark:text-cream-100 animate-float-gentle">
+                  <div className="absolute -top-3 right-0 sm:-right-3 z-20 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm rotate-3 sm:rotate-6 flex items-center gap-1.5 text-[10px] sm:text-xs font-serif font-black text-maroon-950 dark:text-cream-100 animate-float-gentle">
                     <span>Life is Sweeter with Cake ♡</span>
                   </div>
 
                   {/* Main Cake Photography Container with Smooth Zoom on Hover */}
-                  <div className="w-full aspect-square rounded-3xl overflow-hidden border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 shadow-neo-lg relative group transition-all duration-500">
+                  <div className="w-full aspect-square rounded-3xl overflow-hidden border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 shadow-neo-md sm:shadow-neo-lg relative group transition-all duration-500">
                     <img
                       src="/images/cakes/wedding-hero.svg"
                       alt="Bakelicious Signature Artisan Cake"
@@ -217,22 +217,22 @@ export default function PublicHomepage() {
                     />
                     
                     {/* Bottom Editorial Caption */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-maroon-950/90 via-maroon-950/50 to-transparent text-cream-100">
-                      <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-cream-300 block font-sans">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-maroon-950/90 via-maroon-950/50 to-transparent text-cream-100">
+                      <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.2em] text-cream-300 block font-sans">
                         Artisan Signature Tier
                       </span>
-                      <span className="text-base font-serif font-bold block">
+                      <span className="text-sm sm:text-base font-serif font-bold block truncate">
                         Raspberry Buttercream &amp; Rose Petals
                       </span>
                     </div>
                   </div>
 
                   {/* Offset Badge with Tactile Hover */}
-                  <div className="absolute -bottom-4 -left-2 sm:-left-4 z-20 px-4 py-2.5 rounded-2xl bg-maroon-700 text-cream-100 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm -rotate-3 flex items-center gap-2 hover:scale-105 hover:rotate-0 transition-transform duration-300">
-                    <Heart className="w-4 h-4 fill-cream-100 text-cream-100 shrink-0 animate-pulse" />
+                  <div className="absolute -bottom-3 left-0 sm:-left-3 z-20 px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-maroon-700 text-cream-100 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm -rotate-2 sm:-rotate-3 flex items-center gap-2 hover:scale-105 hover:rotate-0 transition-transform duration-300">
+                    <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-cream-100 text-cream-100 shrink-0 animate-pulse" />
                     <div>
-                      <span className="text-[9px] uppercase font-bold tracking-widest block text-cream-300 font-sans">Handcrafted</span>
-                      <span className="text-xs font-serif font-bold block">Made with Love</span>
+                      <span className="text-[8px] sm:text-[9px] uppercase font-bold tracking-widest block text-cream-300 font-sans">Handcrafted</span>
+                      <span className="text-[11px] sm:text-xs font-serif font-bold block">Made with Love</span>
                     </div>
                   </div>
 
@@ -244,11 +244,11 @@ export default function PublicHomepage() {
         </section>
 
         {/* ================= CATEGORIES SECTION (MATCHING SCREENSHOT) ================= */}
-        <section className="py-14 bg-cream-50 dark:bg-maroon-900/60 border-b-2 border-maroon-950/20 dark:border-maroon-800">
-          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-18 space-y-8">
+        <section className="py-10 sm:py-14 bg-cream-50 dark:bg-maroon-900/60 border-b-2 border-maroon-950/20 dark:border-maroon-800">
+          <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 space-y-6 sm:space-y-8">
             
             <div className="text-center max-w-xl mx-auto space-y-1">
-              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-maroon-700 dark:text-cream-300 font-sans block">
+              <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-maroon-700 dark:text-cream-300 font-sans block">
                 Artisan Collections
               </span>
               <h2 className="text-2xl sm:text-3xl font-black text-maroon-950 dark:text-cream-100 font-serif">
@@ -256,22 +256,24 @@ export default function PublicHomepage() {
               </h2>
             </div>
 
-            {/* 5-Card Grid matching exact categories in screenshot with Alive Hover Motion */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
-              {categories.map((cat) => (
+            {/* 5-Card Grid matching exact categories with fluid responsive layout */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5 lg:gap-6">
+              {categories.map((cat, idx) => (
                 <Link
                   key={cat.title}
                   href={cat.href}
-                  className="card-alive group bg-cream-100 dark:bg-maroon-900 rounded-2xl p-5 border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 shadow-neo-sm text-center flex flex-col items-center justify-between space-y-3 cursor-pointer"
+                  className={`card-alive group bg-cream-100 dark:bg-maroon-900 rounded-2xl p-4 sm:p-5 border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 shadow-neo-sm text-center flex flex-col items-center justify-between space-y-2 sm:space-y-3 cursor-pointer ${
+                    idx === categories.length - 1 ? 'col-span-2 sm:col-span-1' : ''
+                  }`}
                 >
-                  <div className="w-14 h-14 rounded-full bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950/20 dark:border-cream-200/20 flex items-center justify-center text-2xl shadow-xs group-hover:scale-120 group-hover:-translate-y-1 group-hover:rotate-6 transition-all duration-300">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950/20 dark:border-cream-200/20 flex items-center justify-center text-xl sm:text-2xl shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-all duration-300">
                     {cat.icon}
                   </div>
                   <div>
-                    <h3 className="font-serif font-black text-maroon-950 dark:text-cream-100 text-sm sm:text-base group-hover:text-maroon-700 dark:group-hover:text-amber-300 transition-colors">
+                    <h3 className="font-serif font-black text-maroon-950 dark:text-cream-100 text-xs sm:text-sm lg:text-base group-hover:text-maroon-700 dark:group-hover:text-amber-300 transition-colors">
                       {cat.title}
                     </h3>
-                    <p className="text-[11px] text-charcoal-muted dark:text-cream-300/80 font-medium mt-0.5">
+                    <p className="text-[10px] sm:text-[11px] text-charcoal-muted dark:text-cream-300/80 font-medium mt-0.5">
                       {cat.subtitle}
                     </p>
                   </div>

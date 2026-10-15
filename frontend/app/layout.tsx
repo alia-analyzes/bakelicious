@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { ToastContainer } from '@/components/ui/ToastContainer';
 import { ThemeProvider } from '@/components/theme/ThemeContext';
@@ -6,6 +6,18 @@ import { ThemeProvider } from '@/components/theme/ThemeContext';
 export const metadata: Metadata = {
   title: 'Bakelicious | Artisan Bakery Kolkata',
   description: 'Gourmet artisan bakery in Kolkata. Handcrafted celebration cakes, bento cakes, wedding tiers, and dessert platters.',
+  keywords: ['Bakelicious', 'Kolkata Bakery', 'Custom Cakes', 'Bento Cakes', 'Wedding Cakes', 'Artisan Bakery'],
+  authors: [{ name: 'Bakelicious' }],
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FCF1E4' },
+    { media: '(prefers-color-scheme: dark)', color: '#4D1A22' },
+  ],
 };
 
 export default function RootLayout({

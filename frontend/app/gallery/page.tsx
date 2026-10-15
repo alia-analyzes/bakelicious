@@ -121,7 +121,7 @@ export default function GalleryPage() {
               <span>Celebration Gallery</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-black text-maroon-950 dark:text-cream-100 font-serif tracking-tight">
+            <h1 className="text-3xl sm:text-5xl font-black text-maroon-950 dark:text-cream-100 font-serif tracking-tight">
               Artisan Cake Showcase
             </h1>
 
@@ -136,7 +136,7 @@ export default function GalleryPage() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-serif font-bold transition border-2 ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-serif font-bold transition border-2 ${
                   activeCategory === cat
                     ? 'bg-maroon-700 text-cream-100 border-maroon-950 dark:border-cream-100 shadow-neo-sm'
                     : 'bg-cream-50 dark:bg-maroon-900 text-maroon-950 dark:text-cream-100 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 hover:bg-cream-100'
@@ -148,7 +148,7 @@ export default function GalleryPage() {
           </div>
 
           {/* Gallery Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
             {filteredItems.map((item) => (
               <div
                 key={item.id}
@@ -175,7 +175,7 @@ export default function GalleryPage() {
                   </div>
                 </div>
 
-                <div className="p-5 space-y-1.5 border-t-2 border-maroon-950/10 dark:border-maroon-800">
+                <div className="p-4 sm:p-5 space-y-1.5 border-t-2 border-maroon-950/10 dark:border-maroon-800">
                   <h3 className="font-serif font-black text-base text-maroon-950 dark:text-cream-100 group-hover:text-maroon-700 dark:group-hover:text-amber-300 transition-colors">
                     {item.title}
                   </h3>
@@ -199,11 +199,11 @@ export default function GalleryPage() {
       {/* Lightbox Modal */}
       {lightboxImage && (
         <div
-          className="fixed inset-0 z-50 bg-maroon-950/80 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-maroon-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4"
           onClick={() => setLightboxImage(null)}
         >
           <div
-            className="bg-cream-50 dark:bg-maroon-900 rounded-3xl border-2 border-maroon-950 dark:border-cream-100 max-w-2xl w-full p-6 sm:p-8 shadow-neo-xl space-y-5 animate-fadeIn relative"
+            className="bg-cream-50 dark:bg-maroon-900 rounded-3xl border-2 border-maroon-950 dark:border-cream-100 max-w-2xl w-full p-4 sm:p-8 shadow-neo-xl space-y-4 sm:space-y-5 animate-fadeIn relative max-h-[92dvh] max-h-[92vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
