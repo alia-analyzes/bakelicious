@@ -62,3 +62,4 @@ Next.js web application runs at `http://localhost:3000`.
 6. **Inventory:** Raw material stock tracking, unit cost valuation, low-stock threshold alerts, transaction logs, and auto-inventory deduction upon order delivery.
 7. **Analysis & Reports:** Financial profit analysis with instant server-side PDF and CSV report export options.
 8. **Settings & Audit Logs:** Business profile, official logo management, auto-deduction toggles, and system audit trail.
+9. **Cake Showcase (CMS & Public Display):** Dedicated admin portal (`/admin/showcase`) to upload HD cake pictures with live preview, prices, and descriptions, connected to the customer-facing showcase (`/showcase`).

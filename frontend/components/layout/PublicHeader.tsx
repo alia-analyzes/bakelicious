@@ -23,6 +23,7 @@ export function PublicHeader() {
   // Public navigation matching exact requirements
   const navLinks = [
     { name: 'Home', href: '/' },
+    { name: 'Cake Showcase', href: '/showcase' },
     { name: 'Custom Cakes', href: '/custom-cakes' },
     { name: 'About Us', href: '/about' },
     { name: 'Gallery', href: '/gallery' },

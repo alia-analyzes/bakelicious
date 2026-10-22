@@ -20,7 +20,8 @@ import {
   ChevronRight,
   Calculator,
   Receipt,
-  AlertTriangle
+  AlertTriangle,
+  Camera
 } from 'lucide-react';
 import { logout, getStoredUser, hasPermission, hasAnyPermission, isSuperAdmin, isBaker } from '@/lib/auth';
 import { User } from '@/types';
@@ -84,7 +85,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
       badge: null
     },
     {
-      name: 'Cake Showcase & Products',
+      name: 'Cake Showcase',
+      href: '/admin/showcase',
+      icon: Camera,
+      visible: isSuperAdmin() || hasAnyPermission(['PRODUCTS_VIEW', 'CATEGORIES_VIEW', 'PRODUCTS_CREATE']),
+      badge: 'Public'
+    },
+    {
+      name: 'Products & Recipes',
       href: '/admin/products',
       icon: UtensilsCrossed,
       visible: isSuperAdmin() || hasAnyPermission(['PRODUCTS_VIEW', 'CATEGORIES_VIEW', 'RECIPES_VIEW', 'PRODUCTS_CREATE']),
