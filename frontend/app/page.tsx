@@ -203,6 +203,15 @@ export default function PublicHomepage() {
                 {/* Floating Cake Container */}
                 <div className="w-full max-w-sm sm:max-w-md lg:max-w-xl relative animate-float-slow">
                   
+                  {/* Official SVG Bakery Seal Badge */}
+                  <div className="absolute -top-6 -left-4 sm:-top-8 sm:-left-7 z-30 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full border-2 sm:border-3 border-maroon-950 dark:border-cream-100 shadow-neo bg-cream-50 dark:bg-maroon-900 p-1.5 hover:rotate-12 hover:scale-105 transition-all duration-300 cursor-pointer group/seal">
+                    <img
+                      src="/logo.svg"
+                      alt="Bakelicious Official Seal - Best In Town"
+                      className="w-full h-full object-contain drop-shadow-xs"
+                    />
+                  </div>
+
                   {/* Floating Hand-lettered Stamp Badge */}
                   <div className="absolute -top-3 right-0 sm:-right-3 z-20 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm rotate-3 sm:rotate-6 flex items-center gap-1.5 text-[10px] sm:text-xs font-serif font-black text-maroon-950 dark:text-cream-100 animate-float-gentle">
                     <span>Life is Sweeter with Cake ♡</span>

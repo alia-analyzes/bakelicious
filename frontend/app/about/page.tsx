@@ -74,6 +74,15 @@ export default function AboutUsPage() {
 
             {/* Framed Editorial Visual */}
             <div className="lg:col-span-5 relative flex justify-center">
+              {/* Official Artisan Seal Badge (SVG) */}
+              <div className="absolute -top-5 -left-4 sm:-top-6 sm:-left-6 z-20 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full border-2 sm:border-3 border-maroon-950 dark:border-cream-100 shadow-neo bg-cream-50 dark:bg-maroon-900 p-1.5 hover:rotate-12 hover:scale-105 transition-all duration-300">
+                <img
+                  src="/logo.svg"
+                  alt="Bakelicious Official Seal"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
               <div className="w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 shadow-neo-lg relative group">
                 <img
                   src="/images/cakes/wedding-3tier-floral.jpg"

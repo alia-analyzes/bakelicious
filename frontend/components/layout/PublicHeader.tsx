@@ -52,7 +52,7 @@ export function PublicHeader() {
               }`}
             >
               <img
-                src="/logo.png"
+                src="/logo.svg"
                 alt="Bakelicious Logo"
                 className="w-full h-full object-contain"
               />

@@ -12,7 +12,7 @@ export function PublicFooter() {
           <div className="sm:col-span-2 lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-cream-100 p-1 border-2 border-cream-200 shadow-neo-cream-sm flex items-center justify-center shrink-0">
-                <img src="/logo.png" alt="Bakelicious Logo" className="w-full h-full object-contain" />
+                <img src="/logo.svg" alt="Bakelicious Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <span className="text-xl sm:text-2xl font-serif font-black text-cream-100 block tracking-tight">Bakelicious</span>

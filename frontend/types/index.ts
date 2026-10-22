@@ -118,6 +118,7 @@ export interface Product {
   public_visibility?: boolean;
   tags?: string[];
   image_url?: string;
+  gallery_images?: string[];
   category?: Category;
   recipe?: Recipe;
   calculated_cost?: number | null;

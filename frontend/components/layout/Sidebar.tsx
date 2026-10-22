@@ -84,7 +84,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
       badge: null
     },
     {
-      name: 'Products & Menu',
+      name: 'Cake Showcase & Products',
       href: '/admin/products',
       icon: UtensilsCrossed,
       visible: isSuperAdmin() || hasAnyPermission(['PRODUCTS_VIEW', 'CATEGORIES_VIEW', 'RECIPES_VIEW', 'PRODUCTS_CREATE']),
@@ -177,7 +177,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
             <Link href="/admin/dashboard" className="flex items-center gap-3 select-none" onClick={onClose}>
               <div className="w-11 h-11 rounded-2xl bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950 dark:border-cream-100 p-1 shadow-neo-sm flex items-center justify-center shrink-0">
                 <img
-                  src="/logo.png"
+                  src="/logo.svg"
                   alt="Bakelicious Logo"
                   className="w-full h-full object-contain"
                   onError={(e) => {

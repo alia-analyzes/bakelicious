@@ -79,7 +79,7 @@ export default function AdminLoginPage() {
         <div className="text-center space-y-2">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-cream-200 dark:bg-maroon-800 border-2 border-cream-300 dark:border-maroon-700 p-2 shadow-sm mb-2">
             <img
-              src="/logo.png"
+              src="/logo.svg"
               alt="Bakelicious Logo"
               className="w-full h-full object-contain rounded-full"
             />

@@ -77,6 +77,7 @@ backend/uploads/products/*
 !backend/uploads/products/.gitkeep
 
 # --- IDEs & OS Specific ---
+.agents/
 .DS_Store
 Thumbs.db
 desktop.ini
