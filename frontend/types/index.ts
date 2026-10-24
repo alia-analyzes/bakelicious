@@ -357,3 +357,47 @@ export interface CalendarReschedulePayload {
   new_end_datetime?: string;
 }
 
+export interface ReceiptCakeItem {
+  id?: string;
+  flavour: string;
+  weight: string;
+  amount: number;
+}
+
+export interface Receipt {
+  items_json?: string;
+  items?: ReceiptCakeItem[];
+  id: number;
+  receipt_number: string;
+  receipt_date: string;
+  customer_name: string;
+  phone_number: string;
+  customer_address?: string;
+
+  cake_flavour?: string;
+  cake_weight?: string;
+  delivery_date?: string;
+  delivery_time?: string;
+  order_type: 'Self Pick-up' | 'Home Delivery';
+  delivery_address?: string;
+
+  cake_amount: number;
+  delivery_charges: number;
+
+  candles_required: boolean;
+  candle_type?: string;
+  candle_quantity: number;
+  candle_price_per_unit: number;
+  total_candle_charges: number;
+
+  final_total: number;
+  advance_paid: number;
+  due_amount: number;
+
+  notes?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export type ReceiptFormData = Omit<Receipt, 'id' | 'created_at' | 'updated_at'>;
+

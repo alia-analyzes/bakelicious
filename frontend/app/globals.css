@@ -4,34 +4,34 @@
 
 :root {
   --bakelicious-cream: #FCF1E4;
-  --bakelicious-primary: #7A1F35;
-  --bakelicious-primary-hover: #64262F;
+  --bakelicious-primary: #64262F;
+  --bakelicious-primary-hover: #4D1A22;
   --bakelicious-background-light: #FCF1E4;
-  --bakelicious-background-secondary: #FFF9F2;
-  --bakelicious-card-light: #FFF9F2;
-  --bakelicious-border-light: #EEDCC8;
-  --bakelicious-text-main: #2D2020;
-  --bakelicious-text-muted: #6E5D5F;
-  --bakelicious-heading-light: #7A1F35;
+  --bakelicious-background-secondary: #FCF1E4;
+  --bakelicious-card-light: #FCF1E4;
+  --bakelicious-border-light: #4D1A22;
+  --bakelicious-text-main: #4D1A22;
+  --bakelicious-text-muted: #4D1A22;
+  --bakelicious-heading-light: #4D1A22;
 
   --background: #FCF1E4;
-  --foreground: #2D2020;
-  --heading-color: #7A1F35;
+  --foreground: #4D1A22;
+  --heading-color: #4D1A22;
 }
 
 .dark {
   --bakelicious-cream: #FCF1E4;
-  --bakelicious-primary: #7A1F35;
+  --bakelicious-primary: #64262F;
   --bakelicious-background-dark: #4D1A22;
-  --bakelicious-surface-dark: #64262F;
-  --bakelicious-card-dark: #7A1F35;
-  --bakelicious-border-dark: #8B2C40;
-  --bakelicious-text-main: #F7E6D5;
-  --bakelicious-text-muted: #EEDCC8;
+  --bakelicious-surface-dark: #4D1A22;
+  --bakelicious-card-dark: #4D1A22;
+  --bakelicious-border-dark: #FCF1E4;
+  --bakelicious-text-main: #FCF1E4;
+  --bakelicious-text-muted: #FCF1E4;
   --bakelicious-heading-dark: #FCF1E4;
 
   --background: #4D1A22;
-  --foreground: #F7E6D5;
+  --foreground: #FCF1E4;
   --heading-color: #FCF1E4;
 }
 
@@ -81,43 +81,38 @@ body {
   z-index: 50 !important;
 }
 
-/* Dark Mode Overrides */
+/* Dark Mode Overrides: Strict #4D1A22 (background) and #FCF1E4 (text/border) */
 .dark body {
   background-color: #4D1A22;
-  color: #F7E6D5;
+  color: #FCF1E4;
 }
 
-.dark .bg-cream-100 {
-  background-color: #64262F !important;
+.dark .bg-cream-50,
+.dark .bg-cream-100,
+.dark .bg-cream-200,
+.dark .bg-cream-300 {
+  background-color: #4D1A22 !important;
   color: #FCF1E4 !important;
 }
 
-.dark .bg-cream-200 {
-  background-color: #4D1A22 !important;
-  color: #F7E6D5 !important;
-}
-
-.dark .bg-cream-300 {
-  background-color: #7A1F35 !important;
-}
-
+.dark .border-cream-100,
+.dark .border-cream-200,
 .dark .border-cream-300,
 .dark .border-cream-400 {
-  border-color: #8B2C40 !important;
+  border-color: #FCF1E4 !important;
 }
 
 .dark .text-maroon-950,
 .dark .text-maroon-900,
-.dark .text-maroon-800 {
+.dark .text-maroon-800,
+.dark .text-maroon-700,
+.dark .text-maroon-600 {
   color: #FCF1E4 !important;
 }
 
-.dark .text-maroon-700 {
-  color: #7E4049 !important;
-}
-
+.dark .text-charcoal,
 .dark .text-charcoal-muted {
-  color: #F7E6D5 !important;
+  color: #FCF1E4 !important;
 }
 
 /* Premium Scrollbar */
@@ -127,24 +122,28 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FCF1E3;
+  background: #FCF1E4;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #4A252B;
+  background: #4D1A22;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #7E4049;
+  background: #64262F;
   border-radius: 4px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #B56C77;
+  background: #FCF1E4;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #68343D;
+  background: #4D1A22;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64262F;
 }
 
 /* ================= ALIVE MICRO-ANIMATIONS & TRANSITIONS ================= */
@@ -205,10 +204,10 @@ body {
 }
 .card-alive:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 8px 8px 0px #381A20;
+  box-shadow: 8px 8px 0px #4D1A22;
 }
 .dark .card-alive:hover {
-  box-shadow: 8px 8px 0px #1A0A0E;
+  box-shadow: 8px 8px 0px #FCF1E4;
 }
 
 /* Tactile button press with lively bounce */
@@ -218,17 +217,17 @@ body {
 }
 .btn-tactile:hover {
   transform: translateY(-3px) scale(1.015);
-  box-shadow: 5px 5px 0px #381A20;
+  box-shadow: 5px 5px 0px #4D1A22;
 }
 .dark .btn-tactile:hover {
-  box-shadow: 5px 5px 0px #1A0A0E;
+  box-shadow: 5px 5px 0px #FCF1E4;
 }
 .btn-tactile:active {
   transform: translateY(2px) translateX(2px) scale(0.985);
-  box-shadow: 1px 1px 0px #381A20;
+  box-shadow: 1px 1px 0px #4D1A22;
 }
 .dark .btn-tactile:active {
-  box-shadow: 1px 1px 0px #1A0A0E;
+  box-shadow: 1px 1px 0px #FCF1E4;
 }
 
 /* Image zoom container */
@@ -246,18 +245,18 @@ body {
 
 /* FullCalendar Custom Theme & Full Page Layout Overrides */
 .fc {
-  --fc-border-color: #EEDCC8;
+  --fc-border-color: #4D1A22;
   --fc-page-bg-color: transparent;
-  --fc-neutral-bg-color: rgba(126, 64, 73, 0.04);
-  --fc-today-bg-color: rgba(245, 158, 11, 0.12) !important;
+  --fc-neutral-bg-color: rgba(77, 26, 34, 0.05);
+  --fc-today-bg-color: rgba(100, 38, 47, 0.15) !important;
   font-family: inherit;
   width: 100% !important;
 }
 
 .dark .fc {
-  --fc-border-color: #7A3F49;
-  --fc-today-bg-color: rgba(245, 158, 11, 0.25) !important;
-  --fc-neutral-bg-color: rgba(252, 241, 227, 0.04);
+  --fc-border-color: #FCF1E4;
+  --fc-today-bg-color: rgba(252, 241, 228, 0.2) !important;
+  --fc-neutral-bg-color: rgba(252, 241, 228, 0.05);
 }
 
 .fc .fc-toolbar {
@@ -270,18 +269,18 @@ body {
   font-size: 1.4rem !important;
   font-weight: 800 !important;
   font-family: 'Playfair Display', serif, Georgia;
-  color: #4A252B;
+  color: #4D1A22;
   letter-spacing: -0.02em;
 }
 
 .dark .fc .fc-toolbar-title {
-  color: #FCF1E3 !important;
+  color: #FCF1E4 !important;
 }
 
 .fc .fc-button {
-  background-color: #7E4049 !important;
-  border-color: #7E4049 !important;
-  color: #FCF1E3 !important;
+  background-color: #64262F !important;
+  border-color: #4D1A22 !important;
+  color: #FCF1E4 !important;
   border-radius: 0.85rem !important;
   font-weight: 700 !important;
   font-size: 0.8rem !important;
@@ -291,52 +290,53 @@ body {
 }
 
 .fc .fc-button:hover {
-  background-color: #68343D !important;
-  border-color: #68343D !important;
+  background-color: #4D1A22 !important;
+  border-color: #4D1A22 !important;
   transform: translateY(-1px);
 }
 
 .fc .fc-button-active {
-  background-color: #4A252B !important;
-  border-color: #4A252B !important;
+  background-color: #4D1A22 !important;
+  border-color: #4D1A22 !important;
 }
 
 .dark .fc .fc-button {
-  background-color: #68343D !important;
-  border-color: #7A3F49 !important;
-  color: #FCF1E3 !important;
+  background-color: #64262F !important;
+  border-color: #FCF1E4 !important;
+  color: #FCF1E4 !important;
 }
 
 .dark .fc .fc-button:hover {
-  background-color: #7E4049 !important;
+  background-color: #FCF1E4 !important;
+  color: #4D1A22 !important;
 }
 
 .fc .fc-col-header-cell {
-  background-color: rgba(126, 64, 73, 0.06);
+  background-color: rgba(77, 26, 34, 0.05);
   padding: 10px 0 !important;
   font-weight: 800;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #7E4049;
-  border-bottom: 2px solid #EEDCC8 !important;
+  color: #4D1A22;
+  border-bottom: 2px solid #4D1A22 !important;
 }
 
 .dark .fc .fc-col-header-cell {
-  background-color: rgba(252, 241, 227, 0.06);
-  color: #FCF1E3;
-  border-bottom-color: #7A3F49 !important;
+  background-color: rgba(252, 241, 228, 0.05);
+  color: #FCF1E4;
+  border-bottom-color: #FCF1E4 !important;
 }
 
 .fc .fc-daygrid-day-number {
   font-weight: 800;
   font-size: 0.85rem;
   padding: 6px 10px !important;
-  color: #4A252B;
+  color: #4D1A22;
 }
 
 .dark .fc .fc-daygrid-day-number {
-  color: #FCF1E3;
+  color: #FCF1E4;
 }
 
 .fc .fc-daygrid-day-frame {
@@ -345,18 +345,18 @@ body {
 }
 
 .fc .fc-daygrid-day:hover {
-  background-color: rgba(126, 64, 73, 0.03);
+  background-color: rgba(77, 26, 34, 0.03);
 }
 
 .dark .fc .fc-daygrid-day:hover {
-  background-color: rgba(252, 241, 227, 0.03);
+  background-color: rgba(252, 241, 228, 0.03);
 }
 
 .fc .fc-daygrid-more-link {
   font-weight: 800 !important;
   font-size: 0.75rem !important;
-  color: #7E4049 !important;
-  background-color: rgba(126, 64, 73, 0.12) !important;
+  color: #FCF1E4 !important;
+  background-color: #64262F !important;
   padding: 3px 8px !important;
   border-radius: 8px !important;
   display: inline-block;
@@ -365,16 +365,16 @@ body {
 }
 
 .fc .fc-daygrid-more-link:hover {
-  background-color: #7E4049 !important;
-  color: #FCF1E3 !important;
+  background-color: #4D1A22 !important;
+  color: #FCF1E4 !important;
 }
 
 .dark .fc .fc-daygrid-more-link {
-  color: #FCF1E3 !important;
-  background-color: rgba(252, 241, 227, 0.15) !important;
+  color: #FCF1E4 !important;
+  background-color: #64262F !important;
 }
 
 .dark .fc .fc-daygrid-more-link:hover {
-  background-color: #FCF1E3 !important;
-  color: #4A252B !important;
+  background-color: #FCF1E4 !important;
+  color: #4D1A22 !important;
 }

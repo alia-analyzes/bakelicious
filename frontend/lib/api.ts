@@ -71,6 +71,9 @@ export const getImageUrl = (url?: string | null, fallback = '/images/cakes/choco
     const cleanPath = url.startsWith('/api') ? url : `/api${url}`;
     return `${backendOrigin}${cleanPath}`;
   }
+  if (url.includes('celebration-platter')) {
+    return '/images/cakes/chocolate-delight.svg';
+  }
   if (url.startsWith('/images/cakes/') && url.endsWith('.jpg')) {
     return url.replace(/\.jpg$/, '.svg');
   }

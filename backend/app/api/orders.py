@@ -1,6 +1,6 @@
 import uuid
 from decimal import Decimal
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
@@ -192,6 +192,116 @@ def create_order(
     db.refresh(order)
 
     log_audit_action(db, "ORDER_CREATE", "Order", str(order.id), {"order_number": order.order_number, "final_amount": float(final_amount)}, current_user)
+    return format_order_response(order)
+
+@router.post("/public", response_model=OrderResponse, status_code=status.HTTP_201_CREATED)
+def create_public_order(
+    payload: PublicOrderCreate,
+    db: Session = Depends(get_db)
+):
+    """
+    Public customer order placement from the showcase website.
+    Creates or matches customer client record, records order, item, and production schedule in the database.
+    """
+    customer_name = payload.customer_name.strip()
+    phone = payload.phone.strip()
+    if not customer_name or not phone:
+        raise HTTPException(status_code=400, detail="Customer name and phone number are required")
+
+    # 1. Find or create Client in database
+    client = db.query(Client).filter(Client.phone == phone, Client.is_deleted == False).first()
+    if not client:
+        client = Client(
+            name=customer_name,
+            phone=phone,
+            email=payload.email.strip() if payload.email else None,
+            address=payload.delivery_address.strip() if payload.delivery_address else None,
+            notes="Customer registered via website order showcase"
+        )
+        db.add(client)
+        db.flush()
+    else:
+        if payload.email and not client.email:
+            client.email = payload.email.strip()
+        if payload.delivery_address and not client.address:
+            client.address = payload.delivery_address.strip()
+        db.flush()
+
+    # 2. Identify Product and calculate pricing
+    product = None
+    if payload.product_id:
+        product = db.query(Product).filter(Product.id == payload.product_id, Product.is_deleted == False).first()
+
+    if not product:
+        product = db.query(Product).filter(Product.is_deleted == False).first()
+
+    qty = max(1, payload.quantity)
+    unit_price = Decimal(str(product.price if product and product.price else 850.00))
+    subtotal = unit_price * Decimal(str(qty))
+    final_amount = subtotal
+
+    # 3. Parse delivery date
+    delivery_dt = datetime.utcnow() + timedelta(days=1)
+    if payload.delivery_date:
+        try:
+            cleaned_date = payload.delivery_date.replace("Z", "").split(".")[0]
+            if "T" in cleaned_date:
+                delivery_dt = datetime.fromisoformat(cleaned_date)
+            else:
+                delivery_dt = datetime.strptime(cleaned_date, "%Y-%m-%d")
+        except Exception:
+            delivery_dt = datetime.utcnow() + timedelta(days=1)
+
+    order_number = f"BK-ORD-{datetime.utcnow().strftime('%y%m%d')}-{db.query(Order).count() + 101}"
+
+    # 4. Create Order in database
+    order = Order(
+        order_number=order_number,
+        client_id=client.id,
+        order_date=datetime.utcnow(),
+        delivery_date=delivery_dt,
+        delivery_time=payload.delivery_time or "12:00 PM",
+        production_date=delivery_dt,
+        subtotal=subtotal,
+        discount=Decimal("0.00"),
+        final_amount=final_amount,
+        advance_paid=Decimal("0.00"),
+        remaining_paid=final_amount,
+        payment_status="Pending",
+        order_status="Received",
+        special_instructions=payload.special_instructions,
+        delivery_address=payload.delivery_address or client.address or "Store Counter Pickup",
+        notes=f"Online website order from {customer_name} ({phone})"
+    )
+    db.add(order)
+    db.flush()
+
+    # 5. Create OrderItem
+    if product:
+        o_item = OrderItem(
+            order_id=order.id,
+            product_id=product.id,
+            quantity=qty,
+            size_override=payload.size_override or product.size or "1 Pound",
+            unit_price=unit_price,
+            subtotal=subtotal,
+            notes=payload.special_instructions
+        )
+        db.add(o_item)
+
+    # 6. Create Production record
+    prod = Production(
+        order_id=order.id,
+        production_date=delivery_dt,
+        delivery_date=delivery_dt,
+        status="Not Started",
+        notes=f"Website order #{order.order_number}: {payload.special_instructions or ''}"
+    )
+    db.add(prod)
+
+    db.commit()
+    db.refresh(order)
+
     return format_order_response(order)
 
 @router.put("/{order_id}/status", response_model=OrderResponse)

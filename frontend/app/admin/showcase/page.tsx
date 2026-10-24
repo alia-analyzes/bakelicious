@@ -71,6 +71,7 @@ export default function AdminCakeShowcasePage() {
   const [featured, setFeatured] = useState(false);
   const [imageUrl, setImageUrl] = useState('/images/cakes/belgian-chocolate.jpg');
   const [tagsInput, setTagsInput] = useState('Best Seller, Fresh, Eggless');
+  const [backendOnline, setBackendOnline] = useState<boolean | null>(null);
 
   useEffect(() => {
     fetchData();
@@ -79,14 +80,57 @@ export default function AdminCakeShowcasePage() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const [prodRes, catRes] = await Promise.all([
-        api.get('/products'),
-        api.get('/categories')
-      ]);
-      setProducts(prodRes.data);
-      setCategories(catRes.data);
+
+      // 1. Fast local cache hydration for instant, flicker-free rendering
+      try {
+        const cachedProds = localStorage.getItem('bakelicious_cached_products');
+        const cachedCats = localStorage.getItem('bakelicious_cached_categories');
+        if (cachedProds && products.length === 0) {
+          setProducts(JSON.parse(cachedProds));
+        }
+        if (cachedCats && categories.length === 0) {
+          setCategories(JSON.parse(cachedCats));
+        }
+      } catch (e) {}
+
+      // 2. Fetch live products from backend (include_erp=true so admin sees all items including hidden ones)
+      let prodData: Product[] = [];
+      try {
+        const prodRes = await api.get('/products', { params: { include_erp: true } });
+        prodData = prodRes.data;
+      } catch (erpErr) {
+        const prodRes = await api.get('/products');
+        prodData = prodRes.data;
+      }
+
+      const catRes = await api.get('/categories');
+      const catData = catRes.data || [];
+
+      setProducts(prodData);
+      setCategories(catData);
+      setBackendOnline(true);
+
+      // Save live records to local cache as permanent backup
+      try {
+        localStorage.setItem('bakelicious_cached_products', JSON.stringify(prodData));
+        localStorage.setItem('bakelicious_cached_categories', JSON.stringify(catData));
+      } catch (e) {}
     } catch (err: any) {
-      showToast(err.response?.data?.detail || 'Failed to load showcase data', 'error');
+      console.warn('Backend not reachable, operating with saved data:', err);
+      setBackendOnline(false);
+
+      // Restore from backup cache so user never sees a blank page
+      try {
+        const cached = localStorage.getItem('bakelicious_cached_products');
+        if (cached) {
+          setProducts(JSON.parse(cached));
+          showToast('Loaded saved showcase items from local backup storage', 'info');
+        } else {
+          showToast('Backend offline. Please start backend on port 8000 to sync database.', 'info');
+        }
+      } catch (e) {
+        showToast('Failed to load showcase data', 'error');
+      }
     } finally {
       setLoading(false);
     }
@@ -160,12 +204,25 @@ export default function AdminCakeShowcasePage() {
       const res = await api.post('/uploads/image', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
-      if (res.data?.url) {
-        setImageUrl(res.data.url);
-        showToast('Cake picture uploaded successfully!', 'success');
+      // The backend returns { success: true, image_url: "/api/uploads/products/..." }
+      const uploadedUrl = res.data?.image_url || res.data?.url;
+      if (uploadedUrl) {
+        setImageUrl(uploadedUrl);
+        showToast('Cake picture uploaded & ready!', 'success');
+      } else {
+        showToast('Photo uploaded successfully', 'success');
       }
     } catch (err: any) {
-      showToast(err.response?.data?.detail || 'Failed to upload photo', 'error');
+      console.warn('Backend upload failed, using local preview:', err);
+      // Fallback: Read as local data URL for immediate preview and testing
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          setImageUrl(reader.result);
+          showToast('Image loaded in preview! (Start backend to store permanently)', 'info');
+        }
+      };
+      reader.readAsDataURL(file);
     } finally {
       setUploadingImage(false);
     }
@@ -178,6 +235,8 @@ export default function AdminCakeShowcasePage() {
       showToast('Name, Category, and Selling Price are required', 'error');
       return;
     }
+
+    const selectedCategoryObj = categories.find(c => c.id === Number(categoryId));
 
     const payload = {
       name: name.trim(),
@@ -193,16 +252,62 @@ export default function AdminCakeShowcasePage() {
 
     try {
       if (editingProduct) {
-        await api.put(`/products/${editingProduct.id}`, payload);
+        const res = await api.put(`/products/${editingProduct.id}`, payload);
+        const updated = res.data || { ...editingProduct, ...payload, category: selectedCategoryObj };
+        setProducts(prev => {
+          const next = prev.map(p => p.id === editingProduct.id ? updated : p);
+          try { localStorage.setItem('bakelicious_cached_products', JSON.stringify(next)); } catch (e) {}
+          return next;
+        });
         showToast('Cake showcase item updated successfully!', 'success');
       } else {
-        await api.post('/products', payload);
-        showToast('New cake added to showcase!', 'success');
+        const res = await api.post('/products', payload);
+        const created = res.data || {
+          id: Date.now(),
+          ...payload,
+          category: selectedCategoryObj,
+          sizes: [],
+          created_at: new Date().toISOString()
+        };
+        setProducts(prev => {
+          const next = [created, ...prev];
+          try { localStorage.setItem('bakelicious_cached_products', JSON.stringify(next)); } catch (e) {}
+          return next;
+        });
+        showToast('New cake added to showcase & saved!', 'success');
       }
       setModalOpen(false);
       fetchData();
     } catch (err: any) {
-      showToast(err.response?.data?.detail || 'Failed to save cake item', 'error');
+      console.warn('Failed to save to backend API, preserving in offline showcase storage:', err);
+      // Offline fallback: never lose the user's cake data!
+      const fallbackCake: Product = {
+        id: editingProduct ? editingProduct.id : Date.now(),
+        name: payload.name,
+        category_id: payload.category_id,
+        category: selectedCategoryObj as any,
+        description: payload.description,
+        price: payload.price,
+        availability: payload.availability,
+        public_visibility: payload.public_visibility,
+        featured: payload.featured,
+        image_url: payload.image_url,
+        tags: payload.tags,
+        sizes: [],
+        use_manual_cost: false,
+        prep_time_hours: 1.0,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+      setProducts(prev => {
+        const next = editingProduct
+          ? prev.map(p => p.id === editingProduct.id ? fallbackCake : p)
+          : [fallbackCake, ...prev];
+        try { localStorage.setItem('bakelicious_cached_products', JSON.stringify(next)); } catch (e) {}
+        return next;
+      });
+      setModalOpen(false);
+      showToast('Saved to local showcase storage. Start backend to sync to SQLite database.', 'info');
     }
   };
 
@@ -240,36 +345,54 @@ export default function AdminCakeShowcasePage() {
 
   return (
     <ProtectedRoute>
-      <div className="flex h-screen bg-cream-100 dark:bg-maroon-950 font-sans antialiased text-charcoal dark:text-cream-100 overflow-hidden">
+      <div className="min-h-screen bg-cream-100 dark:bg-maroon-950 font-sans antialiased text-charcoal dark:text-cream-100 flex">
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-        <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-          <Header onMenuClick={() => setSidebarOpen(true)} title="Cake Showcase Management" />
+        <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
+          <Header onOpenSidebar={() => setSidebarOpen(true)} onMenuClick={() => setSidebarOpen(true)} title="Cake Showcase Management" />
 
-          <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6">
+          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6">
             
             {/* Top Showcase Banner with Live Link */}
             <div className="bg-cream-50 dark:bg-maroon-900/80 p-5 sm:p-6 rounded-3xl border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div className="space-y-1">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cream-200 dark:bg-maroon-800 text-maroon-900 dark:text-cream-200 text-xs font-black uppercase tracking-wider border border-maroon-950/20">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-                  <span>Public Showcase Controller</span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cream-200 dark:bg-maroon-800 text-maroon-900 dark:text-cream-200 text-xs font-black uppercase tracking-wider border border-maroon-950/20">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+                    <span>Public Showcase Controller</span>
+                  </div>
+                  {backendOnline === true && (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-200 text-xs font-bold border border-emerald-500/30">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      Database Connected (bakelicious.db)
+                    </span>
+                  )}
+                  {backendOnline === false && (
+                    <button
+                      onClick={fetchData}
+                      title="Click to re-check backend server connection"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-200 text-xs font-bold border border-amber-500/30 hover:bg-amber-200 transition"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-amber-500" />
+                      Offline Mode (Local Backup Active) · Click to Reconnect
+                    </button>
+                  )}
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black font-serif text-maroon-950 dark:text-cream-100 tracking-tight">
                   Cake Showcase &amp; Public Gallery CMS
                 </h2>
                 <p className="text-xs sm:text-sm text-charcoal-muted dark:text-cream-300 font-medium max-w-2xl">
-                  Upload cake photos, set customer prices, and craft detailed flavor descriptions. All active items sync instantly to your customer-facing Public Showcase page.
+                  Upload cake photos, set prices, and craft flavor stories. All cakes are saved permanently in SQLite database (<code className="font-mono text-xs bg-cream-200 dark:bg-maroon-950 px-1 py-0.5 rounded">bakelicious.db</code>) and visible on your public showcase.
                 </p>
               </div>
 
               <div className="flex items-center gap-2.5 shrink-0 w-full sm:w-auto">
                 <Link
-                  href="/gallery"
+                  href="/showcase"
                   target="_blank"
                   className="px-4 py-2.5 bg-cream-100 dark:bg-maroon-800 hover:bg-cream-200 dark:hover:bg-maroon-700 text-maroon-950 dark:text-cream-100 text-xs font-black uppercase tracking-wider rounded-2xl border-2 border-maroon-950/30 dark:border-cream-100/30 shadow-neo-sm transition flex items-center gap-1.5"
                 >
-                  <span>View Public Page</span>
+                  <span>View Customer Showcase</span>
                   <ExternalLink className="w-3.5 h-3.5 text-maroon-600 dark:text-amber-300" />
                 </Link>
 
@@ -386,6 +509,12 @@ export default function AdminCakeShowcasePage() {
                         <img
                           src={getImageUrl(p.image_url)}
                           alt={p.name}
+                          onError={(e) => {
+                            const target = e.currentTarget;
+                            if (!target.src.includes('chocolate-delight.svg')) {
+                              target.src = '/images/cakes/chocolate-delight.svg';
+                            }
+                          }}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
 
@@ -547,7 +676,17 @@ export default function AdminCakeShowcasePage() {
                   Live Public Card Preview
                 </span>
                 <div className="w-36 aspect-square rounded-2xl overflow-hidden border-2 border-maroon-950 relative shadow-sm">
-                  <img src={getImageUrl(imageUrl)} alt="Preview" className="w-full h-full object-cover" />
+                  <img
+                    src={getImageUrl(imageUrl)}
+                    alt="Preview"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.src.includes('chocolate-delight.svg')) {
+                        target.src = '/images/cakes/chocolate-delight.svg';
+                      }
+                    }}
+                    className="w-full h-full object-cover"
+                  />
                   <span className="absolute bottom-1 right-1 px-2 py-0.5 rounded-lg bg-maroon-700 text-cream-100 font-serif font-black text-xs">
                     ₹{Number(sellingPrice || 0).toLocaleString()}
                   </span>

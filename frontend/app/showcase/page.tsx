@@ -108,9 +108,27 @@ export default function CakeShowcasePage() {
         api.get('/categories').catch(() => ({ data: [] }))
       ]);
 
+      let combinedProducts: Product[] = [];
       const liveProducts: Product[] = Array.isArray(prodRes.data) ? prodRes.data : [];
-      // Filter for visible products
-      const publicCakes = liveProducts.filter(
+      combinedProducts = [...liveProducts];
+
+      // Check cached products to include any newly created items immediately
+      try {
+        const cached = localStorage.getItem('bakelicious_cached_products');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed)) {
+            parsed.forEach((cp: Product) => {
+              if (!combinedProducts.some((p) => p.id === cp.id || p.name.toLowerCase() === cp.name.toLowerCase())) {
+                combinedProducts.push(cp);
+              }
+            });
+          }
+        }
+      } catch (e) {}
+
+      // Filter for public and available products
+      const publicCakes = combinedProducts.filter(
         (p) => p.public_visibility !== false && p.availability !== false
       );
 
@@ -120,7 +138,8 @@ export default function CakeShowcasePage() {
         // Extract unique category names
         const catNames = new Set<string>();
         publicCakes.forEach((p) => {
-          if (p.category?.name) catNames.add(p.category.name);
+          const catName = typeof p.category === 'object' ? p.category?.name : p.category;
+          if (catName) catNames.add(catName);
         });
         if (Array.isArray(catRes.data)) {
           catRes.data.forEach((c: Category) => {
@@ -134,6 +153,23 @@ export default function CakeShowcasePage() {
       }
     } catch (err) {
       console.warn('Could not load cakes from API, loading signature showcase fallback:', err);
+      try {
+        const cached = localStorage.getItem('bakelicious_cached_products');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            const valid = parsed.filter((p: Product) => p.public_visibility !== false);
+            setCakes(valid);
+            const catNames = new Set<string>();
+            valid.forEach((p: Product) => {
+              const catName = typeof p.category === 'object' ? p.category?.name : p.category;
+              if (catName) catNames.add(catName);
+            });
+            setCategories(['All', ...Array.from(catNames)]);
+            return;
+          }
+        }
+      } catch (e) {}
       setCakes(FALLBACK_SHOWCASE_CAKES as any);
       setCategories(['All', 'Wedding Tiers', 'Bento Mini Cakes', 'Chocolate Decadence', 'Artisan Florals']);
     } finally {

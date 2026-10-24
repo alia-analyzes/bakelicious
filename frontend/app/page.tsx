@@ -135,7 +135,7 @@ export default function PublicHomepage() {
 
       <main className="flex-1">
         {/* ================= HERO SECTION (NEO-BRUTALIST EDITORIAL) ================= */}
-        <section className="relative overflow-hidden bg-cream-100 dark:bg-maroon-950 pt-3 pb-8 sm:pt-6 sm:pb-12 lg:pt-8 lg:pb-16 border-b-2 border-maroon-950/20 dark:border-maroon-800">
+        <section className="relative overflow-hidden bg-cream-100 dark:bg-maroon-950 pt-3 pb-8 sm:pt-6 sm:pb-12 lg:pt-8 lg:pb-16 border-b-2 border-maroon-950/20 dark:border-cream-100/30">
           <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center">
 
@@ -143,8 +143,8 @@ export default function PublicHomepage() {
               <div className="lg:col-span-7 space-y-4 sm:space-y-5 lg:space-y-6 text-center lg:text-left">
                 
                 {/* Eyebrow Pill with gentle pulse glow */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 text-maroon-950 dark:text-cream-100 text-[10px] sm:text-[11px] font-black uppercase tracking-widest shadow-neo-sm animate-pulse-glow max-w-full">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-pulse shrink-0" />
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950 dark:border-cream-100 text-maroon-950 dark:text-cream-100 text-[10px] sm:text-[11px] font-black uppercase tracking-widest shadow-neo-sm animate-pulse-glow max-w-full">
+                  <Sparkles className="w-3.5 h-3.5 text-maroon-950 dark:text-cream-100 fill-maroon-950 dark:fill-cream-100 shrink-0" />
                   <span className="truncate">Welcome to Bakelicious • Estd 2023</span>
                 </div>
 
@@ -152,16 +152,16 @@ export default function PublicHomepage() {
                 <div className="space-y-2">
                   <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-maroon-950 dark:text-cream-100 font-serif leading-[1.12] sm:leading-[1.08] tracking-tight">
                     Custom Cakes for Every <br className="hidden sm:inline" />
-                    <span className="italic font-normal text-maroon-700 dark:text-amber-300">Special Moment</span> ♡
+                    <span className="italic font-normal text-maroon-950 dark:text-cream-100 underline decoration-maroon-950/40 dark:decoration-cream-100/40 decoration-wavy">Special Moment</span> ♡
                   </h1>
                 </div>
 
                 {/* Description */}
-                <p className="text-sm sm:text-base lg:text-lg text-charcoal-muted dark:text-cream-200/90 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                <p className="text-sm sm:text-base lg:text-lg text-maroon-950/80 dark:text-cream-100/90 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
                   From birthdays to milestones, we bake your sweetest memories with pure Belgian cocoa, farm-fresh ingredients, and bespoke artisan craftsmanship.
                 </p>
 
-                {/* Action Buttons with Tactile Interaction */}
+                {/* Action Buttons with Strict Color Rules */}
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
                   <Link
                     href="/custom-cakes"
@@ -173,25 +173,25 @@ export default function PublicHomepage() {
 
                   <Link
                     href="/menu"
-                    className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-cream-50 dark:bg-maroon-900 hover:bg-cream-200 dark:hover:bg-maroon-800 text-maroon-950 dark:text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo btn-tactile flex items-center justify-center gap-2 min-h-[48px]"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-cream-100 dark:bg-maroon-950 hover:bg-maroon-700 hover:text-cream-100 text-maroon-950 dark:text-cream-100 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo btn-tactile flex items-center justify-center gap-2 min-h-[48px]"
                   >
                     <span>Explore Our Menu</span>
                   </Link>
                 </div>
 
-                {/* Three Trust Markers with Micro Hover Feedback */}
-                <div className="pt-4 sm:pt-5 grid grid-cols-3 gap-1.5 sm:gap-3 border-t-2 border-maroon-950/15 dark:border-maroon-800/60 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+                {/* Three Trust Markers */}
+                <div className="pt-4 sm:pt-5 grid grid-cols-3 gap-1.5 sm:gap-3 border-t-2 border-maroon-950/20 dark:border-cream-100/20 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
                   <div className="p-1.5 sm:p-2 transition-transform duration-300 hover:-translate-y-0.5">
                     <span className="block text-sm sm:text-base lg:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">100% Fresh</span>
-                    <span className="text-[9px] sm:text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider block">Baked Daily</span>
+                    <span className="text-[9px] sm:text-[10px] text-maroon-950/70 dark:text-cream-100/70 font-bold uppercase tracking-wider block">Baked Daily</span>
                   </div>
-                  <div className="p-1.5 sm:p-2 border-x-2 border-maroon-950/15 dark:border-maroon-800/60 transition-transform duration-300 hover:-translate-y-0.5">
+                  <div className="p-1.5 sm:p-2 border-x-2 border-maroon-950/20 dark:border-cream-100/20 transition-transform duration-300 hover:-translate-y-0.5">
                     <span className="block text-sm sm:text-base lg:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">Belgian Cocoa</span>
-                    <span className="text-[9px] sm:text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider block">Callebaut 54%</span>
+                    <span className="text-[9px] sm:text-[10px] text-maroon-950/70 dark:text-cream-100/70 font-bold uppercase tracking-wider block">Callebaut 54%</span>
                   </div>
                   <div className="p-1.5 sm:p-2 transition-transform duration-300 hover:-translate-y-0.5">
                     <span className="block text-sm sm:text-base lg:text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">Custom Atelier</span>
-                    <span className="text-[9px] sm:text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider block">Bespoke Tiers</span>
+                    <span className="text-[9px] sm:text-[10px] text-maroon-950/70 dark:text-cream-100/70 font-bold uppercase tracking-wider block">Bespoke Tiers</span>
                   </div>
                 </div>
 
@@ -204,7 +204,7 @@ export default function PublicHomepage() {
                 <div className="w-full max-w-sm sm:max-w-md lg:max-w-xl relative animate-float-slow">
                   
                   {/* Official SVG Bakery Seal Badge */}
-                  <div className="absolute -top-6 -left-4 sm:-top-8 sm:-left-7 z-30 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full border-2 sm:border-3 border-maroon-950 dark:border-cream-100 shadow-neo bg-cream-50 dark:bg-maroon-900 p-1.5 hover:rotate-12 hover:scale-105 transition-all duration-300 cursor-pointer group/seal">
+                  <div className="absolute -top-6 -left-4 sm:-top-8 sm:-left-7 z-30 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full border-2 sm:border-3 border-maroon-950 dark:border-cream-100 shadow-neo bg-cream-100 dark:bg-maroon-950 p-1.5 hover:rotate-12 hover:scale-105 transition-all duration-300 cursor-pointer group/seal">
                     <img
                       src="/logo.svg"
                       alt="Bakelicious Official Seal - Best In Town"
@@ -213,12 +213,12 @@ export default function PublicHomepage() {
                   </div>
 
                   {/* Floating Hand-lettered Stamp Badge */}
-                  <div className="absolute -top-3 right-0 sm:-right-3 z-20 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm rotate-3 sm:rotate-6 flex items-center gap-1.5 text-[10px] sm:text-xs font-serif font-black text-maroon-950 dark:text-cream-100 animate-float-gentle">
+                  <div className="absolute -top-3 right-0 sm:-right-3 z-20 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm rotate-3 sm:rotate-6 flex items-center gap-1.5 text-[10px] sm:text-xs font-serif font-black text-maroon-950 dark:text-cream-100 animate-float-gentle">
                     <span>Life is Sweeter with Cake ♡</span>
                   </div>
 
                   {/* Main Cake Photography Container with Smooth Zoom on Hover */}
-                  <div className="w-full aspect-square rounded-3xl overflow-hidden border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 shadow-neo-md sm:shadow-neo-lg relative group transition-all duration-500">
+                  <div className="w-full aspect-square rounded-3xl overflow-hidden border-2 border-maroon-950 dark:border-cream-100 bg-cream-100 dark:bg-maroon-950 shadow-neo-md sm:shadow-neo-lg relative group transition-all duration-500">
                     <img
                       src="/images/cakes/wedding-hero.svg"
                       alt="Bakelicious Signature Artisan Cake"
@@ -226,8 +226,8 @@ export default function PublicHomepage() {
                     />
                     
                     {/* Bottom Editorial Caption */}
-                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-maroon-950/90 via-maroon-950/50 to-transparent text-cream-100">
-                      <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.2em] text-cream-300 block font-sans">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-maroon-950 via-maroon-950/70 to-transparent text-cream-100">
+                      <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.2em] text-cream-100/80 block font-sans">
                         Artisan Signature Tier
                       </span>
                       <span className="text-sm sm:text-base font-serif font-bold block truncate">
@@ -240,7 +240,7 @@ export default function PublicHomepage() {
                   <div className="absolute -bottom-3 left-0 sm:-left-3 z-20 px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-maroon-700 text-cream-100 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm -rotate-2 sm:-rotate-3 flex items-center gap-2 hover:scale-105 hover:rotate-0 transition-transform duration-300">
                     <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-cream-100 text-cream-100 shrink-0 animate-pulse" />
                     <div>
-                      <span className="text-[8px] sm:text-[9px] uppercase font-bold tracking-widest block text-cream-300 font-sans">Handcrafted</span>
+                      <span className="text-[8px] sm:text-[9px] uppercase font-bold tracking-widest block text-cream-100/80 font-sans">Handcrafted</span>
                       <span className="text-[11px] sm:text-xs font-serif font-bold block">Made with Love</span>
                     </div>
                   </div>
@@ -253,11 +253,11 @@ export default function PublicHomepage() {
         </section>
 
         {/* ================= CATEGORIES SECTION (MATCHING SCREENSHOT) ================= */}
-        <section className="py-10 sm:py-14 bg-cream-50 dark:bg-maroon-900/60 border-b-2 border-maroon-950/20 dark:border-maroon-800">
+        <section className="py-10 sm:py-14 bg-cream-100 dark:bg-maroon-950 border-b-2 border-maroon-950/20 dark:border-cream-100/30">
           <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 space-y-6 sm:space-y-8">
             
             <div className="text-center max-w-xl mx-auto space-y-1">
-              <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-maroon-700 dark:text-cream-300 font-sans block">
+              <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-maroon-950/80 dark:text-cream-100/80 font-sans block">
                 Artisan Collections
               </span>
               <h2 className="text-2xl sm:text-3xl font-black text-maroon-950 dark:text-cream-100 font-serif">
@@ -271,18 +271,18 @@ export default function PublicHomepage() {
                 <Link
                   key={cat.title}
                   href={cat.href}
-                  className={`card-alive group bg-cream-100 dark:bg-maroon-900 rounded-2xl p-4 sm:p-5 border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 shadow-neo-sm text-center flex flex-col items-center justify-between space-y-2 sm:space-y-3 cursor-pointer ${
+                  className={`card-alive group bg-cream-100 dark:bg-maroon-950 rounded-2xl p-4 sm:p-5 border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 shadow-neo-sm text-center flex flex-col items-center justify-between space-y-2 sm:space-y-3 cursor-pointer ${
                     idx === categories.length - 1 ? 'col-span-2 sm:col-span-1' : ''
                   }`}
                 >
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950/20 dark:border-cream-200/20 flex items-center justify-center text-xl sm:text-2xl shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-all duration-300">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950/20 dark:border-cream-100/20 flex items-center justify-center text-xl sm:text-2xl shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-all duration-300">
                     {cat.icon}
                   </div>
                   <div>
-                    <h3 className="font-serif font-black text-maroon-950 dark:text-cream-100 text-xs sm:text-sm lg:text-base group-hover:text-maroon-700 dark:group-hover:text-amber-300 transition-colors">
+                    <h3 className="font-serif font-black text-maroon-950 dark:text-cream-100 text-xs sm:text-sm lg:text-base group-hover:opacity-80 transition-opacity">
                       {cat.title}
                     </h3>
-                    <p className="text-[10px] sm:text-[11px] text-charcoal-muted dark:text-cream-300/80 font-medium mt-0.5">
+                    <p className="text-[10px] sm:text-[11px] text-maroon-950/70 dark:text-cream-100/70 font-medium mt-0.5">
                       {cat.subtitle}
                     </p>
                   </div>
@@ -294,12 +294,12 @@ export default function PublicHomepage() {
         </section>
 
         {/* ================= FEATURED PRODUCT CARDS (NEO-BRUTALIST EDITORIAL) ================= */}
-        <section className="py-16 lg:py-20 bg-cream-100 dark:bg-maroon-950 border-b-2 border-maroon-950/20 dark:border-maroon-800">
+        <section className="py-16 lg:py-20 bg-cream-100 dark:bg-maroon-950 border-b-2 border-maroon-950/20 dark:border-cream-100/30">
           <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-18 space-y-12">
             
-            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b-2 border-maroon-950/15 dark:border-maroon-800 pb-5">
+            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b-2 border-maroon-950/20 dark:border-cream-100/20 pb-5">
               <div>
-                <span className="text-[11px] font-black uppercase tracking-[0.2em] text-maroon-700 dark:text-cream-300 font-sans block">
+                <span className="text-[11px] font-black uppercase tracking-[0.2em] text-maroon-950/80 dark:text-cream-100/80 font-sans block">
                   Freshly Baked Creations
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-black text-maroon-950 dark:text-cream-100 font-serif">
@@ -309,7 +309,7 @@ export default function PublicHomepage() {
 
               <Link
                 href="/menu"
-                className="px-4 py-2 bg-cream-50 dark:bg-maroon-900 text-maroon-950 dark:text-cream-100 text-xs font-black uppercase tracking-wider rounded-xl border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm btn-tactile flex items-center gap-1.5"
+                className="px-4 py-2 bg-cream-100 dark:bg-maroon-950 hover:bg-maroon-700 hover:text-cream-100 text-maroon-950 dark:text-cream-100 text-xs font-black uppercase tracking-wider rounded-xl border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm btn-tactile flex items-center gap-1.5"
               >
                 <span>View Full Menu</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -321,30 +321,30 @@ export default function PublicHomepage() {
               {displayedProducts.map((prod) => (
                 <div
                   key={prod.id}
-                  className="card-alive bg-cream-50 dark:bg-maroon-900 rounded-3xl border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 p-4 sm:p-5 flex flex-col justify-between shadow-neo-sm space-y-4 group"
+                  className="card-alive bg-cream-100 dark:bg-maroon-950 rounded-3xl border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 p-4 sm:p-5 flex flex-col justify-between shadow-neo-sm space-y-4 group"
                 >
                   <div className="space-y-3">
                     {/* Cake Image Container */}
-                    <div className="aspect-square rounded-2xl overflow-hidden border-2 border-maroon-950/15 dark:border-cream-100/20 bg-cream-200 dark:bg-maroon-800 relative">
+                    <div className="aspect-square rounded-2xl overflow-hidden border-2 border-maroon-950/15 dark:border-cream-100/20 bg-cream-100 dark:bg-maroon-950 relative">
                       <img
                         src={getImageUrl(prod.image_url)}
                         alt={prod.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                       />
-                      <span className="absolute top-2.5 right-2.5 px-3 py-1 bg-maroon-950 text-cream-100 border border-cream-200 text-xs font-black rounded-xl shadow-xs group-hover:scale-105 group-hover:border-amber-300 transition-all duration-300">
+                      <span className="absolute top-2.5 right-2.5 px-3 py-1 bg-maroon-700 text-cream-100 border-2 border-maroon-950 dark:border-cream-100 text-xs font-black rounded-xl shadow-xs group-hover:scale-105 transition-all duration-300">
                         ₹{prod.price}
                       </span>
                     </div>
 
                     {/* Cake Title & Details */}
                     <div>
-                      <span className="text-[10px] uppercase font-bold text-maroon-700 dark:text-cream-300 tracking-wider">
+                      <span className="text-[10px] uppercase font-bold text-maroon-950/80 dark:text-cream-100/80 tracking-wider">
                         {prod.category?.name || 'Gourmet Selection'}
                       </span>
-                      <h3 className="font-serif font-black text-maroon-950 dark:text-cream-100 text-base mt-0.5 group-hover:text-maroon-700 dark:group-hover:text-amber-300 transition-colors">
+                      <h3 className="font-serif font-black text-maroon-950 dark:text-cream-100 text-base mt-0.5 group-hover:opacity-80 transition-opacity">
                         {prod.name}
                       </h3>
-                      <p className="text-xs text-charcoal-muted dark:text-cream-300/80 line-clamp-2 mt-1 font-medium leading-relaxed">
+                      <p className="text-xs text-maroon-950/70 dark:text-cream-100/70 line-clamp-2 mt-1 font-medium leading-relaxed">
                         {prod.description}
                       </p>
                     </div>
@@ -366,17 +366,17 @@ export default function PublicHomepage() {
         </section>
 
         {/* ================= WHY CHOOSE US: THE BAKELICIOUS DIFFERENCE ================= */}
-        <section className="py-16 bg-maroon-950 text-cream-100 border-b-2 border-maroon-900">
+        <section className="py-16 bg-cream-100 dark:bg-maroon-950 text-maroon-950 dark:text-cream-100 border-b-2 border-maroon-950/20 dark:border-cream-100/30">
           <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-18 space-y-12">
             
             <div className="text-center max-w-2xl mx-auto space-y-2">
-              <span className="text-[11px] font-black uppercase tracking-[0.25em] text-cream-300 font-sans block">
+              <span className="text-[11px] font-black uppercase tracking-[0.25em] text-maroon-950/80 dark:text-cream-100/80 font-sans block">
                 Why Choose Us
               </span>
-              <h2 className="text-3xl sm:text-4xl font-black font-serif text-cream-100">
+              <h2 className="text-3xl sm:text-4xl font-black font-serif text-maroon-950 dark:text-cream-100">
                 The Bakelicious Difference
               </h2>
-              <p className="text-xs sm:text-sm text-cream-300/80 font-serif italic">
+              <p className="text-xs sm:text-sm text-maroon-950/70 dark:text-cream-100/70 font-serif italic">
                 Let&apos;s Bake with Love ♡
               </p>
             </div>
@@ -384,42 +384,42 @@ export default function PublicHomepage() {
             {/* 4 Feature Pillars matching screenshot with Alive Hover Elevation */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               
-              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark space-y-3 text-center flex flex-col items-center group">
-                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
-                  <Award className="w-6 h-6 text-maroon-800" />
+              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 bg-cream-100 dark:bg-maroon-950 shadow-neo-sm space-y-3 text-center flex flex-col items-center group">
+                <div className="w-14 h-14 rounded-full bg-cream-100 dark:bg-maroon-950 text-maroon-950 dark:text-cream-100 border-2 border-maroon-950 dark:border-cream-100 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
+                  <Award className="w-6 h-6" />
                 </div>
-                <h3 className="font-serif font-black text-cream-100 text-base">Premium Ingredients</h3>
-                <p className="text-xs text-cream-300/80 font-medium leading-relaxed">
+                <h3 className="font-serif font-black text-maroon-950 dark:text-cream-100 text-base">Premium Ingredients</h3>
+                <p className="text-xs text-maroon-950/70 dark:text-cream-100/70 font-medium leading-relaxed">
                   Imported Belgian cocoa, dairy churned pure butter, Madagascar bourbon vanilla beans.
                 </p>
               </div>
 
-              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark space-y-3 text-center flex flex-col items-center group">
-                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
-                  <Cake className="w-6 h-6 text-maroon-800" />
+              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 bg-cream-100 dark:bg-maroon-950 shadow-neo-sm space-y-3 text-center flex flex-col items-center group">
+                <div className="w-14 h-14 rounded-full bg-cream-100 dark:bg-maroon-950 text-maroon-950 dark:text-cream-100 border-2 border-maroon-950 dark:border-cream-100 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
+                  <Cake className="w-6 h-6" />
                 </div>
-                <h3 className="font-serif font-black text-cream-100 text-base">Custom Designs</h3>
-                <p className="text-xs text-cream-300/80 font-medium leading-relaxed">
+                <h3 className="font-serif font-black text-maroon-950 dark:text-cream-100 text-base">Custom Designs</h3>
+                <p className="text-xs text-maroon-950/70 dark:text-cream-100/70 font-medium leading-relaxed">
                   Your vision, meticulously brought to life by master bakers and sugar florists.
                 </p>
               </div>
 
-              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark space-y-3 text-center flex flex-col items-center group">
-                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
-                  <Heart className="w-6 h-6 text-maroon-800" />
+              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 bg-cream-100 dark:bg-maroon-950 shadow-neo-sm space-y-3 text-center flex flex-col items-center group">
+                <div className="w-14 h-14 rounded-full bg-cream-100 dark:bg-maroon-950 text-maroon-950 dark:text-cream-100 border-2 border-maroon-950 dark:border-cream-100 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
+                  <Heart className="w-6 h-6" />
                 </div>
-                <h3 className="font-serif font-black text-cream-100 text-base">Freshly Baked</h3>
-                <p className="text-xs text-cream-300/80 font-medium leading-relaxed">
+                <h3 className="font-serif font-black text-maroon-950 dark:text-cream-100 text-base">Freshly Baked</h3>
+                <p className="text-xs text-maroon-950/70 dark:text-cream-100/70 font-medium leading-relaxed">
                   Every order is mixed, baked, and frosted fresh on the day of delivery.
                 </p>
               </div>
 
-              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-800 bg-maroon-900/60 shadow-neo-dark space-y-3 text-center flex flex-col items-center group">
-                <div className="w-14 h-14 rounded-full bg-cream-100 text-maroon-950 border-2 border-cream-200 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
-                  <Truck className="w-6 h-6 text-maroon-800" />
+              <div className="card-alive p-6 rounded-2xl border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 bg-cream-100 dark:bg-maroon-950 shadow-neo-sm space-y-3 text-center flex flex-col items-center group">
+                <div className="w-14 h-14 rounded-full bg-cream-100 dark:bg-maroon-950 text-maroon-950 dark:text-cream-100 border-2 border-maroon-950 dark:border-cream-100 flex items-center justify-center shadow-xs group-hover:scale-115 group-hover:-translate-y-1 transition-transform duration-300">
+                  <Truck className="w-6 h-6" />
                 </div>
-                <h3 className="font-serif font-black text-cream-100 text-base">On-Time Delivery</h3>
-                <p className="text-xs text-cream-300/80 font-medium leading-relaxed">
+                <h3 className="font-serif font-black text-maroon-950 dark:text-cream-100 text-base">On-Time Delivery</h3>
+                <p className="text-xs text-maroon-950/70 dark:text-cream-100/70 font-medium leading-relaxed">
                   Carefully handled temperature-controlled delivery across all Kolkata locations.
                 </p>
               </div>
@@ -430,11 +430,11 @@ export default function PublicHomepage() {
         </section>
 
         {/* ================= TESTIMONIALS SECTION ================= */}
-        <section className="py-16 bg-cream-100 dark:bg-maroon-900/40 border-b-2 border-maroon-950/20 dark:border-maroon-800">
+        <section className="py-16 bg-cream-100 dark:bg-maroon-950 border-b-2 border-maroon-950/20 dark:border-cream-100/30">
           <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-18 space-y-10">
             
             <div className="text-center max-w-xl mx-auto space-y-1">
-              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-maroon-700 dark:text-cream-300 font-sans block">
+              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-maroon-950/80 dark:text-cream-100/80 font-sans block">
                 Customer Love
               </span>
               <h2 className="text-3xl font-black text-maroon-950 dark:text-cream-100 font-serif">
@@ -444,54 +444,54 @@ export default function PublicHomepage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
-              <div className="card-alive p-6 rounded-3xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm space-y-4 flex flex-col justify-between group">
+              <div className="card-alive p-6 rounded-3xl bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 shadow-neo-sm space-y-4 flex flex-col justify-between group">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-1 text-amber-500">
+                  <div className="flex items-center gap-1 text-maroon-950 dark:text-cream-100">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-500 group-hover:scale-110 transition-transform duration-200" />
+                      <Star key={i} className="w-4 h-4 fill-maroon-950 dark:fill-cream-100 group-hover:scale-110 transition-transform duration-200" />
                     ))}
                   </div>
-                  <p className="text-xs sm:text-sm text-charcoal dark:text-cream-200 font-medium leading-relaxed italic">
+                  <p className="text-xs sm:text-sm text-maroon-950/90 dark:text-cream-100/90 font-medium leading-relaxed italic">
                     &quot;Bakelicious created our 3-tier anniversary wedding cake. The rose pink ombre with edible gold leaf was breathtaking and tasted divine!&quot;
                   </p>
                 </div>
-                <div className="border-t border-maroon-950/10 dark:border-maroon-800 pt-3">
+                <div className="border-t border-maroon-950/20 dark:border-cream-100/20 pt-3">
                   <span className="font-serif font-black text-maroon-950 dark:text-cream-100 text-sm block">Ananya Sen</span>
-                  <span className="text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider">Salt Lake, Kolkata</span>
+                  <span className="text-[10px] text-maroon-950/70 dark:text-cream-100/70 font-bold uppercase tracking-wider">Salt Lake, Kolkata</span>
                 </div>
               </div>
 
-              <div className="card-alive p-6 rounded-3xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm space-y-4 flex flex-col justify-between group">
+              <div className="card-alive p-6 rounded-3xl bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 shadow-neo-sm space-y-4 flex flex-col justify-between group">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-1 text-amber-500">
+                  <div className="flex items-center gap-1 text-maroon-950 dark:text-cream-100">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-500 group-hover:scale-110 transition-transform duration-200" />
+                      <Star key={i} className="w-4 h-4 fill-maroon-950 dark:fill-cream-100 group-hover:scale-110 transition-transform duration-200" />
                     ))}
                   </div>
-                  <p className="text-xs sm:text-sm text-charcoal dark:text-cream-200 font-medium leading-relaxed italic">
+                  <p className="text-xs sm:text-sm text-maroon-950/90 dark:text-cream-100/90 font-medium leading-relaxed italic">
                     &quot;The Belgian Chocolate Truffle cake was ordered for my husband&apos;s birthday. Rich, moist and not overly sweet. Everyone asked where it was from!&quot;
                   </p>
                 </div>
-                <div className="border-t border-maroon-950/10 dark:border-maroon-800 pt-3">
+                <div className="border-t border-maroon-950/20 dark:border-cream-100/20 pt-3">
                   <span className="font-serif font-black text-maroon-950 dark:text-cream-100 text-sm block">Neha Roy</span>
-                  <span className="text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider">Ballygunge, Kolkata</span>
+                  <span className="text-[10px] text-maroon-950/70 dark:text-cream-100/70 font-bold uppercase tracking-wider">Ballygunge, Kolkata</span>
                 </div>
               </div>
 
-              <div className="card-alive p-6 rounded-3xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-neo-sm space-y-4 flex flex-col justify-between group">
+              <div className="card-alive p-6 rounded-3xl bg-cream-100 dark:bg-maroon-950 border-2 border-maroon-950/20 dark:border-cream-100/20 hover:border-maroon-950 dark:hover:border-cream-100 shadow-neo-sm space-y-4 flex flex-col justify-between group">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-1 text-amber-500">
+                  <div className="flex items-center gap-1 text-maroon-950 dark:text-cream-100">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-500 group-hover:scale-110 transition-transform duration-200" />
+                      <Star key={i} className="w-4 h-4 fill-maroon-950 dark:fill-cream-100 group-hover:scale-110 transition-transform duration-200" />
                     ))}
                   </div>
-                  <p className="text-xs sm:text-sm text-charcoal dark:text-cream-200 font-medium leading-relaxed italic">
+                  <p className="text-xs sm:text-sm text-maroon-950/90 dark:text-cream-100/90 font-medium leading-relaxed italic">
                     &quot;The 4-inch mini bento cake with custom handwritten Korean lettering was adorable and arrived in pristine packaging on time!&quot;
                   </p>
                 </div>
-                <div className="border-t border-maroon-950/10 dark:border-maroon-800 pt-3">
+                <div className="border-t border-maroon-950/20 dark:border-cream-100/20 pt-3">
                   <span className="font-serif font-black text-maroon-950 dark:text-cream-100 text-sm block">Priya Patel</span>
-                  <span className="text-[10px] text-charcoal-muted dark:text-cream-300 font-bold uppercase tracking-wider">New Town, Kolkata</span>
+                  <span className="text-[10px] text-maroon-950/70 dark:text-cream-100/70 font-bold uppercase tracking-wider">New Town, Kolkata</span>
                 </div>
               </div>
 
@@ -503,25 +503,25 @@ export default function PublicHomepage() {
         {/* ================= CUSTOM CAKE BANNER CTA ================= */}
         <section className="py-16 bg-cream-100 dark:bg-maroon-950">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-maroon-950 text-cream-100 rounded-3xl p-8 sm:p-12 border-2 border-maroon-900 shadow-neo-lg relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="bg-maroon-950 text-cream-100 rounded-3xl p-8 sm:p-12 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-lg relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
               
               <div className="space-y-3 text-center md:text-left max-w-xl">
-                <span className="px-3 py-1 bg-maroon-800 text-cream-200 text-xs font-bold rounded-full inline-block border border-maroon-700 animate-pulse">
+                <span className="px-3 py-1 bg-maroon-700 text-cream-100 text-xs font-bold rounded-full inline-block border-2 border-cream-100 animate-pulse">
                   Custom Orders Studio
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-black font-serif text-cream-100">
                   Have a Dream Cake in Mind?
                 </h2>
-                <p className="text-xs sm:text-sm text-cream-300/90 leading-relaxed font-medium">
+                <p className="text-xs sm:text-sm text-cream-100/80 leading-relaxed font-medium">
                   Whether it&apos;s a Pinterest reference, tier design, specific theme, or customized flavor combination, our atelier will craft it to perfection.
                 </p>
               </div>
 
               <Link
                 href="/custom-cakes"
-                className="px-8 py-4 bg-cream-50 hover:bg-cream-100 text-maroon-950 font-black rounded-2xl text-xs sm:text-sm uppercase tracking-wider border-2 border-maroon-950 shadow-neo btn-tactile shrink-0 flex items-center gap-2 group"
+                className="px-8 py-4 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-black rounded-2xl text-xs sm:text-sm uppercase tracking-wider border-2 border-cream-100 shadow-neo btn-tactile shrink-0 flex items-center gap-2 group"
               >
-                <Sparkles className="w-4 h-4 text-maroon-700 group-hover:rotate-12 transition-transform duration-300" />
+                <Sparkles className="w-4 h-4 text-cream-100 group-hover:rotate-12 transition-transform duration-300" />
                 <span>Design Custom Cake</span>
               </Link>
 

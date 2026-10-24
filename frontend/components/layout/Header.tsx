@@ -9,11 +9,12 @@ import { User as UserType } from '@/types';
 interface HeaderProps {
   onToggleSidebar?: () => void;
   onOpenSidebar?: () => void;
+  onMenuClick?: () => void;
   title?: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onOpenSidebar, title = 'Dashboard' }) => {
-  const handleSidebar = onOpenSidebar || onToggleSidebar || (() => {});
+export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onOpenSidebar, onMenuClick, title = 'Dashboard' }) => {
+  const handleSidebar = onOpenSidebar || onToggleSidebar || onMenuClick || (() => {});
   const [currentUser, setCurrentUser] = useState<UserType | null>(null);
 
   useEffect(() => {

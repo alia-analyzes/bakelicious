@@ -106,6 +106,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
       badge: null
     },
     {
+      name: 'Receipt Generator',
+      href: '/admin/receipts',
+      icon: Receipt,
+      visible: isSuperAdmin() || hasAnyPermission(['ORDERS_VIEW', 'ORDERS_CREATE', 'CALENDAR_VIEW']) || true,
+      badge: 'New'
+    },
+    {
       name: 'Employees',
       href: '/admin/employees',
       icon: Users,

@@ -10,6 +10,7 @@ interface ModalProps {
   subtitle?: string;
   children: React.ReactNode;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '4xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '4xl';
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -19,7 +20,9 @@ export const Modal: React.FC<ModalProps> = ({
   subtitle,
   children,
   maxWidth = 'xl',
+  size,
 }) => {
+  const effectiveMaxWidth = size || maxWidth;
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -48,7 +51,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-maroon-950/75 backdrop-blur-xs overflow-y-auto animate-fadeIn">
       <div
-        className={`bg-cream-100 dark:bg-maroon-900 rounded-2xl sm:rounded-3xl shadow-neo-xl border-2 border-maroon-950 dark:border-cream-100 w-full ${maxWidthClasses[maxWidth]} overflow-hidden my-auto max-h-[90dvh] max-h-[90vh] flex flex-col`}
+        className={`bg-cream-100 dark:bg-maroon-950 rounded-2xl sm:rounded-3xl shadow-neo-xl border-2 border-maroon-950 dark:border-cream-100 w-full ${maxWidthClasses[effectiveMaxWidth]} overflow-hidden my-auto max-h-[90dvh] max-h-[90vh] flex flex-col`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-3.5 sm:px-6 py-3 sm:py-4 border-b-2 border-maroon-950/15 dark:border-cream-100/20 bg-cream-50 dark:bg-maroon-950 shrink-0">

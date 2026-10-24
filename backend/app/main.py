@@ -17,7 +17,8 @@ from app.api import (
     auth, categories, products, ingredients, recipes, clients,
     orders, production, inventory, expenses, analytics, reports,
     settings as settings_api, audit_logs, uploads, feedback,
-    users as users_api, roles as roles_api, calendar as calendar_api
+    users as users_api, roles as roles_api, calendar as calendar_api,
+    receipts as receipts_api
 )
 
 # Initialize database tables if not existing
@@ -189,6 +190,7 @@ app.include_router(audit_logs.router, prefix=settings.API_V1_STR)
 app.include_router(uploads.router, prefix=settings.API_V1_STR)
 app.include_router(feedback.router, prefix=settings.API_V1_STR)
 app.include_router(calendar_api.router, prefix=settings.API_V1_STR)
+app.include_router(receipts_api.router, prefix=settings.API_V1_STR)
 
 
 # Serve uploaded product files statically at /api/uploads/products/...

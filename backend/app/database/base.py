@@ -14,4 +14,5 @@ from app.models.setting import Setting
 from app.models.audit_log import AuditLog
 from app.models.feedback import Feedback
 from app.models.calendar_note import CalendarNote
+from app.models.receipt import Receipt
 
