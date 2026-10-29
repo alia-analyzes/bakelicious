@@ -206,8 +206,9 @@ export default function AdminReceiptsPage() {
         pdf.rect(0, 0, 210, 297, 'F');
         const imgData = canvas.toDataURL('image/png');
         pdf.addImage(imgData, 'PNG', 0, 0, 210, 297, undefined, 'FAST');
-        while (pdf.internal.getNumberOfPages() > 1) {
-          pdf.deletePage(pdf.internal.getNumberOfPages());
+        const getPageCount = () => (pdf as any).getNumberOfPages?.() || (pdf.internal as any)?.getNumberOfPages?.() || 1;
+        while (getPageCount() > 1) {
+          pdf.deletePage(getPageCount());
         }
         pdf.save(`${clientName}_invoice.pdf`);
       } catch (e) {
