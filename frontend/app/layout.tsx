@@ -4,9 +4,9 @@ import { ToastContainer } from '@/components/ui/ToastContainer';
 import { ThemeProvider } from '@/components/theme/ThemeContext';
 
 export const metadata: Metadata = {
-  title: 'Bakelicious | Artisan Bakery Kolkata',
-  description: 'Gourmet artisan bakery in Kolkata. Handcrafted celebration cakes, bento cakes, wedding tiers, and dessert platters.',
-  keywords: ['Bakelicious', 'Kolkata Bakery', 'Custom Cakes', 'Bento Cakes', 'Wedding Cakes', 'Artisan Bakery'],
+  title: 'Bakelicious ERP | Bakery Management System',
+  description: 'Bakelicious ERP - Artisan Bakery Management System in Kolkata. Orders, Recipes, Inventory, Costing, and Invoicing.',
+  keywords: ['Bakelicious', 'Bakelicious ERP', 'Bakery ERP', 'Bakery Management System'],
   authors: [{ name: 'Bakelicious' }],
 };
 

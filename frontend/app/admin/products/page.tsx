@@ -161,7 +161,7 @@ export default function AdminProductsPage() {
     }
   };
 
-  // Quick toggle for public visibility
+  // Quick toggle for catalog active visibility
   const handleTogglePublicVisibility = async (product: Product, e?: React.MouseEvent) => {
     e?.stopPropagation();
     const currentVis = product.public_visibility !== false;
@@ -174,7 +174,7 @@ export default function AdminProductsPage() {
         prev.map((p) => (p.id === product.id ? { ...p, public_visibility: newVis } : p))
       );
       showToast(
-        newVis ? `"${product.name}" is now visible on the public page!` : `"${product.name}" hidden from public page.`,
+        newVis ? `"${product.name}" is now active in catalog!` : `"${product.name}" deactivated in catalog.`,
         'success'
       );
     } catch (err: any) {
@@ -379,10 +379,10 @@ export default function AdminProductsPage() {
 
   const handleDeleteProduct = async (id: number, e?: React.MouseEvent) => {
     e?.stopPropagation();
-    if (!confirm('Are you sure you want to delete this cake? It will be removed from both admin and the public page.')) return;
+    if (!confirm('Are you sure you want to delete this product from the ERP catalog?')) return;
     try {
       await api.delete(`/products/${id}`);
-      showToast('Cake removed from system', 'success');
+      showToast('Product removed from catalog', 'success');
       fetchData();
     } catch (err) {
       showToast('Failed to delete product', 'error');
@@ -473,7 +473,7 @@ export default function AdminProductsPage() {
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
-          <Header onOpenSidebar={() => setSidebarOpen(true)} title="Cake Showcase & Menu Management" />
+          <Header onOpenSidebar={() => setSidebarOpen(true)} title="Products & Recipes" />
 
           <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-6">
             
@@ -482,38 +482,25 @@ export default function AdminProductsPage() {
               <div className="space-y-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cream-50 dark:bg-maroon-950 border border-maroon-950/20 dark:border-cream-100/20 text-[10px] font-black uppercase tracking-wider text-maroon-900 dark:text-cream-100">
                   <Sparkles className="w-3 h-3 text-amber-500 fill-amber-500" />
-                  <span>Public &amp; Atelier Catalog System</span>
+                  <span>Bakery ERP Catalog System</span>
                 </div>
                 <h1 className="text-xl sm:text-2xl lg:text-3xl font-black font-serif text-maroon-950 dark:text-cream-100 tracking-tight">
-                  Cake Pictures &amp; Public Showcase
+                  Products &amp; Master Recipes Catalog
                 </h1>
                 <p className="text-xs text-charcoal-muted dark:text-cream-300 font-medium">
-                  Add cake photos with price, descriptions, and details. Changes immediately reflect on the public page.
+                  Manage bakery products, custom recipes, sizes, prices, and cost breakdowns.
                 </p>
               </div>
 
-              {/* Action Buttons: View Public Page + Add Cake */}
+              {/* Action Buttons: Add Product */}
               <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                {/* Direct Link to the Connected Public Page */}
-                <Link
-                  href="/gallery"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 bg-cream-50 dark:bg-maroon-800 hover:bg-cream-200 dark:hover:bg-maroon-700 text-maroon-950 dark:text-cream-100 border-2 border-maroon-950 dark:border-cream-100 rounded-2xl text-xs font-black transition shadow-neo-xs hover:shadow-neo flex items-center gap-2 shrink-0"
-                  title="Open the customer-facing public showcase page in a new window"
-                >
-                  <Eye className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <span>View Public Page</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-60" />
-                </Link>
-
                 {canCreate && (
                   <button
                     onClick={handleOpenAdd}
                     className="px-5 py-2.5 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs font-black uppercase tracking-wider transition border-2 border-maroon-950 dark:border-cream-100 shadow-neo hover:shadow-neo-lg hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 flex items-center gap-2 shrink-0"
                   >
                     <Plus className="w-4 h-4" />
-                    <span>Add Cake Picture &amp; Details</span>
+                    <span>Add New Product</span>
                   </button>
                 )}
               </div>
@@ -530,7 +517,7 @@ export default function AdminProductsPage() {
                 }`}
               >
                 <Grid className="w-4 h-4" />
-                <span>Cake Showcase &amp; Pictures ({products.length})</span>
+                <span>Product Catalog &amp; Photos ({products.length})</span>
               </button>
 
               <button
@@ -558,21 +545,21 @@ export default function AdminProductsPage() {
               </button>
             </div>
 
-            {/* ================= TAB 1: CAKE SHOWCASE & PICTURES ================= */}
+            {/* ================= TAB 1: PRODUCT CATALOG & PHOTOS ================= */}
             {activeTab === 'showcase' && (
               <div className="space-y-6">
                 
                 {/* Stats & Overview Pills */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                   <div className="bg-cream-100 dark:bg-maroon-900 p-4 rounded-2xl border-2 border-maroon-950/15 dark:border-cream-100/15 shadow-neo-xs">
-                    <span className="text-[10px] uppercase font-bold text-charcoal-muted dark:text-cream-300">Total Cakes</span>
+                    <span className="text-[10px] uppercase font-bold text-charcoal-muted dark:text-cream-300">Total Products</span>
                     <div className="text-xl sm:text-2xl font-black font-serif text-maroon-950 dark:text-cream-100 mt-0.5">
                       {products.length}
                     </div>
                   </div>
 
                   <div className="bg-cream-100 dark:bg-maroon-900 p-4 rounded-2xl border-2 border-maroon-950/15 dark:border-cream-100/15 shadow-neo-xs">
-                    <span className="text-[10px] uppercase font-bold text-charcoal-muted dark:text-cream-300">Live on Public Page</span>
+                    <span className="text-[10px] uppercase font-bold text-charcoal-muted dark:text-cream-300">Active in Catalog</span>
                     <div className="text-xl sm:text-2xl font-black font-serif text-emerald-700 dark:text-emerald-400 mt-0.5 flex items-center gap-1.5">
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                       <span>{visibleCount}</span>
@@ -587,15 +574,10 @@ export default function AdminProductsPage() {
                   </div>
 
                   <div className="bg-cream-100 dark:bg-maroon-900 p-4 rounded-2xl border-2 border-maroon-950/15 dark:border-cream-100/15 shadow-neo-xs">
-                    <span className="text-[10px] uppercase font-bold text-charcoal-muted dark:text-cream-300">Public Page</span>
-                    <Link
-                      href="/gallery"
-                      target="_blank"
-                      className="text-xs font-black text-maroon-700 dark:text-cream-200 hover:underline flex items-center gap-1 mt-2"
-                    >
-                      <span>/gallery</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </Link>
+                    <span className="text-[10px] uppercase font-bold text-charcoal-muted dark:text-cream-300">Categories</span>
+                    <div className="text-xl sm:text-2xl font-black font-serif text-maroon-900 dark:text-cream-100 mt-0.5">
+                      {categories.length}
+                    </div>
                   </div>
                 </div>
 
@@ -681,10 +663,10 @@ export default function AdminProductsPage() {
                                     ? 'bg-emerald-600 text-white border-emerald-800'
                                     : 'bg-charcoal/80 text-cream-200 border-charcoal'
                                 }`}
-                                title="Click to toggle visibility on public page"
+                                title="Click to toggle active status in catalog"
                               >
                                 {isPublic ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
-                                <span>{isPublic ? 'Public' : 'Hidden'}</span>
+                                <span>{isPublic ? 'Active' : 'Inactive'}</span>
                               </button>
                             </div>
 
@@ -899,7 +881,7 @@ export default function AdminProductsPage() {
                                     ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                                     : 'bg-stone-100 text-stone-700 border border-stone-300'
                                 }`}>
-                                  {isPublic ? '● Public' : '○ Hidden'}
+                                  {isPublic ? '● Active' : '○ Inactive'}
                                 </span>
                               </td>
 
@@ -1004,22 +986,22 @@ export default function AdminProductsPage() {
         </div>
       </div>
 
-      {/* ================= MODAL: ADD / EDIT CAKE WITH PHOTO & DETAILS ================= */}
+      {/* ================= MODAL: ADD / EDIT PRODUCT WITH PHOTO & DETAILS ================= */}
       <Modal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        title={editingProduct ? `Edit Cake: ${editingProduct.name}` : 'Add Cake (Photo, Price & Details)'}
-        subtitle="Manage photo, selling price, customer description, and public showcase status"
+        title={editingProduct ? `Edit Product: ${editingProduct.name}` : 'Add Product (Photo, Price & Details)'}
+        subtitle="Manage product photo, selling price, descriptions, and catalog status"
         maxWidth="4xl"
       >
         <form onSubmit={handleSaveProduct} className="space-y-5 text-xs p-1">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             
-            {/* LEFT COLUMN: CAKE PICTURE & LIVE PUBLIC PREVIEW (5 cols) */}
+            {/* LEFT COLUMN: PRODUCT PICTURE & PREVIEW (5 cols) */}
             <div className="lg:col-span-5 space-y-4">
               <div>
                 <label className="block font-black text-maroon-900 dark:text-cream-100 mb-1.5 uppercase tracking-wider text-[11px]">
-                  Cake Picture *
+                  Product Picture *
                 </label>
 
                 {/* Picture Preview Frame */}
@@ -1035,7 +1017,7 @@ export default function AdminProductsPage() {
                   {uploadingImage && (
                     <div className="absolute inset-0 bg-maroon-950/70 flex flex-col items-center justify-center text-cream-100 gap-2">
                       <RefreshCw className="w-6 h-6 animate-spin text-amber-400" />
-                      <span className="text-xs font-bold">Uploading cake photo...</span>
+                      <span className="text-xs font-bold">Uploading photo...</span>
                     </div>
                   )}
 
@@ -1088,16 +1070,16 @@ export default function AdminProductsPage() {
                 </div>
               </div>
 
-              {/* LIVE PUBLIC PREVIEW CARD */}
+              {/* LIVE CATALOG PREVIEW CARD */}
               <div className="p-3 bg-cream-50 dark:bg-maroon-950 rounded-2xl border-2 border-dashed border-maroon-950/20 dark:border-cream-100/20 space-y-1.5">
                 <span className="text-[10px] uppercase font-black tracking-widest text-maroon-700 dark:text-cream-300 block">
-                  Public Page Card Preview
+                  Product Card Preview
                 </span>
                 <p className="text-[11px] font-bold text-maroon-950 dark:text-cream-100">
-                  {name || 'Cake Title'} • ₹{sellingPrice || '0'}
+                  {name || 'Product Title'} • ₹{sellingPrice || '0'}
                 </p>
                 <p className="text-[10px] text-charcoal-muted dark:text-cream-300/80 line-clamp-2 italic">
-                  &ldquo;{description || 'Cake description will show here on the public page...'}&rdquo;
+                  &ldquo;{description || 'Product description will show here in the catalog...'}&rdquo;
                 </p>
               </div>
             </div>
@@ -1109,7 +1091,7 @@ export default function AdminProductsPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-bold text-maroon-900 dark:text-cream-100 mb-1">
-                    Cake Name / Title *
+                    Product Name / Title *
                   </label>
                   <input
                     type="text"
@@ -1153,7 +1135,7 @@ export default function AdminProductsPage() {
                     placeholder="1200"
                     className="w-full px-3.5 py-2 bg-cream-100 dark:bg-maroon-800 border-2 border-maroon-950/20 rounded-xl font-black text-emerald-700 dark:text-emerald-400 text-sm outline-none focus:border-maroon-950"
                   />
-                  <span className="text-[10px] text-charcoal-muted">Shown on public page</span>
+                  <span className="text-[10px] text-charcoal-muted">Base selling price</span>
                 </div>
 
                 <div>
@@ -1186,10 +1168,10 @@ export default function AdminProductsPage() {
                 </div>
               </div>
 
-              {/* CAKE DESCRIPTION ("decritoon") */}
+              {/* CAKE DESCRIPTION */}
               <div>
                 <label className="block font-bold text-maroon-900 dark:text-cream-100 mb-1">
-                  Cake Description * <span className="font-normal text-charcoal-muted text-[10px]">(Displayed to customers on public page)</span>
+                  Product Description * <span className="font-normal text-charcoal-muted text-[10px]">(Product &amp; flavor notes)</span>
                 </label>
                 <textarea
                   rows={3}
@@ -1241,9 +1223,9 @@ export default function AdminProductsPage() {
                     className="rounded text-maroon-700 w-4 h-4"
                   />
                   <div>
-                    <span>Show on Public Cake Showcase Page (/gallery)</span>
+                    <span>Active in Product Catalog</span>
                     <span className="block text-[10px] text-charcoal-muted font-normal">
-                      When enabled, this cake image, price, and description appear on the customer page.
+                      When enabled, this product is active for orders, invoices, and production recipes.
                     </span>
                   </div>
                 </label>
@@ -1266,7 +1248,7 @@ export default function AdminProductsPage() {
                       onChange={(e) => setFeatured(e.target.checked)}
                       className="rounded text-maroon-700 w-4 h-4"
                     />
-                    <span>Featured on Homepage</span>
+                    <span>Featured Product</span>
                   </label>
                 </div>
               </div>
@@ -1287,7 +1269,7 @@ export default function AdminProductsPage() {
               type="submit"
               className="px-6 py-2.5 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-black rounded-xl border-2 border-maroon-950 dark:border-cream-100 shadow-neo hover:shadow-neo-lg transition"
             >
-              {editingProduct ? 'Save Changes' : 'Add Cake to Showcase'}
+              {editingProduct ? 'Save Changes' : 'Add Product to Catalog'}
             </button>
           </div>
         </form>

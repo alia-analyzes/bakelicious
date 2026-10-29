@@ -64,7 +64,7 @@ export default function AdminCategoriesPage() {
         showToast('Category updated!', 'success');
       } else {
         await api.post('/categories', { name, description });
-        showToast(`Category "${name}" created & available on public menu!`, 'success');
+        showToast(`Category "${name}" created & available in ERP catalog!`, 'success');
       }
       setModalOpen(false);
       fetchCategories();
@@ -99,7 +99,7 @@ export default function AdminCategoriesPage() {
                   Dynamic Bakery Categories
                 </h1>
                 <p className="text-xs text-charcoal-muted dark:text-cream-300/80 font-medium mt-0.5">
-                  Create and update product categories. Newly added categories automatically appear on the public menu.
+                  Create and update product categories. Categorize cakes, desserts, and bakery items.
                 </p>
               </div>
 
@@ -137,7 +137,7 @@ export default function AdminCategoriesPage() {
 
                     <div className="flex items-center justify-between pt-3 border-t border-cream-300 dark:border-maroon-800">
                       <span className="text-[11px] text-emerald-800 dark:text-emerald-300 font-bold">
-                        ✓ Active on Public Site
+                        ✓ Active in Catalog
                       </span>
                       <div className="flex items-center gap-1">
                         <button
@@ -168,7 +168,7 @@ export default function AdminCategoriesPage() {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         title={editingCategory ? `Edit Category: ${editingCategory.name}` : 'Add New Category'}
-        subtitle="This category will be automatically available to the public website menu."
+        subtitle="This category will organize products across the ERP catalog."
         maxWidth="md"
       >
         <form onSubmit={handleSaveCategory} className="space-y-4 text-xs">
