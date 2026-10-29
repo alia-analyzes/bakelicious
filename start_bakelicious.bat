@@ -1,7 +1,7 @@
 @echo off
 title Bakelicious ERP Launcher
 echo ========================================================
-echo   Starting Bakelicious Artisan Cake ERP & Showcase
+echo   Starting Bakelicious Bakery ERP System
 echo ========================================================
 echo.
 
@@ -19,13 +19,14 @@ timeout /t 4 /nobreak > nul
 
 echo.
 echo ========================================================
-echo   Bakelicious is now RUNNING!
-echo   - Receipt Generator:  http://localhost:3000/admin/receipts
-echo   - Customer Showcase:  http://localhost:3000/showcase
-echo   - Admin Showcase CMS: http://localhost:3000/admin/showcase
+echo   Bakelicious ERP is now RUNNING!
+echo   - ERP Portal:         http://localhost:3000/admin/dashboard
+echo   - ERP Login:          http://localhost:3000/admin/login
+echo   - Invoice Generator:  http://localhost:3000/admin/receipts
+echo   - Products Catalog:   http://localhost:3000/admin/products
 echo   - Operations Calendar:http://localhost:3000/admin/calendar
 echo   - Backend API Docs:   http://localhost:8000/docs
 echo   - Database:           backend\bakelicious.db (SQLite)
 echo ========================================================
-start http://localhost:3000/admin/receipts
+start http://localhost:3000/admin/login
 pause

@@ -200,7 +200,7 @@ def create_public_order(
     db: Session = Depends(get_db)
 ):
     """
-    Public customer order placement from the showcase website.
+    Customer order placement endpoint.
     Creates or matches customer client record, records order, item, and production schedule in the database.
     """
     customer_name = payload.customer_name.strip()
@@ -216,7 +216,7 @@ def create_public_order(
             phone=phone,
             email=payload.email.strip() if payload.email else None,
             address=payload.delivery_address.strip() if payload.delivery_address else None,
-            notes="Customer registered via website order showcase"
+            notes="Customer registered via ERP intake order"
         )
         db.add(client)
         db.flush()
