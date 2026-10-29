@@ -21,19 +21,18 @@ from app.auth.security import get_password_hash
 from app.auth.permissions import PERMISSIONS_DEFINITIONS, DEFAULT_SYSTEM_ROLES
 
 def copy_logo_files():
-    logo_source = r"C:\Users\USER\.gemini\antigravity-ide\brain\44a59fe7-ed02-4aaa-b97b-afe6aac24d3f\.user_uploaded\media_1787303963238.png"
-
     backend_logo = os.path.join(os.getcwd(), "uploads", "logo.png")
-    os.makedirs(os.path.dirname(backend_logo), exist_ok=True)
-    if os.path.exists(logo_source):
-        shutil.copy(logo_source, backend_logo)
-        print(f"Copied logo to {backend_logo}")
-
     frontend_logo = os.path.join(os.path.dirname(os.getcwd()), "frontend", "public", "logo.png")
+    os.makedirs(os.path.dirname(backend_logo), exist_ok=True)
     os.makedirs(os.path.dirname(frontend_logo), exist_ok=True)
-    if os.path.exists(logo_source):
-        shutil.copy(logo_source, frontend_logo)
+    if os.path.exists(frontend_logo) and not os.path.exists(backend_logo):
+        shutil.copy(frontend_logo, backend_logo)
+        print(f"Copied logo to {backend_logo}")
+    elif os.path.exists(backend_logo) and not os.path.exists(frontend_logo):
+        shutil.copy(backend_logo, frontend_logo)
         print(f"Copied logo to {frontend_logo}")
+    else:
+        print(f"Logo files verified: {frontend_logo} and {backend_logo}")
 
 def seed_database(is_development: bool = True):
     base.Base.metadata.drop_all(bind=engine)

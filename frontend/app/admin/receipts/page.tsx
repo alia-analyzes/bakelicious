@@ -190,16 +190,28 @@ export default function AdminReceiptsPage() {
         return;
       }
       try {
-        const html2pdf = (await import('html2pdf.js')).default;
-        const opt: any = {
-          margin: 8,
-          filename: `${receipt.receipt_number || 'Bakelicious-Receipt'}.pdf`,
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2, useCORS: true },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-        await html2pdf().set(opt).from(element).save();
+        const { jsPDF } = await import('jspdf');
+        const html2canvas = (await import('html2canvas')).default;
+        const clientName = (receipt.customer_name || 'Customer').trim().replace(/[\/\\?%*:|"<>]/g, '_');
+        const canvas = await html2canvas(element, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          backgroundColor: '#FDF6EB',
+          windowWidth: 794
+        });
+        const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+        // Paint full sheet template cream (#FDF6EB)
+        pdf.setFillColor(253, 246, 235);
+        pdf.rect(0, 0, 210, 297, 'F');
+        const imgData = canvas.toDataURL('image/png');
+        pdf.addImage(imgData, 'PNG', 0, 0, 210, 297, undefined, 'FAST');
+        while (pdf.internal.getNumberOfPages() > 1) {
+          pdf.deletePage(pdf.internal.getNumberOfPages());
+        }
+        pdf.save(`${clientName}_invoice.pdf`);
       } catch (e) {
+        console.error('PDF generation error:', e);
         window.print();
       }
     }, 400);
@@ -210,7 +222,7 @@ export default function AdminReceiptsPage() {
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
-        <Header onOpenSidebar={() => setSidebarOpen(true)} title="Receipt Generator & Invoicing" />
+        <Header onOpenSidebar={() => setSidebarOpen(true)} title="Invoice Generator" />
 
         {/* Toast Notification */}
         {toastMessage && (
@@ -240,10 +252,10 @@ export default function AdminReceiptsPage() {
                 </div>
                 <div>
                   <h1 className="text-2xl sm:text-3xl font-extrabold font-serif text-maroon-950 dark:text-cream-100">
-                    Receipt Generator
+                    Invoice Generator
                   </h1>
                   <p className="text-xs text-charcoal-muted dark:text-cream-300/80 font-medium mt-0.5">
-                    Generate professional, branded customer receipts with automatic BLX-MMYY-CXX numbering and live pricing calculations.
+                    Generate professional, branded customer invoices with automatic BLX-MMYY-CXX numbering and live pricing calculations.
                   </p>
                 </div>
               </div>

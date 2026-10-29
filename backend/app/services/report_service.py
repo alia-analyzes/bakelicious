@@ -1,4 +1,5 @@
 import io
+import os
 import csv
 from datetime import datetime
 from decimal import Decimal
@@ -44,7 +45,7 @@ def generate_pdf_report(report_data: Dict[str, Any], logo_path: str = None) -> b
     header_data = []
     title_paragraph = Paragraph("<b>BAKELICIOUS</b><br/><font size=12 color='#64748B'>Business Management Summary Report</font>", title_style)
     
-    if logo_path and io.os.path.exists(logo_path):
+    if logo_path and os.path.exists(logo_path):
         try:
             img = RLImage(logo_path, width=60, height=60)
             header_data.append([img, title_paragraph])

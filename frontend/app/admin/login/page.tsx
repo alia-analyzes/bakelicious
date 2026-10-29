@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import { setAuthToken, isAuthenticated, getStoredUser } from '@/lib/auth';
-import { Lock, Mail, AlertCircle, ArrowRight, Home } from 'lucide-react';
-import Link from 'next/link';
+import { Lock, Mail, AlertCircle, ArrowRight, Eye, EyeOff } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
   const [emailOrUsername, setEmailOrUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -62,34 +62,25 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-cream-200 dark:bg-maroon-950 flex flex-col items-center justify-center p-4 py-8 sm:py-4">
-      {/* Link back to Public Website */}
-      <div className="w-full max-w-md mb-4 sm:mb-0 sm:absolute sm:top-6 sm:left-6 flex justify-start">
-        <Link
-          href="/"
-          className="px-3.5 py-2 bg-cream-100 dark:bg-maroon-900 hover:bg-cream-300 dark:hover:bg-maroon-800 text-maroon-900 dark:text-cream-100 border border-cream-300 dark:border-maroon-700 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm"
-        >
-          <Home className="w-4 h-4 text-maroon-600 dark:text-cream-300" />
-          <span>Back to Bakery Website</span>
-        </Link>
-      </div>
-
-      <div className="w-full max-w-md bg-cream-100 dark:bg-maroon-900 rounded-3xl shadow-xl border border-cream-300 dark:border-maroon-800 p-5 sm:p-8 space-y-5 sm:space-y-6">
+    <div className="min-h-screen bg-cream-200 dark:bg-maroon-950 flex flex-col items-center justify-center p-4 py-8">
+      <div className="w-full max-w-md bg-cream-100 dark:bg-maroon-900 rounded-3xl shadow-2xl border-2 border-maroon-950/20 dark:border-cream-100/20 p-6 sm:p-8 space-y-6">
         {/* Logo and Brand */}
-        <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-cream-200 dark:bg-maroon-800 border-2 border-cream-300 dark:border-maroon-700 p-2 shadow-sm mb-2">
+        <div className="text-center flex flex-col items-center space-y-3">
+          <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-cream-50 dark:bg-maroon-800 border-3 border-maroon-950 dark:border-cream-100 p-2 shadow-neo flex items-center justify-center shrink-0">
             <img
               src="/logo.svg"
               alt="Bakelicious Logo"
-              className="w-full h-full object-contain rounded-full"
+              className="w-full h-full object-contain"
             />
           </div>
-          <h1 className="text-3xl font-black text-maroon-900 dark:text-cream-100 font-serif tracking-tight">
-            Bakelicious ERP
-          </h1>
-          <p className="text-xs text-charcoal-muted dark:text-cream-300/80 font-bold uppercase tracking-wider">
-            Role-Based Bakery Management
-          </p>
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-black text-maroon-950 dark:text-cream-100 font-serif tracking-tight">
+              Bakelicious ERP
+            </h1>
+            <p className="text-xs text-maroon-700 dark:text-cream-300 font-black uppercase tracking-widest mt-1">
+              Bakery Management System
+            </p>
+          </div>
         </div>
 
         {error && (
@@ -125,14 +116,23 @@ export default function AdminLoginPage() {
             <div className="relative">
               <Lock className="w-4 h-4 text-charcoal-muted dark:text-cream-400 absolute left-3 top-3" />
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 required
                 autoComplete="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
-                className="w-full pl-9 pr-4 py-2.5 bg-cream-200 dark:bg-maroon-800 border border-cream-300 dark:border-maroon-700 rounded-xl text-sm font-medium text-maroon-900 dark:text-cream-100 focus:outline-none focus:ring-2 focus:ring-maroon-600 transition"
+                className="w-full pl-9 pr-11 py-2.5 bg-cream-200 dark:bg-maroon-800 border border-cream-300 dark:border-maroon-700 rounded-xl text-sm font-medium text-maroon-900 dark:text-cream-100 focus:outline-none focus:ring-2 focus:ring-maroon-600 transition"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-2.5 p-1 text-charcoal-muted dark:text-cream-400 hover:text-maroon-900 dark:hover:text-cream-100 transition rounded-lg"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                title={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
             </div>
           </div>
 

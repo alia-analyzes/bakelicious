@@ -137,10 +137,10 @@ export function ProtectedRoute({
             </button>
 
             <Link
-              href="/"
-              className="text-[11px] font-bold text-charcoal-muted dark:text-cream-300/70 hover:underline pt-1"
+              href="/admin/dashboard"
+              className="text-[11px] font-bold text-charcoal-muted dark:text-cream-300/70 hover:underline pt-1 text-center"
             >
-              Return to Public Website
+              Return to ERP Dashboard
             </Link>
           </div>
         </div>

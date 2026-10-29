@@ -85,13 +85,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
       badge: null
     },
     {
-      name: 'Cake Showcase',
-      href: '/admin/showcase',
-      icon: Camera,
-      visible: isSuperAdmin() || hasAnyPermission(['PRODUCTS_VIEW', 'CATEGORIES_VIEW', 'PRODUCTS_CREATE']),
-      badge: 'Public'
-    },
-    {
       name: 'Products & Recipes',
       href: '/admin/products',
       icon: UtensilsCrossed,
@@ -106,11 +99,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
       badge: null
     },
     {
-      name: 'Receipt Generator',
+      name: 'Invoice Generator',
       href: '/admin/receipts',
       icon: Receipt,
       visible: isSuperAdmin() || hasAnyPermission(['ORDERS_VIEW', 'ORDERS_CREATE', 'CALENDAR_VIEW']) || true,
-      badge: 'New'
+      badge: null
     },
     {
       name: 'Employees',
@@ -190,7 +183,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
           {/* Header & Logo with Neo-Brutalism */}
           <div className="flex items-center justify-between px-5 py-4 border-b-2 border-maroon-950 dark:border-cream-100/20 bg-cream-50 dark:bg-maroon-900">
             <Link href="/admin/dashboard" className="flex items-center gap-3 select-none" onClick={onClose}>
-              <div className="w-11 h-11 rounded-2xl bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950 dark:border-cream-100 p-1 shadow-neo-sm flex items-center justify-center shrink-0">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950 dark:border-cream-100 p-1 shadow-neo-sm flex items-center justify-center shrink-0">
                 <img
                   src="/logo.svg"
                   alt="Bakelicious Logo"
@@ -221,25 +214,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
 
           {/* Navigation Links */}
           <div className="px-3.5 py-4 space-y-5 flex-1">
-            {/* ================= SECTION 1: PUBLIC WEBSITE ================= */}
-            <div>
-              <div className="px-2 mb-1.5 text-[10px] font-black text-maroon-950/70 dark:text-cream-300/70 uppercase tracking-widest">
-                Public Website
-              </div>
-              <Link
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={onClose}
-                className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-black text-cream-100 bg-maroon-700 hover:bg-maroon-800 border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm btn-tactile transition group"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>Public Website</span>
-                </div>
-                <ExternalLink className="w-3.5 h-3.5 text-cream-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </Link>
-            </div>
 
             {/* ================= SECTION 2: WORKSPACE ================= */}
             {workspaceNav.length > 0 && (

@@ -56,7 +56,7 @@ const PRESET_CAKE_IMAGES = [
 
 export default function AdminProductsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'showcase' | 'products' | 'categories'>('showcase');
+  const [activeTab, setActiveTab] = useState<'showcase' | 'products' | 'categories'>('products');
   
   // Data states
   const [products, setProducts] = useState<Product[]>([]);
