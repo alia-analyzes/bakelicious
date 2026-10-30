@@ -92,8 +92,8 @@ export default function AdminCategoriesPage() {
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
           <Header onOpenSidebar={() => setSidebarOpen(true)} title="Category Management" />
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
+          <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-5 sm:space-y-6 min-w-0">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div>
                 <h1 className="text-2xl font-extrabold font-serif text-maroon-950 dark:text-cream-100">
                   Dynamic Bakery Categories
@@ -105,14 +105,14 @@ export default function AdminCategoriesPage() {
 
               <button
                 onClick={handleOpenAdd}
-                className="px-5 py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs font-bold transition shadow-md flex items-center gap-2 shrink-0"
+                className="px-5 py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs font-bold transition shadow-md flex items-center justify-center gap-2 shrink-0 w-full sm:w-auto"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add Category</span>
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {loading ? (
                 <div className="col-span-full py-12 text-center text-xs font-bold text-charcoal-muted">
                   Loading categories...
@@ -121,7 +121,7 @@ export default function AdminCategoriesPage() {
                 categories.map((c) => (
                   <div
                     key={c.id}
-                    className="bg-cream-100 dark:bg-maroon-900 rounded-3xl border border-cream-300 dark:border-maroon-800 p-6 space-y-4 shadow-sm hover:shadow-md transition flex flex-col justify-between"
+                    className="bg-cream-100 dark:bg-maroon-900 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 p-4 sm:p-6 space-y-3.5 sm:space-y-4 shadow-sm hover:shadow-md transition flex flex-col justify-between"
                   >
                     <div className="space-y-2">
                       <div className="w-10 h-10 rounded-2xl bg-cream-200 dark:bg-maroon-800 text-maroon-700 dark:text-cream-200 flex items-center justify-center font-bold">
@@ -142,14 +142,14 @@ export default function AdminCategoriesPage() {
                       <div className="flex items-center gap-1">
                         <button
                           onClick={() => handleOpenEdit(c)}
-                          className="p-2 rounded-xl text-maroon-700 dark:text-cream-200 hover:bg-cream-200 dark:hover:bg-maroon-800 transition"
+                          className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-xl text-maroon-700 dark:text-cream-200 hover:bg-cream-200 dark:hover:bg-maroon-800 transition"
                           title="Edit Category"
                         >
                           <Edit className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleDeleteCategory(c.id)}
-                          className="p-2 rounded-xl text-rose-700 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-950 transition"
+                          className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-xl text-rose-700 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-950 transition"
                           title="Delete Category"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -195,17 +195,17 @@ export default function AdminCategoriesPage() {
             />
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-cream-300">
+          <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3 pt-4 border-t border-cream-300 dark:border-maroon-800">
             <button
               type="button"
               onClick={() => setModalOpen(false)}
-              className="px-4 py-2 bg-cream-200 text-maroon-900 font-bold rounded-xl"
+              className="px-4 py-2.5 bg-cream-200 dark:bg-maroon-800 text-maroon-900 dark:text-cream-200 font-bold rounded-xl transition"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-5 py-2 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-bold rounded-xl shadow-md"
+              className="px-5 py-2.5 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-bold rounded-xl shadow-md transition"
             >
               Save Category
             </button>

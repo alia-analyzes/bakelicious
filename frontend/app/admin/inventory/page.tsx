@@ -98,9 +98,9 @@ export default function AdminInventoryPage() {
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
           <Header onOpenSidebar={() => setSidebarOpen(true)} title="Bakery Ingredient & Stock Inventory" />
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6">
+          <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-5 sm:space-y-6 min-w-0">
             {/* Header Action Bar */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 bg-cream-100 dark:bg-maroon-900 p-4 sm:p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div>
                 <h1 className="text-2xl font-extrabold font-serif text-maroon-950 dark:text-cream-100">
                   Inventory &amp; Supplies Management
@@ -110,7 +110,7 @@ export default function AdminInventoryPage() {
                 </p>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
                 <button
                   onClick={handleOpenAdd}
                   className="px-5 py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs font-bold transition shadow-md flex items-center gap-2"
@@ -124,7 +124,7 @@ export default function AdminInventoryPage() {
             {/* Low Stock Reminder Banner */}
             {lowStockCount > 0 && (
               <div className="p-4 bg-rose-50 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-sm">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
                   <div className="w-10 h-10 rounded-xl bg-rose-200 dark:bg-rose-900 text-rose-800 dark:text-rose-200 flex items-center justify-center shrink-0">
                     <AlertTriangle className="w-5 h-5 text-rose-700 dark:text-rose-300 animate-pulse" />
                   </div>
@@ -168,7 +168,7 @@ export default function AdminInventoryPage() {
                 />
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 scrollbar-none">
                 <button
                   onClick={() => {
                     setOnlyLowStock(false);
@@ -224,7 +224,7 @@ export default function AdminInventoryPage() {
                   </div>
                 ) : (
                   <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse text-xs">
+                    <table className="w-full text-left border-collapse text-xs min-w-[700px]">
                       <thead>
                         <tr className="border-b border-cream-300 dark:border-maroon-800 text-maroon-900 dark:text-cream-200 font-bold uppercase tracking-wider text-[10px] bg-cream-200/50 dark:bg-maroon-800/40">
                           <th className="py-3.5 px-4">Item Name</th>
@@ -299,7 +299,7 @@ export default function AdminInventoryPage() {
                   Recent Stock In / Deductions
                 </h3>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse text-xs">
+                  <table className="w-full text-left border-collapse text-xs min-w-[700px]">
                     <thead>
                       <tr className="border-b border-cream-300 dark:border-maroon-800 font-bold text-maroon-900 dark:text-cream-200 uppercase text-[10px]">
                         <th className="py-3 px-4">Date</th>

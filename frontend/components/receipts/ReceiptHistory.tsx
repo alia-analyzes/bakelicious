@@ -97,7 +97,7 @@ export const ReceiptHistory: React.FC<ReceiptHistoryProps> = ({
   return (
     <div className="space-y-6">
       {/* STATS OVERVIEW CARDS */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
         {/* Total Receipts */}
         <div className="bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
           <div className="flex items-center justify-between text-[#7E4049] dark:text-cream-300 mb-2">
@@ -192,7 +192,7 @@ export const ReceiptHistory: React.FC<ReceiptHistoryProps> = ({
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
+            <table className="w-full text-left text-xs min-w-[700px]">
               <thead className="bg-cream-100 dark:bg-maroon-900/90 text-gray-600 dark:text-cream-300 font-extrabold uppercase text-[10px] tracking-wider border-b border-cream-300 dark:border-maroon-800">
                 <tr>
                   <th className="py-3 px-4">Receipt #</th>

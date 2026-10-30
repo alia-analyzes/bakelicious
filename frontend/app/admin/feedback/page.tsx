@@ -127,13 +127,13 @@ export default function AdminFeedbackPage() {
 
   return (
     <ProtectedRoute requiredPermission="FEEDBACK_VIEW">
-      <div className="min-h-screen bg-cream-200 flex">
+      <div className="min-h-screen bg-cream-200 dark:bg-maroon-950 text-charcoal dark:text-cream-100 flex font-sans">
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
         <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
           <Header onToggleSidebar={() => setSidebarOpen(true)} title="Customer Feedback Manager" />
 
-          <main className="p-4 lg:p-8 space-y-6 max-w-7xl mx-auto w-full">
+          <main className="p-3.5 sm:p-6 lg:p-8 space-y-5 sm:space-y-6 max-w-7xl mx-auto w-full min-w-0">
             {/* Header Action Bar */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-cream-100 p-6 rounded-2xl shadow-sm border border-cream-300">
               <div>
@@ -164,7 +164,7 @@ export default function AdminFeedbackPage() {
                 </div>
               ) : feedbackList.length > 0 ? (
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs">
+                  <table className="w-full text-left text-xs min-w-[620px]">
                     <thead className="bg-cream-200 text-maroon-900 font-bold uppercase border-b border-cream-300">
                       <tr>
                         <th className="px-6 py-3.5">Customer Name</th>

@@ -233,13 +233,13 @@ export const OrderModal: React.FC<OrderModalProps> = ({
             {items.map((item, idx) => (
               <div
                 key={idx}
-                className="grid grid-cols-12 gap-2 items-center p-3 bg-white rounded-xl border border-bakery-200 shadow-sm"
+                className="flex flex-col sm:grid sm:grid-cols-12 gap-2.5 sm:gap-2 sm:items-center p-3 bg-white dark:bg-maroon-900 rounded-xl border border-bakery-200 dark:border-maroon-700 shadow-sm"
               >
-                <div className="col-span-5">
+                <div className="w-full sm:col-span-5">
                   <select
                     value={item.product_id}
                     onChange={(e) => handleItemProductChange(idx, Number(e.target.value))}
-                    className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold"
+                    className="w-full px-2.5 py-2 sm:py-1.5 bg-slate-50 dark:bg-maroon-800 border border-slate-200 dark:border-maroon-700 rounded-lg text-xs font-semibold text-slate-900 dark:text-cream-100"
                   >
                     {products.map((p) => (
                       <option key={p.id} value={p.id}>
@@ -249,31 +249,34 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   </select>
                 </div>
 
-                <div className="col-span-3">
-                  <input
-                    type="number"
-                    min="1"
-                    value={item.quantity}
-                    onChange={(e) => handleItemQtyChange(idx, Number(e.target.value))}
-                    placeholder="Qty"
-                    className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center font-bold"
-                  />
-                </div>
+                <div className="flex items-center justify-between sm:contents gap-2">
+                  <div className="w-24 sm:w-auto sm:col-span-3 flex items-center gap-1.5">
+                    <span className="text-[11px] font-bold text-slate-500 sm:hidden">Qty:</span>
+                    <input
+                      type="number"
+                      min="1"
+                      value={item.quantity}
+                      onChange={(e) => handleItemQtyChange(idx, Number(e.target.value))}
+                      placeholder="Qty"
+                      className="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-maroon-800 border border-slate-200 dark:border-maroon-700 rounded-lg text-xs text-center font-bold text-slate-900 dark:text-cream-100"
+                    />
+                  </div>
 
-                <div className="col-span-3 text-right">
-                  <span className="text-xs font-extrabold text-slate-900">
-                    ₹{(item.quantity * item.unit_price).toFixed(2)}
-                  </span>
-                </div>
+                  <div className="sm:col-span-3 text-right">
+                    <span className="text-xs font-extrabold text-slate-900 dark:text-cream-100">
+                      ₹{(item.quantity * item.unit_price).toFixed(2)}
+                    </span>
+                  </div>
 
-                <div className="col-span-1 text-center">
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveItem(idx)}
-                    className="p-1 text-slate-400 hover:text-rose-600 transition"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  <div className="sm:col-span-1 text-center">
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveItem(idx)}
+                      className="p-1 text-slate-400 hover:text-rose-600 transition"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -287,7 +290,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
             <span className="font-bold text-white text-sm">₹{subtotal.toFixed(2)}</span>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 pt-2 border-t border-slate-800">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-2 border-t border-slate-800">
             <div>
               <label className="block text-[11px] font-semibold text-slate-400 mb-1">
                 Discount (₹)
@@ -360,18 +363,18 @@ export const OrderModal: React.FC<OrderModalProps> = ({
         </div>
 
         {/* Form Action Buttons */}
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3 pt-4 border-t border-slate-100 dark:border-maroon-800">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold rounded-xl transition"
+            className="w-full sm:w-auto px-4 py-2.5 bg-slate-100 dark:bg-maroon-800 text-slate-700 dark:text-cream-200 hover:bg-slate-200 text-xs font-semibold rounded-xl transition"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={saving}
-            className="px-5 py-2 bg-bakery-600 hover:bg-bakery-700 text-white text-xs font-bold rounded-xl transition shadow-md shadow-bakery-600/20 disabled:opacity-50"
+            className="w-full sm:w-auto px-5 py-2.5 bg-bakery-600 hover:bg-bakery-700 text-white text-xs font-bold rounded-xl transition shadow-md shadow-bakery-600/20 disabled:opacity-50"
           >
             {saving ? 'Creating Order...' : 'Place Order'}
           </button>

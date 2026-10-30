@@ -573,9 +573,9 @@ export default function AdminCalendarPage() {
             </div>
           )}
 
-          <main className="flex-1 p-3 sm:p-5 space-y-4 w-full max-w-full">
+          <main className="flex-1 p-2.5 sm:p-5 space-y-3.5 sm:space-y-4 w-full max-w-full min-w-0">
             {/* Header Banner */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div>
                 <h1 className="text-2xl sm:text-3xl font-extrabold font-serif text-maroon-950 dark:text-cream-100 flex items-center gap-2">
                   <CalendarDays className="w-7 h-7 text-maroon-600 dark:text-cream-300" />
@@ -623,7 +623,7 @@ export default function AdminCalendarPage() {
                 <div className="text-xs font-bold text-charcoal-muted dark:text-cream-300/80 uppercase tracking-widest px-1">
                   TODAY'S OPERATIONS SUMMARY
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-3">
                   <div
                     onClick={() => toggleTypeFilter('NEW_ORDER')}
                     className={`p-3.5 rounded-2xl border transition cursor-pointer ${
@@ -715,7 +715,7 @@ export default function AdminCalendarPage() {
             )}
 
             {/* Interactive Legend & Filters Bar */}
-            <div className="bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 space-y-4 shadow-sm">
+            <div className="bg-cream-100 dark:bg-maroon-900 p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 space-y-4 shadow-sm">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                 {/* Interactive Legend Pills */}
                 <div className="flex flex-wrap items-center gap-2">
@@ -875,7 +875,7 @@ export default function AdminCalendarPage() {
             </div>
 
             {/* FullCalendar Operations Container */}
-            <div className="bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm overflow-hidden w-full">
+            <div className="bg-cream-100 dark:bg-maroon-900 p-2 sm:p-4 lg:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm overflow-hidden w-full">
               {loading ? (
                 <div className="py-20 flex flex-col items-center justify-center text-xs font-bold text-charcoal-muted dark:text-cream-300/70">
                   <RefreshCw className="w-8 h-8 animate-spin text-maroon-600 dark:text-cream-300 mb-2" />
@@ -915,7 +915,7 @@ export default function AdminCalendarPage() {
          ------------------------------------------------------------- */}
       {dayDrawerOpen && (
         <div className="fixed inset-0 z-50 flex justify-end bg-maroon-950/60 backdrop-blur-xs">
-          <div className="w-full max-w-md bg-cream-100 dark:bg-maroon-900 h-full p-6 overflow-y-auto shadow-2xl flex flex-col justify-between border-l border-cream-300 dark:border-maroon-800 animate-slide-left">
+          <div className="w-full max-w-md bg-cream-100 dark:bg-maroon-900 h-full h-[100dvh] p-4 sm:p-6 overflow-y-auto shadow-2xl flex flex-col justify-between border-l border-cream-300 dark:border-maroon-800 animate-slide-left">
             <div className="space-y-6">
               <div className="flex items-center justify-between border-b border-cream-300 dark:border-maroon-800 pb-4">
                 <div>
@@ -924,7 +924,7 @@ export default function AdminCalendarPage() {
                     {selectedDate ? new Date(selectedDate).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : 'Day Details'}
                   </h3>
                 </div>
-                <button onClick={() => setDayDrawerOpen(false)} className="p-1.5 text-charcoal-muted dark:text-cream-300 hover:text-maroon-900">
+                <button onClick={() => setDayDrawerOpen(false)} className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center text-charcoal-muted dark:text-cream-300 hover:text-maroon-900">
                   <X className="w-5 h-5" />
                 </button>
               </div>

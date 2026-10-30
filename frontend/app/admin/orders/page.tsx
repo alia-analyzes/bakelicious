@@ -138,9 +138,9 @@ export default function AdminOrdersPage() {
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
           <Header onOpenSidebar={() => setSidebarOpen(true)} title="All Bakery Orders" />
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6">
+          <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-5 sm:space-y-6 min-w-0">
             {/* Header Action Bar */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 bg-cream-100 dark:bg-maroon-900 p-4 sm:p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div>
                 <h1 className="text-2xl font-extrabold font-serif text-maroon-950 dark:text-cream-100">
                   All Bakery Orders
@@ -151,7 +151,7 @@ export default function AdminOrdersPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center gap-2.5">
+              <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-2.5 w-full sm:w-auto">
                 <Link
                   href="/admin/clients"
                   className="px-4 py-2.5 bg-cream-200 dark:bg-maroon-800 hover:bg-cream-300 dark:hover:bg-maroon-700 text-maroon-900 dark:text-cream-100 border border-cream-300 dark:border-maroon-700 rounded-2xl text-xs font-bold transition flex items-center gap-1.5 shadow-2xs"
@@ -171,7 +171,7 @@ export default function AdminOrdersPage() {
             </div>
 
             {/* Search, Status Filters & Sort Option */}
-            <div className="bg-cream-100 dark:bg-maroon-900 p-4 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-4">
+            <div className="bg-cream-100 dark:bg-maroon-900 p-3.5 sm:p-4 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4">
               <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
                 <div className="relative w-full sm:w-72">
                   <Search className="w-4 h-4 text-charcoal-muted dark:text-cream-400 absolute left-3.5 top-3" />
@@ -237,7 +237,7 @@ export default function AdminOrdersPage() {
                 </div>
               ) : sortedOrders.length > 0 ? (
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse text-xs">
+                  <table className="w-full text-left border-collapse text-xs min-w-[780px]">
                     <thead>
                       <tr className="border-b border-cream-300 dark:border-maroon-800 text-maroon-900 dark:text-cream-200 font-bold uppercase tracking-wider text-[10px] bg-cream-200/50 dark:bg-maroon-800/40">
                         <th className="py-3.5 px-4">Order #</th>
@@ -467,7 +467,7 @@ export default function AdminOrdersPage() {
             </div>
 
             {/* Status Changer Footer */}
-            <div className="flex items-center justify-between pt-3 border-t border-cream-300 dark:border-maroon-800">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-3 border-t border-cream-300 dark:border-maroon-800">
               <div className="flex items-center gap-2">
                 <span className="font-bold">Current Stage:</span>
                 <select

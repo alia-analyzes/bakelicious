@@ -71,9 +71,9 @@ export default function AdminDashboardPage() {
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
           <Header onOpenSidebar={() => setSidebarOpen(true)} title="Bakery Business ERP Dashboard" />
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-8">
+          <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 min-w-0">
             {/* Top Overview Cards with Neo-Brutalism */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
               
               {/* Today's Orders */}
               <div className="card-alive bg-cream-50 dark:bg-maroon-900 rounded-2xl p-5 border-2 border-maroon-950 dark:border-cream-100/30 shadow-neo-sm hover:shadow-neo hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all space-y-3">
@@ -86,7 +86,7 @@ export default function AdminDashboardPage() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-3xl sm:text-4xl font-black text-maroon-950 dark:text-cream-100 font-sans tracking-tight">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-maroon-950 dark:text-cream-100 font-sans tracking-tight truncate">
                     {summary?.today_orders_count ?? summary?.todays_orders_count ?? 0}
                   </div>
                   <p className="text-xs text-charcoal-muted dark:text-cream-300 font-bold mt-1">
@@ -106,7 +106,7 @@ export default function AdminDashboardPage() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-3xl sm:text-4xl font-black text-maroon-950 dark:text-cream-100 font-sans tracking-tight">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-maroon-950 dark:text-cream-100 font-sans tracking-tight truncate">
                     ₹{(summary?.today_revenue ?? summary?.todays_revenue ?? 0).toLocaleString('en-IN')}
                   </div>
                   <p className="text-xs text-emerald-800 dark:text-emerald-400 font-black mt-1 flex items-center gap-1">
@@ -127,7 +127,7 @@ export default function AdminDashboardPage() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-3xl sm:text-4xl font-black text-maroon-950 dark:text-cream-100 font-sans tracking-tight">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-maroon-950 dark:text-cream-100 font-sans tracking-tight truncate">
                     ₹{(summary?.monthly_revenue || 0).toLocaleString('en-IN')}
                   </div>
                   <p className="text-xs text-charcoal-muted dark:text-cream-300 font-bold mt-1">
@@ -147,7 +147,7 @@ export default function AdminDashboardPage() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-3xl sm:text-4xl font-black text-maroon-950 dark:text-cream-100 font-sans tracking-tight">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-maroon-950 dark:text-cream-100 font-sans tracking-tight truncate">
                     ₹{(summary?.monthly_net_profit ?? summary?.monthly_profit ?? summary?.net_profit ?? 0).toLocaleString('en-IN')}
                   </div>
                   <p className="text-xs text-purple-800 dark:text-purple-300 font-black mt-1">
@@ -163,7 +163,7 @@ export default function AdminDashboardPage() {
               
               {/* Revenue & Profit Trend Chart */}
               <div className="lg:col-span-8 bg-cream-50 dark:bg-maroon-900 rounded-2xl p-6 border-2 border-maroon-950 dark:border-cream-100/30 shadow-neo-sm space-y-4">
-                <div className="flex items-center justify-between border-b-2 border-maroon-950/15 dark:border-maroon-800 pb-3">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 border-b-2 border-maroon-950/15 dark:border-maroon-800 pb-3">
                   <div>
                     <h3 className="text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">
                       Revenue Trend Overview
@@ -265,7 +265,7 @@ export default function AdminDashboardPage() {
 
             {/* Recent Orders Table with Neo-Brutalism */}
             <div className="bg-cream-50 dark:bg-maroon-900 rounded-2xl p-6 border-2 border-maroon-950 dark:border-cream-100/30 shadow-neo-sm space-y-4">
-              <div className="flex items-center justify-between border-b-2 border-maroon-950/15 dark:border-maroon-800 pb-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 border-b-2 border-maroon-950/15 dark:border-maroon-800 pb-3">
                 <div>
                   <h3 className="text-lg font-black text-maroon-950 dark:text-cream-100 font-serif">
                     Recent Orders Queue
@@ -283,7 +283,7 @@ export default function AdminDashboardPage() {
               </div>
 
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse text-xs">
+                <table className="w-full text-left border-collapse text-xs min-w-[550px]">
                   <thead>
                     <tr className="border-b-2 border-maroon-950 dark:border-cream-100/20 bg-cream-100 dark:bg-maroon-950 text-maroon-950 dark:text-cream-100 font-black uppercase tracking-wider text-[10px]">
                       <th className="py-3 px-4">Order #</th>

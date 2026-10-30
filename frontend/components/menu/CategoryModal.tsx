@@ -103,7 +103,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
                 </div>
                 <button
                   onClick={() => handleDelete(cat.id)}
-                  className="p-1 text-slate-400 hover:text-rose-600 transition"
+                  className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center text-slate-400 hover:text-rose-600 transition"
                   title="Delete Category"
                 >
                   <Trash2 className="w-4 h-4" />

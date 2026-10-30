@@ -378,3 +378,49 @@ body {
   background-color: #FCF1E4 !important;
   color: #4D1A22 !important;
 }
+
+/* ================= COMPREHENSIVE RESPONSIVE ENHANCEMENTS ================= */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+/* Mobile FullCalendar Adaptations (<640px) */
+@media (max-width: 640px) {
+  .fc .fc-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+  }
+  .fc .fc-toolbar-chunk {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 0.35rem !important;
+  }
+  .fc .fc-toolbar-title {
+    font-size: 1.15rem !important;
+    text-align: center !important;
+  }
+  .fc .fc-button {
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.72rem !important;
+    border-radius: 0.6rem !important;
+  }
+  .fc .fc-daygrid-day-frame {
+    min-height: 72px !important;
+  }
+  .fc .fc-daygrid-day-number {
+    font-size: 0.72rem !important;
+    padding: 2px 4px !important;
+  }
+  .fc .fc-col-header-cell {
+    padding: 6px 0 !important;
+    font-size: 0.68rem !important;
+  }
+  .fc .fc-daygrid-more-link {
+    font-size: 0.65rem !important;
+    padding: 2px 5px !important;
+  }
+}

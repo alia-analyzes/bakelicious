@@ -111,18 +111,18 @@ export const StockAdjustmentModal: React.FC<StockAdjustmentModalProps> = ({
           />
         </div>
 
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3 pt-4 border-t border-slate-100 dark:border-maroon-800">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl"
+            className="px-4 py-2.5 bg-slate-100 dark:bg-maroon-800 text-slate-700 dark:text-cream-200 text-xs font-bold rounded-xl"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={saving}
-            className="px-5 py-2 bg-bakery-600 text-white text-xs font-bold rounded-xl shadow-md"
+            className="px-5 py-2.5 bg-maroon-700 hover:bg-maroon-800 text-cream-100 text-xs font-bold rounded-xl shadow-md transition"
           >
             {saving ? 'Recording...' : 'Record Transaction'}
           </button>

@@ -128,7 +128,7 @@ export default function AdminProductionPage() {
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
           <Header onOpenSidebar={() => setSidebarOpen(true)} title={userIsBaker ? "Baker Kitchen Workspace" : "Kitchen Baking Queue & Assignments"} />
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto w-full">
+          <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-5 sm:space-y-6 max-w-7xl mx-auto w-full min-w-0">
             {/* Header banner */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div>
@@ -145,7 +145,7 @@ export default function AdminProductionPage() {
             </div>
 
             {/* Baker Dashboard Summary Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4">
               <div className="bg-cream-100 dark:bg-maroon-900 p-4 rounded-2xl border border-cream-300 dark:border-maroon-800 shadow-xs">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold text-charcoal-muted dark:text-cream-300/70 uppercase tracking-wider">
@@ -255,7 +255,7 @@ export default function AdminProductionPage() {
                 </div>
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse text-xs">
+                  <table className="w-full text-left border-collapse text-xs min-w-[700px]">
                     <thead>
                       <tr className="border-b border-cream-300 dark:border-maroon-800 text-maroon-900 dark:text-cream-200 font-bold uppercase tracking-wider text-[10px] bg-cream-200/50 dark:bg-maroon-800/40">
                         <th className="py-3.5 px-4">Task / Priority</th>

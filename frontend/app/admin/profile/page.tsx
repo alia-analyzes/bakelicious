@@ -114,11 +114,11 @@ export default function AdminProfilePage() {
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
           <Header onOpenSidebar={() => setSidebarOpen(true)} title="My Bakery ERP Account & Permissions" />
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-5xl mx-auto w-full">
+          <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-5 sm:space-y-6 max-w-5xl mx-auto w-full min-w-0">
             {/* Header banner */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-maroon-700 dark:bg-cream-100 text-cream-100 dark:text-maroon-900 flex items-center justify-center text-xl font-black shadow-md shrink-0">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-maroon-700 dark:bg-cream-100 text-cream-100 dark:text-maroon-900 flex items-center justify-center text-xl font-black shadow-md shrink-0">
                   {currentUser?.full_name?.charAt(0) || currentUser?.username?.charAt(0) || 'U'}
                 </div>
                 <div>
@@ -147,7 +147,7 @@ export default function AdminProfilePage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Account Details & Password Form */}
               <div className="lg:col-span-1 space-y-6">
-                <div className="bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4 text-xs font-medium">
+                <div className="bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4 text-xs font-medium">
                   <h3 className="text-sm font-bold text-maroon-950 dark:text-cream-100 font-serif border-b border-cream-300 dark:border-maroon-800 pb-2">
                     Account Overview
                   </h3>
@@ -178,7 +178,7 @@ export default function AdminProfilePage() {
                 </div>
 
                 {/* Change Password Form */}
-                <form onSubmit={handleChangePassword} className="bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4 text-xs font-medium">
+                <form onSubmit={handleChangePassword} className="bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4 text-xs font-medium">
                   <h3 className="text-sm font-bold text-maroon-950 dark:text-cream-100 font-serif border-b border-cream-300 dark:border-maroon-800 pb-2 flex items-center gap-1.5">
                     <Lock className="w-4 h-4 text-maroon-700 dark:text-cream-200" />
                     <span>Change Password</span>
@@ -224,7 +224,7 @@ export default function AdminProfilePage() {
                     <button
                       type="submit"
                       disabled={changingPassword}
-                      className="px-5 py-2.5 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-bold rounded-xl shadow-md transition disabled:opacity-50"
+                      className="px-5 py-2.5 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-bold rounded-xl shadow-md transition disabled:opacity-50 w-full sm:w-auto text-center"
                     >
                       {changingPassword ? 'Updating...' : 'Update Password'}
                     </button>
@@ -233,8 +233,8 @@ export default function AdminProfilePage() {
               </div>
 
               {/* Read-Only My Permissions Matrix */}
-              <div className="lg:col-span-2 bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4">
-                <div className="flex items-center justify-between border-b border-cream-300 dark:border-maroon-800 pb-3">
+              <div className="lg:col-span-2 bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-cream-300 dark:border-maroon-800 pb-3">
                   <div>
                     <h3 className="text-base font-bold text-maroon-950 dark:text-cream-100 font-serif flex items-center gap-2">
                       <Shield className="w-5 h-5 text-maroon-700 dark:text-cream-200" />

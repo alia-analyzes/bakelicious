@@ -62,11 +62,11 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-cream-200 dark:bg-maroon-950 flex flex-col items-center justify-center p-4 py-8">
-      <div className="w-full max-w-md bg-cream-100 dark:bg-maroon-900 rounded-3xl shadow-2xl border-2 border-maroon-950/20 dark:border-cream-100/20 p-6 sm:p-8 space-y-6">
+    <div className="min-h-screen bg-cream-200 dark:bg-maroon-950 flex flex-col items-center justify-center p-3 sm:p-6 py-6 sm:py-10">
+      <div className="w-full max-w-md bg-cream-100 dark:bg-maroon-900 rounded-2xl sm:rounded-3xl shadow-2xl border-2 border-maroon-950/20 dark:border-cream-100/20 p-5 sm:p-8 space-y-5 sm:space-y-6">
         {/* Logo and Brand */}
         <div className="text-center flex flex-col items-center space-y-3">
-          <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-cream-50 dark:bg-maroon-800 border-3 border-maroon-950 dark:border-cream-100 p-2 shadow-neo flex items-center justify-center shrink-0">
+          <div className="w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-cream-50 dark:bg-maroon-800 border-2 sm:border-3 border-maroon-950 dark:border-cream-100 p-1.5 sm:p-2 shadow-neo flex items-center justify-center shrink-0">
             <img
               src="/logo.svg"
               alt="Bakelicious Logo"
@@ -74,7 +74,7 @@ export default function AdminLoginPage() {
             />
           </div>
           <div>
-            <h1 className="text-3xl sm:text-4xl font-black text-maroon-950 dark:text-cream-100 font-serif tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-maroon-950 dark:text-cream-100 font-serif tracking-tight">
               Bakelicious ERP
             </h1>
             <p className="text-xs text-maroon-700 dark:text-cream-300 font-black uppercase tracking-widest mt-1">

@@ -37,7 +37,7 @@ export default function AdminCostingPage() {
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
           <Header onOpenSidebar={() => setSidebarOpen(true)} title="Bakery Product Profitability & Costing Analysis" />
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6">
+          <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-5 sm:space-y-6 min-w-0">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div>
                 <h1 className="text-2xl font-extrabold font-serif text-maroon-950 dark:text-cream-100">
@@ -56,7 +56,7 @@ export default function AdminCostingPage() {
                 </div>
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse text-xs">
+                  <table className="w-full text-left border-collapse text-xs min-w-[650px]">
                     <thead>
                       <tr className="border-b border-cream-300 dark:border-maroon-800 text-maroon-900 dark:text-cream-200 font-bold uppercase tracking-wider text-[10px] bg-cream-200/50 dark:bg-maroon-800/40">
                         <th className="py-3.5 px-4">Product Name</th>

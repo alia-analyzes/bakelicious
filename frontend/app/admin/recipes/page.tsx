@@ -105,7 +105,7 @@ export default function AdminRecipesPage() {
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
           <Header onOpenSidebar={() => setSidebarOpen(true)} title="Cake Recipe Builder & Ingredient Costing" />
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6">
+          <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-5 sm:space-y-6 min-w-0">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div>
                 <h1 className="text-2xl font-extrabold font-serif text-maroon-950 dark:text-cream-100">
@@ -152,7 +152,7 @@ export default function AdminRecipesPage() {
               <div className="lg:col-span-8 bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-6">
                 {activeProduct ? (
                   <>
-                    <div className="flex items-center justify-between border-b border-cream-300 dark:border-maroon-800 pb-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-cream-300 dark:border-maroon-800 pb-4">
                       <div>
                         <h2 className="text-xl font-extrabold text-maroon-950 dark:text-cream-100 font-serif">
                           Recipe: {activeProduct.name}
@@ -186,7 +186,7 @@ export default function AdminRecipesPage() {
                           const lineCost = (matchedIng?.unit_cost || 0) * (item.quantity || 0);
 
                           return (
-                            <div key={idx} className="flex items-center gap-3 bg-cream-200 dark:bg-maroon-800/80 p-3 rounded-2xl border border-cream-300 dark:border-maroon-700 text-xs">
+                            <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3 bg-cream-200 dark:bg-maroon-800/80 p-3 rounded-2xl border border-cream-300 dark:border-maroon-700 text-xs">
                               <select
                                 value={item.ingredient_id}
                                 onChange={(e) => handleItemChange(idx, 'ingredient_id', e.target.value)}
@@ -226,7 +226,7 @@ export default function AdminRecipesPage() {
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-cream-300 dark:border-maroon-800 flex items-center justify-between">
+                    <div className="pt-4 border-t border-cream-300 dark:border-maroon-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                       <div className="text-xs text-charcoal-muted font-medium">
                         Selling Price: <strong className="text-emerald-800 dark:text-emerald-300">₹{activeProduct.price}</strong> | Margin: <strong className="text-maroon-900 dark:text-cream-100">{(((activeProduct.price - totalRecipeCost) / activeProduct.price) * 100).toFixed(1)}%</strong>
                       </div>

@@ -15,13 +15,11 @@ import {
   FileSpreadsheet,
   LogOut,
   X,
-  ExternalLink,
   ChevronDown,
   ChevronRight,
   Calculator,
   Receipt,
-  AlertTriangle,
-  Camera
+  AlertTriangle
 } from 'lucide-react';
 import { logout, getStoredUser, hasPermission, hasAnyPermission, isSuperAdmin, isBaker } from '@/lib/auth';
 import { User } from '@/types';
@@ -45,6 +43,25 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
     checkLowStock();
   }, []);
 
+  // Lock body scroll and listen for escape key when mobile drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && onClose) {
+          onClose();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isOpen, onClose]);
+
   const checkLowStock = async () => {
     try {
       const res = await api.get('/ingredients');
@@ -57,7 +74,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
     }
   };
 
-  // Workspace Nav: Exactly the 7 items requested
+  // Workspace Nav: Exactly the items requested
   const workspaceNav = [
     {
       name: 'Dashboard',
@@ -121,7 +138,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
     },
   ].filter(item => item.visible);
 
-  // Business & Reports Nav (Collapsible): Exactly the 4 items requested
+  // Business & Reports Nav (Collapsible)
   const businessReportsNav = [
     {
       name: 'Analytics',
@@ -169,21 +186,23 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
       {/* Mobile Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-maroon-900/60 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-40 bg-maroon-900/60 backdrop-blur-sm lg:hidden transition-opacity"
           onClick={onClose}
+          aria-hidden="true"
         />
       )}
 
       <aside
-        className={`fixed top-0 left-0 z-40 h-screen w-64 bg-cream-100 dark:bg-maroon-950 border-r-2 border-maroon-950 dark:border-cream-100/30 shadow-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 left-0 z-40 h-[100dvh] h-screen w-64 max-w-[85vw] bg-cream-100 dark:bg-maroon-950 border-r-2 border-maroon-950 dark:border-cream-100/30 shadow-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
+        aria-label="Navigation sidebar"
       >
-        <div className="flex flex-col h-full overflow-y-auto scrollbar-none">
+        <div className="flex flex-col h-full overflow-y-auto overscroll-contain scrollbar-none">
           {/* Header & Logo with Neo-Brutalism */}
-          <div className="flex items-center justify-between px-5 py-4 border-b-2 border-maroon-950 dark:border-cream-100/20 bg-cream-50 dark:bg-maroon-900">
-            <Link href="/admin/dashboard" className="flex items-center gap-3 select-none" onClick={onClose}>
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950 dark:border-cream-100 p-1 shadow-neo-sm flex items-center justify-center shrink-0">
+          <div className="flex items-center justify-between px-4 sm:px-5 py-3.5 sm:py-4 border-b-2 border-maroon-950 dark:border-cream-100/20 bg-cream-50 dark:bg-maroon-900 shrink-0">
+            <Link href="/admin/dashboard" className="flex items-center gap-3 select-none min-w-0" onClick={onClose}>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cream-50 dark:bg-maroon-800 border-2 border-maroon-950 dark:border-cream-100 p-1 shadow-neo-sm flex items-center justify-center shrink-0">
                 <img
                   src="/logo.svg"
                   alt="Bakelicious Logo"
@@ -193,11 +212,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                   }}
                 />
               </div>
-              <div>
-                <h1 className="text-xl font-black text-maroon-950 dark:text-cream-100 tracking-tight leading-none font-serif">
+              <div className="min-w-0">
+                <h1 className="text-lg sm:text-xl font-black text-maroon-950 dark:text-cream-100 tracking-tight leading-none font-serif truncate">
                   Bakelicious
                 </h1>
-                <span className="text-[10px] text-maroon-700 dark:text-cream-300 font-black tracking-widest uppercase">
+                <span className="text-[9px] sm:text-[10px] text-maroon-700 dark:text-cream-300 font-black tracking-widest uppercase truncate block">
                   Bakery Admin
                 </span>
               </div>
@@ -205,7 +224,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
             {onClose && (
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-200 dark:bg-maroon-800 text-maroon-950 dark:text-cream-100 lg:hidden shadow-neo-xs btn-tactile"
+                className="p-2 min-w-[36px] min-h-[36px] rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-200 dark:bg-maroon-800 text-maroon-950 dark:text-cream-100 lg:hidden shadow-neo-xs btn-tactile shrink-0 flex items-center justify-center"
+                aria-label="Close sidebar"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -213,7 +233,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
           </div>
 
           {/* Navigation Links */}
-          <div className="px-3.5 py-4 space-y-5 flex-1">
+          <div className="px-3 py-3.5 space-y-4 flex-1">
 
             {/* ================= SECTION 2: WORKSPACE ================= */}
             {workspaceNav.length > 0 && (
@@ -229,7 +249,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                       <div key={item.name} className="space-y-1">
                         {item.subItems ? (
                           <div
-                            className={`flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-bold transition duration-200 border-2 ${
+                            className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition duration-200 border-2 ${
                               active
                                 ? 'bg-maroon-700 text-cream-100 border-maroon-950 dark:border-cream-100 shadow-neo-sm font-black'
                                 : 'bg-cream-50 dark:bg-maroon-900/60 text-maroon-950 dark:text-cream-100 border-maroon-950/20 dark:border-maroon-800 hover:border-maroon-950 hover:shadow-neo-xs'
@@ -245,9 +265,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                                 }
                                 onClose?.();
                               }}
-                              className="flex-1 flex items-center gap-2.5 cursor-pointer select-none"
+                              className="flex-1 flex items-center gap-2.5 cursor-pointer select-none min-w-0"
                             >
-                              <span className="text-[10px] opacity-60 w-3 font-mono font-black">{index + 1}.</span>
+                              <span className="text-[10px] opacity-60 w-3 font-mono font-black shrink-0">{index + 1}.</span>
                               <Icon className="w-4 h-4 shrink-0" />
                               <span className="truncate">{item.name}</span>
                             </Link>
@@ -259,7 +279,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                                 e.stopPropagation();
                                 setOrdersMenuOpen(!ordersMenuOpen);
                               }}
-                              className={`p-1 rounded-lg transition ${
+                              className={`p-1.5 rounded-lg transition shrink-0 ${
                                 active
                                   ? 'text-cream-100 hover:bg-maroon-800'
                                   : 'text-maroon-950 dark:text-cream-300 hover:bg-cream-200 dark:hover:bg-maroon-800'
@@ -278,19 +298,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                           <Link
                             href={item.href}
                             onClick={onClose}
-                            className={`flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-bold transition duration-200 border-2 ${
+                            className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition duration-200 border-2 ${
                               active
                                 ? 'bg-maroon-700 text-cream-100 border-maroon-950 dark:border-cream-100 shadow-neo-sm font-black'
                                 : 'bg-cream-50 dark:bg-maroon-900/60 text-maroon-950 dark:text-cream-100 border-maroon-950/20 dark:border-maroon-800 hover:border-maroon-950 hover:shadow-neo-xs'
                             }`}
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
-                              <span className="text-[10px] opacity-60 w-3 font-mono font-black">{index + 1}.</span>
+                              <span className="text-[10px] opacity-60 w-3 font-mono font-black shrink-0">{index + 1}.</span>
                               <Icon className="w-4 h-4 shrink-0" />
                               <span className="truncate">{item.name}</span>
                             </div>
                             {item.badge && (
-                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-black bg-rose-600 text-cream-100 border border-maroon-950 shadow-xs animate-pulse">
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-black bg-rose-600 text-cream-100 border border-maroon-950 shadow-xs animate-pulse shrink-0">
                                 <AlertTriangle className="w-2.5 h-2.5" />
                                 {item.badge}
                               </span>
@@ -299,7 +319,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                         )}
 
                         {item.subItems && ordersMenuOpen && (
-                          <div className="pl-5 pr-1 py-1 space-y-1 bg-cream-200 dark:bg-maroon-900/80 rounded-xl border-2 border-maroon-950/15 dark:border-cream-100/15 mt-1">
+                          <div className="pl-4 pr-1 py-1 space-y-1 bg-cream-200 dark:bg-maroon-900/80 rounded-xl border-2 border-maroon-950/15 dark:border-cream-100/15 mt-1">
                             {item.subItems.map((sub) => {
                               const isSubActive = pathname === sub.href;
                               return (
@@ -313,8 +333,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                                       : 'text-maroon-950 dark:text-cream-200 border-transparent hover:border-maroon-950/40 hover:bg-cream-100 dark:hover:bg-maroon-800'
                                   }`}
                                 >
-                                  <span className={`w-1.5 h-1.5 rounded-full ${isSubActive ? 'bg-amber-300' : 'bg-maroon-950/30 dark:bg-cream-300/40'}`}></span>
-                                  <span>{sub.name}</span>
+                                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isSubActive ? 'bg-amber-300' : 'bg-maroon-950/30 dark:bg-cream-300/40'}`}></span>
+                                  <span className="truncate">{sub.name}</span>
                                 </Link>
                               );
                             })}
@@ -337,9 +357,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                 >
                   <span>Business &amp; Reports</span>
                   {businessReportsOpen ? (
-                    <ChevronDown className="w-3.5 h-3.5 text-maroon-700 dark:text-cream-300" />
+                    <ChevronDown className="w-3.5 h-3.5 text-maroon-700 dark:text-cream-300 shrink-0" />
                   ) : (
-                    <ChevronRight className="w-3.5 h-3.5 text-maroon-700 dark:text-cream-300" />
+                    <ChevronRight className="w-3.5 h-3.5 text-maroon-700 dark:text-cream-300 shrink-0" />
                   )}
                 </button>
 
@@ -353,14 +373,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
                           key={item.name}
                           href={item.href}
                           onClick={onClose}
-                          className={`flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition border-2 ${
+                          className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl text-xs font-bold transition border-2 ${
                             active
                               ? 'bg-maroon-700 text-cream-100 border-maroon-950 dark:border-cream-100 shadow-neo-sm font-black'
                               : 'bg-cream-50 dark:bg-maroon-900/60 text-maroon-950 dark:text-cream-100 border-maroon-950/20 dark:border-maroon-800 hover:border-maroon-950 hover:shadow-neo-xs'
                           }`}
                         >
                           <Icon className="w-4 h-4 shrink-0" />
-                          <span>{item.name}</span>
+                          <span className="truncate">{item.name}</span>
                         </Link>
                       );
                     })}
@@ -371,13 +391,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
           </div>
 
           {/* Footer Profile & Role Info (Neo-Brutalist) */}
-          <div className="p-3.5 border-t-2 border-maroon-950 dark:border-cream-100/20 bg-cream-50 dark:bg-maroon-900 space-y-2.5">
+          <div className="p-3.5 border-t-2 border-maroon-950 dark:border-cream-100/20 bg-cream-50 dark:bg-maroon-900 space-y-2.5 shrink-0">
             <div className="flex items-center justify-between px-1">
               <span className="text-[10px] font-black uppercase tracking-wider text-maroon-950 dark:text-cream-200">Theme</span>
               <ThemeToggle />
             </div>
             <div className="flex items-center justify-between pt-2 border-t-2 border-maroon-950/15 dark:border-maroon-800">
-              <Link href="/admin/profile" className="flex items-center gap-2.5 group overflow-hidden flex-1 min-w-0">
+              <Link href="/admin/profile" onClick={onClose} className="flex items-center gap-2.5 group overflow-hidden flex-1 min-w-0 pr-2">
                 <div className="w-8 h-8 rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-200 dark:bg-maroon-800 text-maroon-950 dark:text-cream-100 flex items-center justify-center font-black text-xs shadow-neo-xs shrink-0">
                   {currentUser?.full_name?.charAt(0) || currentUser?.username?.charAt(0) || 'B'}
                 </div>
@@ -393,7 +413,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => 
               <button
                 onClick={logout}
                 title="Sign Out"
-                className="p-2 rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-200 dark:bg-maroon-800 text-maroon-950 dark:text-cream-100 shadow-neo-xs btn-tactile shrink-0"
+                className="p-2 min-w-[36px] min-h-[36px] rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-200 dark:bg-maroon-800 text-maroon-950 dark:text-cream-100 shadow-neo-xs btn-tactile shrink-0 flex items-center justify-center active:scale-95"
               >
                 <LogOut className="w-3.5 h-3.5" />
               </button>

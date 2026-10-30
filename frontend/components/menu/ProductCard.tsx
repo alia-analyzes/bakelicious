@@ -66,7 +66,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Card Content */}
-        <div className="p-5 space-y-3">
+        <div className="p-3.5 sm:p-5 space-y-2.5 sm:space-y-3">
           <div className="flex items-start justify-between gap-2">
             <h3 className="font-bold text-maroon-900 text-base leading-snug line-clamp-1 font-serif">
               {product.name}
@@ -97,7 +97,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
 
           {/* Cost & Profit Margin Summary */}
-          <div className="p-2.5 bg-cream-200 rounded-xl border border-cream-300 flex items-center justify-between text-[11px]">
+          <div className="p-2.5 bg-cream-200 rounded-xl border border-cream-300 flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px]">
             <div>
               <span className="text-charcoal-muted">Cost: </span>
               <span className="font-bold text-maroon-900">₹{product.effective_cost.toFixed(2)}</span>
@@ -128,10 +128,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </div>
 
       {/* Card Action Buttons */}
-      <div className="p-4 bg-cream-200 border-t border-cream-300 flex items-center justify-between gap-2">
+      <div className="p-3 sm:p-4 bg-cream-200 border-t border-cream-300 flex items-center justify-between gap-2">
         <button
           onClick={() => onConfigureRecipe(product)}
-          className="px-3 py-1.5 bg-maroon-600 hover:bg-maroon-700 text-white text-xs font-bold rounded-lg transition shadow-xs flex items-center gap-1.5"
+          className="px-3 py-1.5 bg-maroon-700 hover:bg-maroon-800 text-cream-100 text-xs font-bold rounded-lg transition shadow-xs flex items-center gap-1.5"
         >
           <ChefHat className="w-3.5 h-3.5" />
           <span>Recipe Costing</span>
@@ -140,14 +140,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="flex items-center gap-1">
           <button
             onClick={() => onEdit(product)}
-            className="p-1.5 text-charcoal-muted hover:text-maroon-800 hover:bg-cream-300 rounded-lg transition"
+            className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center text-charcoal-muted hover:text-maroon-800 hover:bg-cream-300 rounded-lg transition"
             title="Edit Product"
           >
             <Edit className="w-4 h-4" />
           </button>
           <button
             onClick={() => onDelete(product)}
-            className="p-1.5 text-charcoal-muted hover:text-rose-700 hover:bg-rose-50 rounded-lg transition"
+            className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center text-charcoal-muted hover:text-rose-700 hover:bg-rose-50 rounded-lg transition"
             title="Delete Product"
           >
             <Trash2 className="w-4 h-4" />

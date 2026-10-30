@@ -137,7 +137,7 @@ export const IngredientModal: React.FC<IngredientModalProps> = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
             <label className="block text-xs font-semibold text-slate-700 mb-1">Current Stock</label>
             <input
@@ -183,18 +183,18 @@ export const IngredientModal: React.FC<IngredientModalProps> = ({
           />
         </div>
 
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3 pt-4 border-t border-slate-100 dark:border-maroon-800">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl"
+            className="w-full sm:w-auto px-4 py-2 bg-slate-100 dark:bg-maroon-800 text-slate-700 dark:text-cream-200 text-xs font-semibold rounded-xl"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={saving}
-            className="px-5 py-2 bg-bakery-600 text-white text-xs font-bold rounded-xl shadow-md"
+            className="w-full sm:w-auto px-5 py-2 bg-bakery-600 hover:bg-bakery-700 text-white text-xs font-bold rounded-xl shadow-md disabled:opacity-50"
           >
             {saving ? 'Saving...' : ingredient ? 'Save Changes' : 'Add Ingredient'}
           </button>

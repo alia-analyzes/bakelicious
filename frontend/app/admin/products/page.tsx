@@ -803,7 +803,7 @@ export default function AdminProductsPage() {
                 {/* Table */}
                 <div className="bg-cream-100 dark:bg-maroon-900 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm overflow-hidden">
                   <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse text-xs">
+                    <table className="w-full text-left border-collapse text-xs min-w-[720px]">
                       <thead>
                         <tr className="border-b border-cream-300 dark:border-maroon-800 text-maroon-900 dark:text-cream-200 font-bold uppercase tracking-wider text-[10px] bg-cream-200/50 dark:bg-maroon-800/40">
                           <th className="py-3.5 px-4">Cake / Product</th>
@@ -1351,8 +1351,8 @@ export default function AdminProductsPage() {
               )}
             </div>
 
-            <div className="bg-cream-100 dark:bg-maroon-900 rounded-2xl border border-cream-300 dark:border-maroon-800 overflow-hidden">
-              <table className="w-full text-left text-xs">
+            <div className="bg-cream-100 dark:bg-maroon-900 rounded-2xl border border-cream-300 dark:border-maroon-800 overflow-hidden overflow-x-auto">
+              <table className="w-full text-left text-xs min-w-[500px]">
                 <thead>
                   <tr className="bg-cream-200/60 dark:bg-maroon-800 text-maroon-900 dark:text-cream-200 font-bold text-[10px] uppercase border-b border-cream-300 dark:border-maroon-700">
                     <th className="py-2.5 px-3">Ingredient</th>

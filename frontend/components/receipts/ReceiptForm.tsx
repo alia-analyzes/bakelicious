@@ -393,7 +393,7 @@ export const ReceiptForm: React.FC<ReceiptFormProps> = ({
         {/* LEFT COLUMN: Customer & Cake Form Inputs (2 Cols on Large) */}
         <div className="lg:col-span-2 space-y-6">
           {/* SECTION 1: Customer Details */}
-          <div className="bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4">
+          <div className="bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4">
             <div className="flex items-center gap-2 pb-3 border-b border-cream-300/60 dark:border-maroon-800">
               <User className="w-5 h-5 text-[#7E4049] dark:text-cream-300" />
               <h2 className="text-base font-bold text-maroon-950 dark:text-cream-100">
@@ -450,7 +450,7 @@ export const ReceiptForm: React.FC<ReceiptFormProps> = ({
           </div>
 
           {/* SECTION 2: Order Details */}
-          <div className="bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4">
+          <div className="bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4">
             <div className="flex items-center gap-2 pb-3 border-b border-cream-300/60 dark:border-maroon-800">
               <Sparkles className="w-5 h-5 text-[#7E4049] dark:text-cream-300" />
               <h2 className="text-base font-bold text-maroon-950 dark:text-cream-100">
@@ -598,7 +598,7 @@ export const ReceiptForm: React.FC<ReceiptFormProps> = ({
                 <label className="block text-xs font-bold text-gray-700 dark:text-cream-200 mb-1.5">
                   Order Type
                 </label>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                   <button
                     type="button"
                     onClick={() => handleOrderTypeChange('Self Pick-up')}
@@ -650,7 +650,7 @@ export const ReceiptForm: React.FC<ReceiptFormProps> = ({
           </div>
 
           {/* SECTION 3: Candles Selection */}
-          <div className="bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4">
+          <div className="bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-cream-300/60 dark:border-maroon-800">
               <div className="flex items-center gap-2">
                 <Flame className="w-5 h-5 text-[#7E4049] dark:text-cream-300" />

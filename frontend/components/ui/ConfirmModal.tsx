@@ -32,10 +32,10 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
           <AlertTriangle className="w-8 h-8" />
         </div>
         <p className="text-sm text-slate-600 leading-relaxed">{message}</p>
-        <div className="flex items-center justify-end gap-3 w-full pt-4 border-t border-slate-100">
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3 w-full pt-4 border-t border-slate-100 dark:border-maroon-800">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition"
+            className="px-4 py-2.5 text-xs sm:text-sm font-bold text-slate-700 dark:text-cream-200 bg-slate-100 dark:bg-maroon-800 hover:bg-slate-200 dark:hover:bg-maroon-700 rounded-xl transition"
           >
             {cancelText}
           </button>
@@ -44,8 +44,8 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
               onConfirm();
               onClose();
             }}
-            className={`px-4 py-2 text-sm font-medium text-white rounded-lg transition shadow-sm ${
-              isDangerous ? 'bg-rose-600 hover:bg-rose-700' : 'bg-bakery-600 hover:bg-bakery-700'
+            className={`px-5 py-2.5 text-xs sm:text-sm font-bold text-white rounded-xl transition shadow-sm ${
+              isDangerous ? 'bg-rose-600 hover:bg-rose-700' : 'bg-maroon-700 hover:bg-maroon-800'
             }`}
           >
             {confirmText}

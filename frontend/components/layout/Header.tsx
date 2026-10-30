@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Menu, Plus, User, ShieldCheck } from 'lucide-react';
+import { Menu, Plus } from 'lucide-react';
 import Link from 'next/link';
-import { getStoredUser, isSuperAdmin, hasPermission } from '@/lib/auth';
+import { getStoredUser, hasPermission } from '@/lib/auth';
 import { User as UserType } from '@/types';
 
 interface HeaderProps {
@@ -26,17 +26,17 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onOpenSidebar, 
     : currentUser?.primary_role || currentUser?.role || 'Staff';
 
   return (
-    <header className="sticky top-0 z-30 bg-cream-100/95 dark:bg-maroon-950/95 backdrop-blur-md border-b-2 border-maroon-950 dark:border-cream-100/20 px-4 lg:px-8 py-3.5 flex items-center justify-between shadow-neo-sm transition-colors">
-      <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+    <header className="sticky top-0 z-30 bg-cream-100/95 dark:bg-maroon-950/95 backdrop-blur-md border-b-2 border-maroon-950 dark:border-cream-100/20 px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3.5 flex items-center justify-between shadow-neo-sm transition-colors">
+      <div className="flex items-center gap-2.5 sm:gap-4 min-w-0">
         <button
           onClick={handleSidebar}
-          className="p-2 rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 text-maroon-950 dark:text-cream-100 shadow-neo-xs btn-tactile lg:hidden transition shrink-0"
+          className="p-2 min-w-[40px] min-h-[40px] rounded-xl border-2 border-maroon-950 dark:border-cream-100 bg-cream-50 dark:bg-maroon-900 text-maroon-950 dark:text-cream-100 shadow-neo-xs btn-tactile lg:hidden transition shrink-0 flex items-center justify-center active:scale-95"
           aria-label="Open sidebar"
         >
           <Menu className="w-5 h-5" />
         </button>
         <div className="min-w-0">
-          <h2 className="text-base sm:text-xl font-black text-maroon-950 dark:text-cream-100 tracking-tight font-serif truncate">
+          <h2 className="text-sm sm:text-lg lg:text-xl font-black text-maroon-950 dark:text-cream-100 tracking-tight font-serif truncate">
             {title}
           </h2>
         </div>
@@ -46,16 +46,17 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onOpenSidebar, 
         {currentUser && (
           <Link
             href="/admin/profile"
-            className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100/40 shadow-neo-xs hover:shadow-neo-sm btn-tactile transition"
+            className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-xl bg-cream-50 dark:bg-maroon-900 border-2 border-maroon-950 dark:border-cream-100/40 shadow-neo-xs hover:shadow-neo-sm btn-tactile transition"
+            title={`${currentUser.full_name || currentUser.username} (${roleName})`}
           >
-            <div className="w-6 h-6 rounded-lg border border-maroon-950 dark:border-cream-100 bg-maroon-700 text-cream-100 flex items-center justify-center text-[10px] font-black">
+            <div className="w-6 h-6 rounded-lg border border-maroon-950 dark:border-cream-100 bg-maroon-700 text-cream-100 flex items-center justify-center text-[10px] font-black shrink-0">
               {currentUser.full_name?.charAt(0) || currentUser.username?.charAt(0) || 'U'}
             </div>
-            <div className="hidden sm:block text-left">
-              <span className="block text-[11px] font-black text-maroon-950 dark:text-cream-100 leading-tight">
+            <div className="hidden sm:block text-left min-w-0">
+              <span className="block text-[11px] font-black text-maroon-950 dark:text-cream-100 leading-tight truncate max-w-[120px]">
                 {currentUser.full_name || currentUser.username}
               </span>
-              <span className="block text-[9px] font-bold text-maroon-700 dark:text-cream-300 leading-none">
+              <span className="block text-[9px] font-bold text-maroon-700 dark:text-cream-300 leading-none truncate max-w-[120px]">
                 {roleName}
               </span>
             </div>
@@ -65,10 +66,11 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onOpenSidebar, 
         {hasPermission('ORDERS_CREATE') && (
           <Link
             href="/admin/orders"
-            className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-xl text-xs font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm btn-tactile transition duration-200"
+            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-xl text-xs font-black uppercase tracking-wider border-2 border-maroon-950 dark:border-cream-100 shadow-neo-sm btn-tactile transition duration-200"
+            title="New Order"
           >
             <Plus className="w-4 h-4" />
-            <span>New Order</span>
+            <span className="hidden sm:inline">New Order</span>
           </Link>
         )}
       </div>

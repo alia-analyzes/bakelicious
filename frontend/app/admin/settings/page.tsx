@@ -64,8 +64,8 @@ export default function AdminSettingsPage() {
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
           <Header onOpenSidebar={() => setSidebarOpen(true)} title="Bakery Store & System Settings" />
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-4xl mx-auto w-full">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
+          <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-5 sm:space-y-6 max-w-4xl mx-auto w-full min-w-0">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div>
                 <h1 className="text-2xl font-extrabold font-serif text-maroon-950 dark:text-cream-100 flex items-center gap-2">
                   <SettingsIcon className="w-6 h-6 text-maroon-700 dark:text-cream-200" />
@@ -82,7 +82,7 @@ export default function AdminSettingsPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Link
                   href="/admin/users"
-                  className="bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-xs hover:border-maroon-600/50 transition flex items-center justify-between group"
+                  className="bg-cream-100 dark:bg-maroon-900 p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-xs hover:border-maroon-600/50 transition flex items-center justify-between group"
                 >
                   <div className="flex items-center gap-3.5">
                     <div className="w-10 h-10 rounded-2xl bg-maroon-700 dark:bg-cream-100 text-cream-100 dark:text-maroon-900 flex items-center justify-center shadow-sm">
@@ -102,7 +102,7 @@ export default function AdminSettingsPage() {
 
                 <Link
                   href="/admin/roles"
-                  className="bg-cream-100 dark:bg-maroon-900 p-5 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-xs hover:border-maroon-600/50 transition flex items-center justify-between group"
+                  className="bg-cream-100 dark:bg-maroon-900 p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-xs hover:border-maroon-600/50 transition flex items-center justify-between group"
                 >
                   <div className="flex items-center gap-3.5">
                     <div className="w-10 h-10 rounded-2xl bg-maroon-700 dark:bg-cream-100 text-cream-100 dark:text-maroon-900 flex items-center justify-center shadow-sm">
@@ -122,7 +122,7 @@ export default function AdminSettingsPage() {
               </div>
             )}
 
-            <form onSubmit={handleSaveSettings} className="bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-6 text-xs font-medium">
+            <form onSubmit={handleSaveSettings} className="bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm space-y-5 sm:space-y-6 text-xs font-medium">
               <div className="space-y-4">
                 <div>
                   <label className="block font-bold text-maroon-900 dark:text-cream-200 mb-1">
@@ -178,7 +178,7 @@ export default function AdminSettingsPage() {
               <div className="pt-4 border-t border-cream-300 dark:border-maroon-800 flex justify-end">
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-bold rounded-2xl text-xs shadow-md transition flex items-center gap-2"
+                  className="px-6 py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 font-bold rounded-2xl text-xs shadow-md transition flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
                   <Save className="w-4 h-4" />
                   <span>Save Configuration</span>

@@ -147,13 +147,13 @@ export const CustomerReceipt: React.FC<CustomerReceiptProps> = ({
 
       {/* Top Action Bar (Print / Download / Edit) - Hidden in Print / Download */}
       {showActions && (
-        <div className="no-print w-full max-w-[794px] flex items-center justify-between gap-3 mb-4 p-3 bg-white dark:bg-maroon-900 rounded-2xl border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-md">
+        <div className="no-print w-full max-w-[794px] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4 p-3 bg-white dark:bg-maroon-900 rounded-2xl border-2 border-maroon-950/20 dark:border-cream-100/20 shadow-md">
           <div className="flex items-center gap-2 text-xs font-bold text-maroon-900 dark:text-cream-100">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>Invoice Ready • {receipt.receipt_number}</span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
             {onEdit && (
               <button
                 type="button"
@@ -188,7 +188,8 @@ export const CustomerReceipt: React.FC<CustomerReceiptProps> = ({
       )}
 
       {/* Horizontal scroll container for responsive preview, preserving exact 794x1122 canvas */}
-      <div className="w-full flex justify-center overflow-x-auto p-1">
+      <div className="w-full flex flex-col items-center overflow-x-auto p-1">
+        <p className="text-[11px] text-maroon-950/70 dark:text-cream-300/80 font-bold mb-2 sm:hidden text-center">👈 Swipe horizontally to view full A4 invoice 👉</p>
         {/* The Printable Invoice Page - EXACT MATCH TO USER'S TEMPLATE */}
         <div
           id="printable-receipt-card"

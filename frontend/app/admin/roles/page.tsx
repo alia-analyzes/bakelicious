@@ -170,8 +170,8 @@ export default function AdminRolesPage() {
         <div className="flex-1 flex flex-col min-w-0 lg:pl-64">
           <Header onOpenSidebar={() => setSidebarOpen(true)} title="ERP Role & Permission Configurations" />
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-6xl mx-auto w-full">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-6 rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
+          <main className="flex-1 p-3.5 sm:p-6 lg:p-8 space-y-5 sm:space-y-6 max-w-6xl mx-auto w-full min-w-0">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cream-100 dark:bg-maroon-900 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-cream-300 dark:border-maroon-800 shadow-sm">
               <div>
                 <h1 className="text-2xl font-extrabold font-serif text-maroon-950 dark:text-cream-100 flex items-center gap-2.5">
                   <ShieldCheck className="w-7 h-7 text-maroon-700 dark:text-cream-200" />
@@ -184,7 +184,7 @@ export default function AdminRolesPage() {
 
               <button
                 onClick={handleOpenCreate}
-                className="px-5 py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs font-bold shadow-md transition flex items-center justify-center gap-2 shrink-0"
+                className="px-5 py-3 bg-maroon-700 hover:bg-maroon-800 text-cream-100 rounded-2xl text-xs font-bold shadow-md transition flex items-center justify-center gap-2 shrink-0 w-full sm:w-auto"
               >
                 <Plus className="w-4 h-4" />
                 <span>Create Custom Role</span>
@@ -192,7 +192,7 @@ export default function AdminRolesPage() {
             </div>
 
             {/* Roles Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
               {loading ? (
                 <div className="col-span-full py-20 text-center text-xs font-bold text-charcoal-muted">
                   Loading roles...
@@ -271,7 +271,7 @@ export default function AdminRolesPage() {
       {/* CREATE / EDIT ROLE MODAL */}
       {(createModalOpen || editModalOpen) && (
         <div className="fixed inset-0 z-50 bg-maroon-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-cream-100 dark:bg-maroon-900 rounded-3xl p-6 border border-cream-300 dark:border-maroon-800 shadow-2xl max-w-2xl w-full my-8 max-h-[90vh] flex flex-col">
+          <div className="bg-cream-100 dark:bg-maroon-900 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-cream-300 dark:border-maroon-800 shadow-2xl max-w-2xl w-full my-4 sm:my-8 max-h-[90dvh] flex flex-col">
             <div className="flex items-center justify-between pb-4 border-b border-cream-300 dark:border-maroon-800">
               <div>
                 <h3 className="text-xl font-extrabold font-serif text-maroon-950 dark:text-cream-100 flex items-center gap-2">
@@ -287,7 +287,7 @@ export default function AdminRolesPage() {
                   setCreateModalOpen(false);
                   setEditModalOpen(false);
                 }}
-                className="p-1 rounded-xl text-charcoal-muted hover:text-maroon-900 dark:hover:text-cream-100 text-lg font-bold"
+                className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-xl text-charcoal-muted hover:text-maroon-900 dark:hover:text-cream-100 text-lg font-bold"
               >
                 ✕
               </button>
@@ -387,7 +387,7 @@ export default function AdminRolesPage() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-cream-300 dark:border-maroon-800 flex justify-end gap-2.5">
+              <div className="pt-4 border-t border-cream-300 dark:border-maroon-800 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5">
                 <button
                   type="button"
                   onClick={() => {
